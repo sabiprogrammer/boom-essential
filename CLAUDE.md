@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Commercial website for **BOOM MULTI GLOBAL COMPANY LIMITED** (Akure, Ondo State, Nigeria), delivered by Sabi Programmers: a premium corporate site plus a private admin dashboard for customer enquiries and appointment requests. Tagline: **POWER. PROTECTION. PROVISION.**
 
-**Status: Stage 0 (application foundation) complete, awaiting approval. Stage 1 has not started.** The preparation docs are approved. The app is a Next.js project at this root showing the default starter screen. Work one stage at a time (see `docs/implementation-plan.md`, §6 and §6.1) and stop for review at each gate. Do not start design or page work until Stage 1 is approved.
+**Status: Stage 0 approved. Stage 1 (design system and global shell) complete, awaiting approval. Stage 2 (Home) has not started.** The site currently shows a temporary design preview at `/` (see `app/(site)/_preview/`); it is not the homepage and is deleted at the homepage milestone. Work one stage at a time (see `docs/implementation-plan.md`, §6, §6.1, §6.2) and stop for review at each gate. Do not build pages, forms, backend or dashboard before their stage is approved.
 
 The project root is the application root. Never create a nested app directory.
 
@@ -24,7 +24,18 @@ No test runner is installed yet (planned: unit, RLS and Playwright tests in late
 
 ## Stack and layout (as installed)
 
-Next.js 16.4.4 (App Router, Turbopack), React 19.3, TypeScript 5.9 (strict), Tailwind CSS 4.3, ESLint 9, npm, Node ≥ 20.9. Path alias `@/*` maps to the project root (no `src/`). Planned folders (`app/(site)`, `app/admin`, `app/actions`, `components/*`, `lib/*`, `content`, `supabase/migrations`) exist as `.gitkeep` placeholders. The CLI-generated `next.config.ts` enables `cacheComponents` and `partialPrefetching`; keep in mind that dynamic data then needs Suspense. `AGENTS.md` (from the Next.js CLI) says to read the version-matched docs in `node_modules/next/dist/docs/` before writing Next code; do so, since this version differs from older Next.js.
+Next.js 16.4.4 (App Router, Turbopack), React 19.3, TypeScript 5.9 (strict), Tailwind CSS 4.3, ESLint 9, npm, Node ≥ 20.9. Path alias `@/*` maps to the project root (no `src/`). Folders not yet used (`app/admin`, `app/actions`, `components/{forms,sections,admin}`, `lib/{supabase,validation,security,export}`, `supabase/migrations`) are `.gitkeep` placeholders. `AGENTS.md` (from the Next.js CLI) says to read the version-matched docs in `node_modules/next/dist/docs/` before writing Next code; do so, since this version differs from older Next.js.
+
+**Where things live (Stage 1):** design tokens in `app/tokens.css` (single source of truth: colour, type, spacing, widths, radius, shadow, motion, breakpoints) and base styles in `app/globals.css`; fonts in `lib/fonts.ts`; confirmed company facts in `content/company.ts`; navigation in `content/navigation.ts`; UI primitives in `components/ui/` (Button, ButtonLink, TextLink, SmartLink, Container, Section, SectionHeading, icons); site frame in `components/layout/` (`SiteShell` wraps header, footer, WhatsApp action; used by `app/(site)/layout.tsx` and `app/not-found.tsx`); reusable hooks in `hooks/`. The public logo copy is `public/assets/branding/boom-multi-global-logo.jpeg` (byte-identical to the original; it is a JPEG on white, so it sits on white surfaces).
+
+**Next.js 16 caching (intentional configuration, do not remove):** `cacheComponents` and `partialPrefetching` stay enabled.
+- Dynamic or request-time data needs a `<Suspense>` boundary (or `use cache` for genuinely shareable data).
+- `new Date()`, `Math.random()` and similar fail prerender, so the footer year is a constant in `content/company.ts`.
+- **Never cache private data across users or sessions**: enquiries, appointments, admin pages, notes and CSV exports must not use `use cache` or be statically prerendered. Read the session/cookies at request time inside Suspense.
+- Do not introduce unsafe caching of authenticated data.
+
+**Maintenance items before production release:**
+1. ESLint 9 is end-of-life (npm prints a deprecation notice) and `npm audit` reports 16 moderate findings in the ESLint toolchain (dev-only; none in production dependencies). Upgrade the lint toolchain when `eslint-config-next` supports a supported ESLint. Do not run `npm audit fix` or `npm audit fix --force` (the suggested fixes are major downgrades).
 
 ## Read these first (the docs are the source of truth)
 

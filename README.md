@@ -2,7 +2,7 @@
 
 Corporate website and private enquiry/appointment dashboard for BOOM MULTI GLOBAL COMPANY LIMITED (Akure, Ondo State, Nigeria). Delivered by Sabi Programmers.
 
-**Status:** Stage 0 (application foundation) complete. The site still shows the default Next.js starter screen. See `docs/implementation-plan.md` for the staged plan.
+**Status:** Stage 1 (design system and global shell) complete. `/` currently shows a temporary design preview, not the homepage. See `docs/implementation-plan.md` for the staged plan.
 
 ## Stack
 
@@ -41,7 +41,8 @@ Copy `.env.example` to `.env.local`. No variables are required yet. Never commit
 ```
 app/              Next.js routes ((site) public pages, admin, actions)
 components/       Shared components (layout, ui, forms, sections, admin)
-lib/              supabase, validation, security, export helpers
+hooks/            Reusable React hooks
+lib/              fonts, navigation helpers; later supabase, validation, security, export
 content/          Typed site content
 supabase/         Migrations and RLS policies (Stage 6)
 public/           Approved production assets only

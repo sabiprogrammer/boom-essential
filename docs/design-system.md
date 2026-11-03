@@ -58,6 +58,16 @@ Status colours for the admin dashboard (new/contacted/etc.) are functional; keep
 - Honour `prefers-reduced-motion` (disable transforms, keep opacity). Animate only `transform`/`opacity`.
 - Never delay content visibility behind animation (important for slow connections and SEO).
 
+## 6.1 Decisions made in Stage 1 (implemented)
+
+- Tokens live in `app/tokens.css`. Breakpoints are xs 480 / sm 640 / md 768 / lg 1024 / xl 1280 / 2xl 1536; desktop navigation begins at lg, the drawer applies below it.
+- Header is a solid white surface because the supplied logo is a JPEG on white. In the footer the logo sits on a white plate on Charcoal Navy. Original logo is never recoloured or cropped.
+- Gold is used as: thin rules, buttons on navy/charcoal (navy text), the development-preview banner, and icons on charcoal. Never as text on light surfaces.
+- Focus indicator: 2px navy outline on light surfaces, gold on dark (`data-surface="dark"`).
+- Navigation uses a disclosure dropdown (button + links), not an ARIA menu. Industrial Equipment is separated from the three divisions everywhere it appears.
+- The WhatsApp action uses Agricultural Green (no extra brand colour), is a 56px circle on phones and a labelled pill from 768px, and hides while the footer is in view.
+- Motion: CSS only; panels use `inert` rather than `visibility` so focus can enter on the first frame of a transition.
+
 ## 7. Accessibility baseline  **[Recommendation]**
 
 WCAG 2.2 AA target: visible focus states, semantic landmarks, labelled form fields with inline error text tied via `aria-describedby`, alt text on all meaningful images, skip link, sufficient contrast, keyboard operable menus and forms.

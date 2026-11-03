@@ -89,7 +89,7 @@ Final fields follow the form requirements in `content-specification.md` after cl
 | Stage | Scope | Gate |
 |---|---|---|
 | 0. Foundation — **COMPLETE, awaiting approval (2026-11-03)** | Verify versions; `git init`; scaffold Next.js in the project root (`create-next-app` may refuse a non-empty folder; scaffold carefully so `CLAUDE.md`, `docs/`, `boom-client-assets/` are preserved); TS strict, Tailwind, ESLint, `.env.example`, `.gitignore`, README. Design tokens and fonts moved to Stage 1 (see §6.1). | Builds and lints cleanly; structure approved |
-| 1. Design system and shell | Tokens, typography, header/nav/footer, mobile menu, WhatsApp link, base UI primitives | Visual review at all breakpoints |
+| 1. Design system and shell — **COMPLETE, awaiting approval (2026-11-03)** | Tokens, typography, header/nav/footer, mobile menu, WhatsApp link, base UI primitives, temporary design preview (see §6.2) | Visual review at all breakpoints |
 | 2. Home | Hero, division entries, contact strip | Design review (photography gap flagged) |
 | 3. About | Company intro (only confirmed content), five leadership profiles | Review |
 | 4. Division and equipment pages | Energy, Security, Foods, Industrial Equipment | Content accuracy review |
@@ -109,11 +109,22 @@ Stages 5 and 6 may swap or be combined per milestone if review prefers it. Work 
 - **Scripts:** `dev`, `build`, `start`, `lint`, and `typecheck` (`next typegen && tsc --noEmit`; plain `tsc` fails before types are generated because `LayoutProps` is a Next-generated global).
 - **Not done in Stage 0, by decision:** no Prettier (extra dependency, not yet approved); no Supabase; no animation library; design tokens and Manrope/Inter fonts wait for Stage 1.
 - **Items for review:**
-  1. The CLI's default `next.config.ts` enables `cacheComponents` and `partialPrefetching`. They were left as generated. They change data-fetching and caching rules for Server Components (dynamic data must sit behind Suspense), which matters for the admin dashboard and forms. Decide at Stage 1 whether to keep them.
+  1. The CLI's default `next.config.ts` enables `cacheComponents` and `partialPrefetching`. **Decision (Stage 1): intentional, keep enabled.** Rules that follow: dynamic data goes behind Suspense; private enquiry, appointment and admin data is never cached across sessions or users and never statically prerendered; no unsafe caching of authenticated data.
   2. `AGENTS.md` (written by the Next.js CLI) tells coding agents to read the version-matched docs in `node_modules/next/dist/docs/` before writing code. Kept; useful for this version.
-  3. `npm audit` reports 16 moderate findings, all in the ESLint toolchain (dev-only; 0 in production dependencies). The suggested "fixes" are major-version downgrades, so none were applied. ESLint 9.39.5 also prints a deprecation notice. Revisit when `eslint-config-next` supports a newer ESLint.
+  3. `npm audit` reports 16 moderate findings, all in the ESLint toolchain (dev-only; 0 in production dependencies). The suggested "fixes" are major-version downgrades, so none were applied. ESLint 9.39.5 prints an end-of-life deprecation notice. **Recorded as a maintenance item to resolve before production release** (Stage 8/9 checklist). No `npm audit fix` / `--force`.
   4. Git is initialised on `main` with no commits yet.
 - **Verification:** `npm install`, `npm run lint`, `npm run typecheck` and `npm run build` all pass.
+
+### 6.2 Stage 1 outcome (recorded 2026-11-03)
+
+- **Git:** baseline commit made before any Stage 1 edits (no remote; repository stays private).
+- **Design tokens** in `app/tokens.css` (Tailwind v4 `@theme`): five approved colours plus neutral tints/shades, Manrope/Inter stacks with system fallbacks, fluid type scale (14px floor), spacing (`gutter`, `section-sm/section/section-lg`), widths (`content` 80rem, `narrow` 60rem, `prose` 42rem), radius (2/4px/full), navy-tinted shadows, motion (150/250/450ms, standard easing), breakpoints (xs 480, sm 640, md 768, lg 1024, xl 1280, 2xl 1536). Tailwind's default palette, type sizes, radii and shadows are removed so only tokens can be used.
+- **Fonts** via `next/font/google` in `lib/fonts.ts` (self-hosted at build; fallback stacks declared in tokens).
+- **Shell:** sticky white header (compacts and gains shadow on scroll), disclosure-pattern "Our Divisions" dropdown with full keyboard support, Industrial Equipment separated by a divider (and under "Additional offering" in the drawer and footer), "Request a Consultation" action (`/contact#appointment`, a proposed anchor), modal mobile drawer below 1024px (focus trap, Escape, backdrop, scroll lock, inert when closed), footer on Charcoal Navy, floating WhatsApp action (hides while the footer is visible), skip link, branded 404 inside the shell.
+- **Primitives:** Button, ButtonLink, TextLink, SmartLink, Container, Section, SectionHeading, inline SVG icons. No UI framework, icon library or animation dependency; no package versions changed.
+- **Temporary preview:** `/` renders `app/(site)/_preview/` (colour and computed contrast table, type scale, controls, layout tokens, inspection guide) under a "Development preview" banner, `noindex`. Delete it at the homepage milestone.
+- **Fixed during verification:** focus could not enter a panel whose `visibility` was transitioning (drawer open, dropdown ArrowDown). Both panels now use `inert` plus opacity/translate instead of `visibility`.
+- **Known limitations:** navigation targets (`/about`, `/energy`, `/security`, `/foods`, `/industrial-equipment`, `/contact`) are not built yet and show the 404 page; the logo JPEG has a very faint non-white fringe on white; the footer copyright year is a constant (`new Date()` is disallowed during prerender); social links and email are omitted because none were supplied.
 
 ## 7. Testing strategy  **[Recommendation]**
 
