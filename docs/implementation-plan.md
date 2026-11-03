@@ -90,7 +90,7 @@ Final fields follow the form requirements in `content-specification.md` after cl
 |---|---|---|
 | 0. Foundation — **COMPLETE, awaiting approval (2026-11-03)** | Verify versions; `git init`; scaffold Next.js in the project root (`create-next-app` may refuse a non-empty folder; scaffold carefully so `CLAUDE.md`, `docs/`, `boom-client-assets/` are preserved); TS strict, Tailwind, ESLint, `.env.example`, `.gitignore`, README. Design tokens and fonts moved to Stage 1 (see §6.1). | Builds and lints cleanly; structure approved |
 | 1. Design system and shell — **COMPLETE, awaiting approval (2026-11-03)** | Tokens, typography, header/nav/footer, mobile menu, WhatsApp link, base UI primitives, temporary design preview (see §6.2) | Visual review at all breakpoints |
-| 2. Home | Hero, division entries, contact strip | Design review (photography gap flagged) |
+| 2. Home — **COMPLETE, awaiting approval (2026-11-03)** | Hero, intro, divisions, featured solutions, industrial equipment, values, how we work, leadership preview, closing contact (see §6.3) | Design review (photography gap flagged) |
 | 3. About | Company intro (only confirmed content), five leadership profiles | Review |
 | 4. Division and equipment pages | Energy, Security, Foods, Industrial Equipment | Content accuracy review |
 | 5. Contact and forms (front end) | All six forms, validation UX, confirmation states | Review |
@@ -114,6 +114,17 @@ Stages 5 and 6 may swap or be combined per milestone if review prefers it. Work 
   3. `npm audit` reports 16 moderate findings, all in the ESLint toolchain (dev-only; 0 in production dependencies). The suggested "fixes" are major-version downgrades, so none were applied. ESLint 9.39.5 prints an end-of-life deprecation notice. **Recorded as a maintenance item to resolve before production release** (Stage 8/9 checklist). No `npm audit fix` / `--force`.
   4. Git is initialised on `main` with no commits yet.
 - **Verification:** `npm install`, `npm run lint`, `npm run typecheck` and `npm run build` all pass.
+
+### 6.3 Stage 2 outcome (recorded 2026-11-03)
+
+- **Git:** Stage 1 committed first (`0b10e64`). Stage 2 is uncommitted pending review.
+- **Homepage** at `/` (`app/(site)/page.tsx`) composed from `components/home/` (one file per section plus `HeroBars`, `SwooshMark`, `DivisionRow`, `DivisionVisual`, `DivisionGeometry`). Copy data lives in `content/` (`divisions.ts`, `featured-solutions.ts`, `values.ts`, `leadership.ts`). The Stage 1 `_preview` folder was deleted.
+- **Metadata:** absolute title, description, canonical, Open Graph (uses the approved master logo), and `schema.org` Organization JSON-LD (`components/seo/OrganizationJsonLd.tsx`) built only from confirmed facts.
+- **Motion:** `app/motion.css`, CSS only and gated on `prefers-reduced-motion: no-preference`. Hero entrance and bar growth are load animations; scroll reveals use CSS scroll-driven animation (`animation-timeline: view()`) as progressive enhancement, so browsers without support simply show the content. No new dependencies.
+- **Imagery:** no photographs anywhere. Divisions use CSS-generated fields (energy: logo-derived bars and swoosh; security: mesh with viewfinder corners; foods: field-row stripes) with an optional `image` slot in `DivisionVisual` for authentic photography later. The only image asset used is the master logo. Portraits were deliberately not used (open quality issues).
+- **Changed shared component:** `Section` gained a `tint` tone.
+- **Open items:** client wording for core-value explanations; confirmation of "indigenous" and "restaurants"; real photography; vector logo. Links to `/about`, `/energy`, `/security`, `/foods`, `/industrial-equipment`, `/contact` still resolve to the 404 page until their stages.
+- **Verification:** lint, typecheck and production build pass. Headless Chrome review at 360, 390, 768, 1024, 1280 and 1440px found no horizontal overflow. Real-device testing, screen-reader testing and a reduced-motion pass in a live browser have not been done.
 
 ### 6.2 Stage 1 outcome (recorded 2026-11-03)
 

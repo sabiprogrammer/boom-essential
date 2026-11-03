@@ -48,6 +48,24 @@ All are flyer/graphic artwork. The product shots, houses, freezers and food arra
 | `asset-index.jpg` | 840×1230 | Contact sheet of the above. Review aid only; never deploy. |
 | `README.md` | — | Client-side usage rules (already reflected in `CLAUDE.md`). |
 
+## 4a. Temporary illustrative images (homepage division visuals)  **[Temporary — must be replaced]**
+
+Supplied by Sabi Programmers on 2026-11-03 in `boom-homepage-assets-individual/` (three separate files plus a README; the folder and its zip sit in the project root as reference and are never served). Byte-identical copies are in `public/assets/images/homepage/illustrative/` and are wired up in `content/division-images.ts`.
+
+**Provenance:** all three are **AI-generated illustrations**. None depicts a verified BOOM MULTI GLOBAL installation, product, employee, premises or completed project. They are not photographs and must never be captioned or presented as company work.
+
+| File (`public/assets/images/homepage/illustrative/`) | Size | Used for | Notes |
+|---|---|---|---|
+| `01-boom-energy-solar-roof-illustrative.jpg` | 1672×941 | BOOM Energy panel (homepage) | Independently generated landscape. Cropped with `object-fit: cover`, positioned right so the inverter and battery stay in view. |
+| `02-boom-security-cctv-perimeter-illustrative.jpg` | 844×464 | BOOM Security panel (homepage) | Panel extracted from a generated triptych. **Low resolution** (soft on large or high-density screens). A sliver of the neighbouring panel along the left edge is trimmed in CSS. The camera carries a garbled mock logo that resembles no real mark; another reason it cannot pass as real. |
+| `03-boom-foods-nigerian-staple-foods-illustrative.jpg` | 1672×467 | BOOM Foods panel (homepage) | Panel extracted from the same triptych. Panoramic (3.6:1), so it is shown whole at its own aspect ratio, never cropped to the panel. A white strip along the top edge is trimmed in CSS. |
+
+**Presentation rules in force:** a visible "Illustrative image" label on each; honest alt text that says the image is AI-generated and not a photograph of BOOM work; the originals are never edited (cropping is done in CSS).
+
+**Permitted use:** homepage division visuals only. **Not permitted:** leadership profiles, product specifications, project evidence, testimonials, or any claim about what BOOM supplies, installs or stocks. Do not reuse them on the division pages as if they were that division's real work; if they appear elsewhere they need the same label and Sabi Programmers' approval.
+
+**Replacement requirement:** swap each for an authentic client photograph as soon as one is available (priority 1 in §7). To replace: copy the approved photo into `public/`, update that division's entry in `content/division-images.ts` (new `src`, `alt`, dimensions, `illustrative: false`), then delete the old file from `public/assets/images/homepage/illustrative/`. The "Illustrative image" label disappears automatically when `illustrative` is `false`. Remove this section once all three are replaced.
+
 ## 5. Recurring facts seen in client materials
 
 - WhatsApp +234 816 650 3634 appears on all flyers (written variously as `+234 816 650 3634` and `+2348166503634`). The main phone +234 805 554 4415 appears on none. Use the formats in the brief.
@@ -60,7 +78,7 @@ All are flyer/graphic artwork. The product shots, houses, freezers and food arra
 | Page | Approved assets available now | Gap |
 |---|---|---|
 | Header/footer, all pages | Master logo (JPEG) | Vector/transparent logo |
-| Home | Master logo, division naming | Hero photography; per-division photos |
+| Home | Master logo, division naming; three temporary illustrative (AI-generated) division images, §4a | Hero photography; authentic per-division photos to replace the illustrations |
 | About Us | Five portraits (01 and 02 caveats) | Consistent portraits; office/team photos |
 | BOOM Energy | Only an older "BOOM SOLAR" mark exists, embedded in flyers (not the public name) | Real installation/product photos; standalone BOOM Energy logo |
 | BOOM Security | none | Everything: logo, photos, product info |

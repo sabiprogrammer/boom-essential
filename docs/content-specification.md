@@ -31,6 +31,12 @@ Persistent elements: header (logo, nav, "Request a consultation" action), WhatsA
 - Contact strip with address and phones.
 - Not allowed: statistics, "years of experience", client logos, testimonials.
 
+**Implemented in Stage 2 (2026-11-03), in order:** Hero (headline "Practical Solutions for a Better Tomorrow.", tagline, three principal areas as rising bars, CTAs "Explore Our Solutions" → `#divisions` and "Talk to Our Team" → WhatsApp) · Company introduction ("One Company. Three Essential Solutions.") · Three divisions (Energy, Security, Foods, with the four highlights each and CTAs to `/energy`, `/security`, `/foods`) · Featured solutions (nine items named exactly as in this documentation, interleaved across divisions, no prices) · Industrial Equipment (secondary, "Additional offering", CTA to `/industrial-equipment`) · Core values (Customer-First, Honesty, Progress) · How we work (Listen, Understand, Work towards the right solution) · Leadership preview (names and positions only, link to About Us) · Closing contact ("Let's Talk About What You Need.", Request a Consultation, WhatsApp, Contact Us, both phone numbers).
+
+**Wording supplied by Sabi Programmers in the Stage 2 brief** (not previously in these docs; used as instructed): hero headline and supporting copy; "indigenous Nigerian company operating across energy, security and food supply"; the customer-first listening approach; "pounding machines for restaurants and food-processing businesses". Please confirm with the client that "indigenous" and "restaurants" are approved for publication.
+
+**Still missing:** the client's own explanations of the three core values. The homepage shows the three values as large typographic statements with no explanatory text, because none exists in the repository. `content/values.ts` has a `description` field ready; paste the client's wording there and it appears automatically. Leadership portraits are intentionally not used on the homepage (see `asset-inventory.md` for the unresolved quality issues with portraits 01 and 02).
+
 ### About Us
 - Company introduction. **Copy to be supplied** or limited to confirmed facts (name, tagline, three divisions, Akure office). **[Confirm]**
 - **Core values [Confirmed]**, from the client's original company profile: **Customer-First**, **Honesty**, **Progress**. Present exactly these three. Do not add values, and do not write explanatory descriptions of them unless the client supplies wording (the profile's own wording is to be used if provided).

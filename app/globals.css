@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./tokens.css";
+@import "./motion.css";
 
 /* Global base styles only. Tokens live in tokens.css; components use utilities. */
 

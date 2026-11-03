@@ -6,7 +6,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Commercial website for **BOOM MULTI GLOBAL COMPANY LIMITED** (Akure, Ondo State, Nigeria), delivered by Sabi Programmers: a premium corporate site plus a private admin dashboard for customer enquiries and appointment requests. Tagline: **POWER. PROTECTION. PROVISION.**
 
-**Status: Stage 0 approved. Stage 1 (design system and global shell) complete, awaiting approval. Stage 2 (Home) has not started.** The site currently shows a temporary design preview at `/` (see `app/(site)/_preview/`); it is not the homepage and is deleted at the homepage milestone. Work one stage at a time (see `docs/implementation-plan.md`, §6, §6.1, §6.2) and stop for review at each gate. Do not build pages, forms, backend or dashboard before their stage is approved.
+**Status: Stages 0, 1 and 2 approved (Stage 2 homepage, including the illustrative division images, committed). Stage 3 (About Us) in progress.** Work one stage at a time (see `docs/implementation-plan.md`, §6 and §6.1–6.3) and stop for review at each gate. Do not build pages, forms, backend or dashboard before their stage is approved.
+
+**Homepage content rules:** sections live in `components/home/`, copy data in `content/` (`divisions`, `featured-solutions`, `values`, `leadership`). The client's explanations of the core values have not been supplied: `content/values.ts` leaves `description` empty and the UI shows names only. Never invent them. No real photographs are used. The three division visuals use temporary **AI-generated illustrative images** (`public/assets/images/homepage/illustrative/`, wired in `content/division-images.ts`, each with an "Illustrative image" label and honest alt text; see `docs/asset-inventory.md` §4a). They are placeholders to be replaced by authentic photography, and must never be used for leadership, product specifications or project evidence, or presented as BOOM's work. Portraits are not used on the homepage until the issues in `docs/asset-inventory.md` are resolved.
 
 The project root is the application root. Never create a nested app directory.
 

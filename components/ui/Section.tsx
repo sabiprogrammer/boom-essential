@@ -1,11 +1,12 @@
 import type { HTMLAttributes } from "react";
 
-export type SectionTone = "light" | "white" | "navy" | "charcoal";
+export type SectionTone = "light" | "white" | "tint" | "navy" | "charcoal";
 type SectionSpace = "sm" | "md" | "lg";
 
 const tones: Record<SectionTone, string> = {
   light: "bg-warm-white text-charcoal",
   white: "bg-white text-charcoal",
+  tint: "bg-tint text-charcoal",
   navy: "bg-navy text-white",
   charcoal: "bg-charcoal text-white",
 };

@@ -1,0 +1,76 @@
+/*
+ * Motion utilities (CSS only, no animation library).
+ * Everything here is gated on prefers-reduced-motion: no-preference, so reduced-motion users get the
+ * final state immediately. Scroll reveals are progressive enhancement: browsers without scroll-driven
+ * animation support simply show the content.
+ */
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    translate: 0 1.5rem;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    translate: 0 2rem;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes grow-up {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes draw-in {
+  from {
+    opacity: 0;
+    translate: -2rem 1.5rem;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Load-time entrance (hero). Stagger with style="--delay: 120ms". */
+  .rise {
+    animation: rise-in 900ms var(--ease-standard) both;
+    animation-delay: var(--delay, 0ms);
+  }
+
+  /* Bars standing up from the baseline. */
+  .grow-up {
+    animation: grow-up 1100ms var(--ease-standard) both;
+    animation-delay: var(--delay, 0ms);
+  }
+
+  .draw-in {
+    animation: draw-in 1300ms var(--ease-standard) both;
+    animation-delay: var(--delay, 0ms);
+  }
+
+  /* Scroll reveal: fades and lifts as the element enters the viewport. Stagger with style="--i: 1". */
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal-in linear both;
+      animation-timeline: view();
+      animation-range: entry calc(var(--i, 0) * 6%) entry calc(45% + var(--i, 0) * 6%);
+    }
+  }
+}
