@@ -36,13 +36,13 @@ export function CoreValuesSection() {
               </span>
               <h3
                 className={`break-words text-h1 font-extrabold text-white transition-transform duration-500 ease-(--ease-standard) group-hover/value:translate-x-2 sm:text-display ${
-                  value.description ? "lg:col-span-6" : "lg:col-span-11"
+                  value.description ? "lg:col-span-7 lg:text-[clamp(3rem,1rem+4vw,4.5rem)]" : "lg:col-span-11"
                 }`}
               >
                 {value.name}
               </h3>
               {value.description ? (
-                <p className="max-w-md text-lead text-on-dark-muted lg:col-span-5">{value.description}</p>
+                <p className="max-w-md text-lead text-on-dark-muted lg:col-span-4">{value.description}</p>
               ) : null}
             </li>
           ))}

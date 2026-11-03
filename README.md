@@ -2,7 +2,7 @@
 
 Corporate website and private enquiry/appointment dashboard for BOOM MULTI GLOBAL COMPANY LIMITED (Akure, Ondo State, Nigeria). Delivered by Sabi Programmers.
 
-**Status:** Stage 2 (homepage) complete. Other pages are not built yet and show the 404 page. See `docs/implementation-plan.md` for the staged plan.
+**Status:** Stage 2 (homepage) approved and committed; Stage 3 (About Us, `/about`) complete and awaiting review. The division, equipment and contact pages are not built yet and show the 404 page. See `docs/implementation-plan.md` for the staged plan.
 
 ## Stack
 

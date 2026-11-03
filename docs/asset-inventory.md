@@ -24,6 +24,20 @@ Labels: see `project-overview.md`.
 
 **Proposed handling:** crop to a common 4:5 portrait ratio with faces preserved; display photo, full name and official position only. Positions are exactly as in the client README (note the spelling "Adviser").
 
+### 2a. Portraits published on About Us (Stage 3, 2026-11-03)
+
+Byte-identical copies (SHA-256 verified) of all five files are in `public/assets/images/leadership/` under their original names. Originals in `boom-client-assets/leadership/` are untouched. Framing is done only by the per-portrait crop box in `content/leadership.ts` (source-pixel `x`, `y`, `width` at 4:5); nothing is retouched, recoloured or replaced.
+
+| Portrait | Crop box (px) | Handling |
+|---|---|---|
+| 01 CEO | x 0, y 0, w 413 | Near-native framing. The 413px source is never shown wider than 20rem (320 CSS px), so it is upscaled by about 1.3× on a standard screen and softer on high-density screens. Source note: the lip area looks unusually pale and grey in the original; left as supplied. **Request a higher-resolution, better original.** |
+| 02 Chief Technical Adviser | x 80, y 40, w 900 | Head-and-shoulders crop. The black bar on the top edge, the video mute icon at the bottom right and the T-shirt text all fall outside the crop box (a crop, not a retouch). Tone is still casual compared with the others. **Recommend requesting a formal portrait.** |
+| 03 Head, Global Partners & Expansion | x 130, y 0, w 864 | Square source cropped to 4:5, face centred. |
+| 04 Head of Human Resources | x 0, y 0, w 688 | Bottom trimmed to 4:5. |
+| 05 Customer Experience Manager | x 122, y 0, w 835 | Near-square source cropped to 4:5, face centred. |
+
+Alt text: "Portrait of {name}, {position}". Not yet shown: biographies (none supplied). `LeadershipMember.bio` is the place for them.
+
 ## 3. Marketing references (reference only — not site content)
 
 All are flyer/graphic artwork. The product shots, houses, freezers and food arrangements inside them are **illustrative artwork, not photographs of Boom products or projects** (garbled on-product text and mock-up logos are visible, e.g. on the freezer image). They must not be shown as real installations, products or customers. Their text content can inform copy only after client confirmation.
@@ -79,7 +93,7 @@ Supplied by Sabi Programmers on 2026-11-03 in `boom-homepage-assets-individual/`
 |---|---|---|
 | Header/footer, all pages | Master logo (JPEG) | Vector/transparent logo |
 | Home | Master logo, division naming; three temporary illustrative (AI-generated) division images, §4a | Hero photography; authentic per-division photos to replace the illustrations |
-| About Us | Five portraits (01 and 02 caveats) | Consistent portraits; office/team photos |
+| About Us | Five portraits published (§2a; 01 and 02 caveats remain) | Higher-resolution CEO portrait; formal portrait for 02; office/team photos |
 | BOOM Energy | Only an older "BOOM SOLAR" mark exists, embedded in flyers (not the public name) | Real installation/product photos; standalone BOOM Energy logo |
 | BOOM Security | none | Everything: logo, photos, product info |
 | BOOM Foods | Foods logos (with phone badge) | Product photos (garri, fufu, rice, fish, chicken); clean logo |

@@ -90,8 +90,8 @@ Final fields follow the form requirements in `content-specification.md` after cl
 |---|---|---|
 | 0. Foundation — **COMPLETE, awaiting approval (2026-11-03)** | Verify versions; `git init`; scaffold Next.js in the project root (`create-next-app` may refuse a non-empty folder; scaffold carefully so `CLAUDE.md`, `docs/`, `boom-client-assets/` are preserved); TS strict, Tailwind, ESLint, `.env.example`, `.gitignore`, README. Design tokens and fonts moved to Stage 1 (see §6.1). | Builds and lints cleanly; structure approved |
 | 1. Design system and shell — **COMPLETE, awaiting approval (2026-11-03)** | Tokens, typography, header/nav/footer, mobile menu, WhatsApp link, base UI primitives, temporary design preview (see §6.2) | Visual review at all breakpoints |
-| 2. Home — **COMPLETE, awaiting approval (2026-11-03)** | Hero, intro, divisions, featured solutions, industrial equipment, values, how we work, leadership preview, closing contact (see §6.3) | Design review (photography gap flagged) |
-| 3. About | Company intro (only confirmed content), five leadership profiles | Review |
+| 2. Home — **COMPLETE, approved and committed (`9eebe17`, 2026-11-03)** | Hero, intro, divisions, featured solutions, industrial equipment, values, how we work, leadership preview, closing contact, plus temporary illustrative division images (see §6.3) | Design review (photography gap flagged) |
+| 3. About — **COMPLETE, awaiting approval and uncommitted (2026-11-03)** | Hero, who we are, core values, divisions, leadership gallery with five real portraits, closing CTA (see §6.4) | Review |
 | 4. Division and equipment pages | Energy, Security, Foods, Industrial Equipment | Content accuracy review |
 | 5. Contact and forms (front end) | All six forms, validation UX, confirmation states | Review |
 | 6. Backend and data | Supabase projects, migrations, RLS, server actions, rate limiting/spam | RLS test results reviewed |
@@ -117,14 +117,24 @@ Stages 5 and 6 may swap or be combined per milestone if review prefers it. Work 
 
 ### 6.3 Stage 2 outcome (recorded 2026-11-03)
 
-- **Git:** Stage 1 committed first (`0b10e64`). Stage 2 is uncommitted pending review.
+- **Git:** Stage 1 committed first (`0b10e64`). Stage 2 approved and committed as `9eebe17` (`feat(home): implement corporate homepage`).
 - **Homepage** at `/` (`app/(site)/page.tsx`) composed from `components/home/` (one file per section plus `HeroBars`, `SwooshMark`, `DivisionRow`, `DivisionVisual`, `DivisionGeometry`). Copy data lives in `content/` (`divisions.ts`, `featured-solutions.ts`, `values.ts`, `leadership.ts`). The Stage 1 `_preview` folder was deleted.
 - **Metadata:** absolute title, description, canonical, Open Graph (uses the approved master logo), and `schema.org` Organization JSON-LD (`components/seo/OrganizationJsonLd.tsx`) built only from confirmed facts.
 - **Motion:** `app/motion.css`, CSS only and gated on `prefers-reduced-motion: no-preference`. Hero entrance and bar growth are load animations; scroll reveals use CSS scroll-driven animation (`animation-timeline: view()`) as progressive enhancement, so browsers without support simply show the content. No new dependencies.
-- **Imagery:** no photographs anywhere. Divisions use CSS-generated fields (energy: logo-derived bars and swoosh; security: mesh with viewfinder corners; foods: field-row stripes) with an optional `image` slot in `DivisionVisual` for authentic photography later. The only image asset used is the master logo. Portraits were deliberately not used (open quality issues).
+- **Imagery:** no real photographs. The three division visuals now use temporary AI-generated illustrative images (`public/assets/images/homepage/illustrative/`, wired in `content/division-images.ts`; each carries an "Illustrative image" label and honest alt text; tracked in `asset-inventory.md` §4a and to be replaced by authentic photography). The Foods panorama is shown whole ("band" fit) rather than cropped. Portraits were not used on the homepage.
 - **Changed shared component:** `Section` gained a `tint` tone.
 - **Open items:** client wording for core-value explanations; confirmation of "indigenous" and "restaurants"; real photography; vector logo. Links to `/about`, `/energy`, `/security`, `/foods`, `/industrial-equipment`, `/contact` still resolve to the 404 page until their stages.
 - **Verification:** lint, typecheck and production build pass. Headless Chrome review at 360, 390, 768, 1024, 1280 and 1440px found no horizontal overflow. Real-device testing, screen-reader testing and a reduced-motion pass in a live browser have not been done.
+
+### 6.4 Stage 3 outcome (recorded 2026-11-03)
+
+- **Git:** the approved homepage was committed first (`9eebe17`; no remote, nothing pushed). Stage 3 is uncommitted pending review.
+- **About Us** at `/about` (`app/(site)/about/page.tsx`, own metadata and canonical) composed from `components/about/`: `AboutHero` (navy; tagline set as three ruled columns that rise to the right), `WhoWeAreSection` (sticky headline; statement, divisions list, listening belief), `AboutValuesSection` (stepped staircase), `AboutDivisionsSection` with `DivisionPanel` (full-bleed navy / charcoal / green triptych; Industrial Equipment as a separate "Also supplied" note, never a fourth panel), `LeadershipSection` with `LeaderEntry` and `LeaderPortrait`, `AboutClosingSection`. Copy lives in `content/about.ts`.
+- **Core values:** the client-supplied wording for all three is now in `content/values.ts` (single source), so the homepage values section shows it too. Because of that, the homepage section got a one-line width and size adjustment so "Customer-First" stays on one line; its content is otherwise unchanged.
+- **Leadership:** five real portraits (byte-identical copies in `public/assets/images/leadership/`), each shown through an explicit 4:5 crop box in `content/leadership.ts` (cropping only; no retouching). The CEO is a featured entry capped at 20rem wide because the source is 413px; the other four sit on a staggered row (single row layout on phones). Only photograph, full name and position are shown; `LeadershipMember.bio` is an optional field that renders after the position, so biographies can be added later without layout changes.
+- **Motion:** the existing CSS-only `rise`/`reveal` utilities; confirmed that with `prefers-reduced-motion: reduce` animations are disabled and content is fully visible.
+- **Open items:** the quality notes in `asset-inventory.md` §2 still apply (CEO resolution; the Sijin photo is casual); `/energy`, `/security`, `/foods`, `/industrial-equipment` and `/contact` still show the 404 page until their stages; no founding year, history, headcount or statistics are shown because none are confirmed.
+- **Verification:** lint, typecheck and production build pass; headless Chrome review at 360, 390, 768, 1024, 1280 and 1440px found no horizontal overflow; all five portraits load. Real-device and screen-reader testing have not been done.
 
 ### 6.2 Stage 1 outcome (recorded 2026-11-03)
 

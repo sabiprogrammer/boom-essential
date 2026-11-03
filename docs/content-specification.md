@@ -35,11 +35,13 @@ Persistent elements: header (logo, nav, "Request a consultation" action), WhatsA
 
 **Wording supplied by Sabi Programmers in the Stage 2 brief** (not previously in these docs; used as instructed): hero headline and supporting copy; "indigenous Nigerian company operating across energy, security and food supply"; the customer-first listening approach; "pounding machines for restaurants and food-processing businesses". Please confirm with the client that "indigenous" and "restaurants" are approved for publication.
 
-**Still missing:** the client's own explanations of the three core values. The homepage shows the three values as large typographic statements with no explanatory text, because none exists in the repository. `content/values.ts` has a `description` field ready; paste the client's wording there and it appears automatically. Leadership portraits are intentionally not used on the homepage (see `asset-inventory.md` for the unresolved quality issues with portraits 01 and 02).
+**Core value wording (supplied 2026-11-03, client-confirmed):** the client's descriptions are now in `content/values.ts` and display on the homepage and About Us. Leadership portraits are intentionally not used on the homepage (they appear on About Us). "Indigenous" is now confirmed by the About Us information supplied by Sabi Programmers; "restaurants" (pounding machines for restaurants) still needs client confirmation.
 
 ### About Us
-- Company introduction. **Copy to be supplied** or limited to confirmed facts (name, tagline, three divisions, Akure office). **[Confirm]**
-- **Core values [Confirmed]**, from the client's original company profile: **Customer-First**, **Honesty**, **Progress**. Present exactly these three. Do not add values, and do not write explanatory descriptions of them unless the client supplies wording (the profile's own wording is to be used if provided).
+**Implemented in Stage 3 (2026-11-03), in order:** About hero (eyebrow "About BOOM MULTI GLOBAL"; heading "A Company Built Around Essential Needs."; the tagline as three columns paired with the divisions) · Who we are ("More Than Products. A Commitment to Solutions.", the confirmed company statement, the three principal divisions, the listening belief) · Core values ("What Guides Us.") · Divisions ("Three Areas of Focus. One Company.", links to `/energy`, `/security`, `/foods`; Industrial Equipment only as a separate "Also supplied" note) · Leadership ("The People Behind BOOM MULTI GLOBAL.", five portraits with name and position only) · Closing ("Let's Build Something Valuable Together."; Explore Our Solutions, Contact Us, WhatsApp, both phone numbers). Copy is in `content/about.ts`. Nothing about founding year, history, headcount, statistics, partnerships, certifications or coverage is shown; none is confirmed.
+
+- Company introduction, limited to confirmed facts (name, indigenous Nigerian company, Akure, three divisions, listening approach). **[Confirmed]**
+- **Core values [Confirmed]**, from the client's original company profile: **Customer-First** ("We listen to our customers and feel their pain. Our customers are our priority."), **Honesty** ("We are very honest in our promises."), **Progress** ("We want to see our customers, communities, partners, employees thrive and progress every day."). Present exactly these three with exactly this wording. Do not add values or paraphrase.
 - Leadership section: five portraits, each with full name and official position only (see §3).
 - Division overview recap.
 - **Mission and vision: [Confirm]** — not supplied. Do not write or imply them. Leave no placeholder text on the live page.
@@ -89,7 +91,7 @@ Order as supplied by the client:
 | 4 | Abiola Favour | Head of Human Resources |
 | 5 | Adeola Jejelowo | Customer Experience Manager |
 
-- Display photo, full name, position. Nothing else in the initial release.
+- Display photo, full name, position. Nothing else in the initial release. (Implemented: CEO as a featured entry, the other four on a staggered row; `LeadershipMember.bio` is an optional field for when biographies are supplied.)
 - No placeholder biographies, quotes or "read more" links. The layout should leave room for biographies to be added later without redesign.
 - Crop portraits proportionally to a common ratio with faces preserved; never retouch. Photo-quality issues for 01 and 02 are in `asset-inventory.md`.
 - Alt text: "Portrait of {name}, {position}".
