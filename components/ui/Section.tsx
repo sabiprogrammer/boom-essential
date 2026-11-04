@@ -1,14 +1,16 @@
 import type { HTMLAttributes } from "react";
 
-export type SectionTone = "light" | "white" | "tint" | "navy" | "charcoal";
+export type SectionTone = "light" | "white" | "tint" | "leaf" | "navy" | "charcoal" | "green";
 type SectionSpace = "sm" | "md" | "lg";
 
 const tones: Record<SectionTone, string> = {
   light: "bg-warm-white text-charcoal",
   white: "bg-white text-charcoal",
   tint: "bg-tint text-charcoal",
+  leaf: "bg-leaf text-charcoal",
   navy: "bg-navy text-white",
   charcoal: "bg-charcoal text-white",
+  green: "bg-green text-white",
 };
 
 const space: Record<SectionSpace, string> = {
@@ -24,7 +26,7 @@ type SectionProps = HTMLAttributes<HTMLElement> & {
 
 /** Full-width band with a surface tone and consistent vertical rhythm. Dark tones set data-surface for focus colours. */
 export function Section({ tone = "light", space: spacing = "md", className = "", ...rest }: SectionProps) {
-  const dark = tone === "navy" || tone === "charcoal";
+  const dark = tone === "navy" || tone === "charcoal" || tone === "green";
   return (
     <section
       data-surface={dark ? "dark" : "light"}

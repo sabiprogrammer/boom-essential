@@ -76,7 +76,7 @@ Grouped by what it blocks. Full asset-related gaps are in `asset-inventory.md`.
 - **Leadership photos.** CEO photo is low resolution (413×531); Chief Technical Adviser photo is a casual outdoor shot with a video-player mute icon and black bar baked in. Request replacements for consistency. **[Confirm]**
 
 ### Blocks content accuracy
-- Food product list: the Foods flyer also shows *livestock, raw food products, processed foods, bulk food supply* and says "from our farms". The brief lists seven products only. Which is authoritative? Does Boom operate farms? **[Confirm]**
+- Food product list: the Foods flyer also shows *livestock, raw food products, processed foods, bulk food supply* and says "from our farms". The brief lists seven products only. Which is authoritative? Does Boom operate farms? **[Confirm, launch blocker]** The Foods hero currently carries "From our farms and trusted sources to your table." (client-supplied wording); it needs final client confirmation before public launch.
 - Boom Deep Freezer (600 L) and the "All-in-One Energy Storage System" (specs shown: 500W, 6IN1, 8.3kWh, LiFePO4) appear on flyers. Are these real products Boom sells? Deep freezers belong to no listed division. **[Confirm]**
 - Whether Foods units/quantities should be constrained (kg, bags, cartons, litres) for the quantity field. **[Confirm]**
 - Appointment rules: consultation methods offered (phone, WhatsApp call, video, office visit, site visit?), business hours and days, minimum notice, time slots vs free-text time, which divisions offer appointments. **[Confirm]**

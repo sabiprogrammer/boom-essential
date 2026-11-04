@@ -6,11 +6,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Commercial website for **BOOM MULTI GLOBAL COMPANY LIMITED** (Akure, Ondo State, Nigeria), delivered by Sabi Programmers: a premium corporate site plus a private admin dashboard for customer enquiries and appointment requests. Tagline: **POWER. PROTECTION. PROVISION.**
 
-**Status: Stages 0 to 3 approved and committed (homepage `9eebe17`, About Us `82772f7`). Stage 4 (division and equipment pages) is under way one page at a time: BOOM Energy (`/energy`) is approved and committed (`eda3caf`); BOOM Security (`/security`) is complete, awaiting approval and uncommitted; Foods and Industrial Equipment have not started.** Work one stage at a time (see `docs/implementation-plan.md`, §6 and §6.1–6.4) and stop for review at each gate. Do not build pages, forms, backend or dashboard before their stage is approved.
+**Status: Stages 0 to 3 approved and committed (homepage `9eebe17`, About Us `82772f7`). Stage 4 (division and equipment pages) is under way one page at a time: BOOM Energy (`/energy`) is approved and committed (`eda3caf`); BOOM Security (`/security`) is approved and committed (`f6f7f7b`); BOOM Foods (`/foods`) is complete, awaiting approval and uncommitted; Industrial Equipment has not started.** Work one stage at a time (see `docs/implementation-plan.md`, §6 and §6.1–6.4) and stop for review at each gate. Do not build pages, forms, backend or dashboard before their stage is approved.
 
 **Homepage content rules:** sections live in `components/home/`, copy data in `content/` (`divisions`, `featured-solutions`, `values`, `leadership`). The client's own wording for the three core values is in `content/values.ts` and shown verbatim on the homepage and About Us; never paraphrase or extend it.
 
 **BOOM Energy rules:** sections live in `components/energy/`, copy in `content/energy.ts`. Use "BOOM ENERGY", never "BOOM SOLAR". The nine services keep their supplied titles and descriptions. Never add capacities, performance figures, warranties, manufacturer partnerships, certifications, statistics, testimonials, completed-project claims or response/installation times. No photography: artwork is custom SVG/CSS, and the approved homepage solar illustration stays on the homepage only. Do not describe pounding machines as being for "food-processing businesses". The assessment CTA target is `solarAssessmentHref` in `content/energy.ts`.
+
+**BOOM Foods rules:** sections live in `components/foods/`, copy and product data in `content/foods.ts`. No prices or price-implying wording anywhere, no checkout, payments, inventory or accounts. Household staples (garri, Ekiti garri, fufu powder, Ofada rice, Igbemo rice) are stated only as supplied in bag sizes ranging from 1kg to 100kg; never add per-product weights, availability, grades, species, cuts, brands, storage specifications, certifications, origins, contracts or volumes. Every product enquiry link is built by `foodsEnquiryHref()` (`/contact?division=foods&product=<slug>#enquiry`); the Contact stage must honour it. "From our farms and trusted sources to your table." is flyer-derived (supplied in the Stage 6 brief) and still needs client confirmation. No photography: the homepage Foods illustration stays on the homepage only; artwork is custom SVG/CSS. Use white (not the muted grey) for text on Agricultural Green.
 
 **BOOM Security rules:** sections live in `components/security/`, copy in `content/security.ts`. The seven services keep their supplied titles and descriptions. Never add brands, models, specifications, camera counts, ranges, monitoring arrangements, response times, warranties, service levels, certifications, statistics, testimonials, customer names or completed-installation claims. No photography: artwork is custom SVG/CSS, the hero schematic must keep its "illustrative, not a BOOM installation" caption, and the homepage CCTV illustration stays on the homepage only. Pounding machines are described as being for the restaurant business. The assessment CTA target is `securityAssessmentHref` in `content/security.ts`.
 
@@ -44,6 +46,7 @@ Next.js 16.4.4 (App Router, Turbopack), React 19.3, TypeScript 5.9 (strict), Tai
 
 **Maintenance items before production release:**
 1. ESLint 9 is end-of-life (npm prints a deprecation notice) and `npm audit` reports 16 moderate findings in the ESLint toolchain (dev-only; none in production dependencies). Upgrade the lint toolchain when `eslint-config-next` supports a supported ESLint. Do not run `npm audit fix` or `npm audit fix --force` (the suggested fixes are major downgrades).
+2. **Launch blocker (content): "From our farms and trusted sources to your table."** (BOOM Foods hero, `content/foods.ts` `hero.statement`) is client-supplied marketing wording, but it is not confirmed that BOOM operates farms. It stays in the development build only. The client must confirm it before public launch; if they cannot, remove or reword it.
 
 ## Read these first (the docs are the source of truth)
 
@@ -72,7 +75,7 @@ Next.js App Router, TypeScript, Tailwind CSS, Supabase (Postgres + Auth), Vercel
 **Content accuracy**
 - Never invent business claims, statistics, years in business, warranties, certifications, testimonials, customer names, achievements, or leadership biographies. Leadership shows photo, full name and official position only until the client supplies more.
 - **Food prices must never appear publicly** (no price fields in data, UI or API responses). Food enquiries capture product + quantity.
-- Flyers are references, not facts (they use the older BOOM SOLAR branding). Flyer-only claims (e.g. "from our farms", livestock, 600 L deep freezer, storage-system specs) need client confirmation before use.
+- Flyers are references, not facts (they use the older BOOM SOLAR branding). Flyer-only claims (e.g. livestock, 600 L deep freezer, storage-system specs) need client confirmation before use. "From our farms and trusted sources to your table." is used on the Foods page at Sabi Programmers' instruction and is pending client confirmation.
 - Missing info goes in the **[Confirm]** lists in the docs; never fill it in.
 
 **Assets**

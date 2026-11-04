@@ -28,6 +28,7 @@
   --color-line: #d9dfe7; /* hairlines on light */
   --color-line-strong: #b9c3d0;
   --color-tint: #edf1f6; /* quiet navy-tinted surface */
+  --color-leaf: #e8f1ec; /* quiet green-tinted surface (BOOM Foods) */
   --color-on-dark-muted: #c3ceda; /* secondary text on navy/charcoal; ≥8:1 */
   --color-line-on-dark: rgb(255 255 255 / 0.16);
 

@@ -80,7 +80,24 @@
   }
 }
 
+@keyframes sprout {
+  from {
+    opacity: 0;
+    scale: 1 0;
+  }
+  to {
+    opacity: 1;
+    scale: 1 1;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
+  /* A stalk growing up from its base once (BOOM Foods hero). Set transform-origin inline. */
+  .sprout {
+    animation: sprout 1500ms var(--ease-standard) both;
+    animation-delay: var(--delay, 0ms);
+  }
+
   /* A camera field of view sweeping into place once (BOOM Security hero). Set transform-origin inline. */
   .scan-in {
     animation: scan-in 1400ms var(--ease-standard) both;
