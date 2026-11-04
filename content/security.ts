@@ -1,4 +1,4 @@
-import { consultation } from "./navigation";
+import { divisionAppointmentHref, securityAssessmentSlug } from "./enquiry-links";
 
 /**
  * BOOM Security page copy. Every statement comes from the confirmed service list in
@@ -8,8 +8,8 @@ import { consultation } from "./navigation";
  * statistics, testimonials, customer names or completed-installation claims. None are confirmed.
  */
 
-/** Where the assessment request goes. Proposed anchor on the Contact page (Stage 5 of the plan); change it here only. */
-export const securityAssessmentHref = consultation.href;
+/** Where the assessment request goes: the Contact page appointment request with BOOM Security and the assessment pre-selected. Change it here only. */
+export const securityAssessmentHref = divisionAppointmentHref("security", securityAssessmentSlug);
 
 export type SecurityIconName =
   | "layout"

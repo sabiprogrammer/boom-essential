@@ -1,5 +1,5 @@
 import { company } from "./company";
-import { consultation } from "./navigation";
+import { divisionAppointmentHref, energyAssessmentSlug } from "./enquiry-links";
 
 /**
  * BOOM Energy page copy. Every statement comes from the confirmed service list in
@@ -9,8 +9,8 @@ import { consultation } from "./navigation";
  * The public name is BOOM ENERGY; "BOOM SOLAR" is never used.
  */
 
-/** Where the assessment request goes. Proposed anchor on the Contact page (Stage 5); change it here only. */
-export const solarAssessmentHref = consultation.href;
+/** Where the assessment request goes: the Contact page appointment request with BOOM Energy and the assessment pre-selected. Change it here only. */
+export const solarAssessmentHref = divisionAppointmentHref("energy", energyAssessmentSlug);
 
 export type EnergyIconName =
   | "audit"

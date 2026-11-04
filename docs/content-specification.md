@@ -94,6 +94,22 @@ Persistent elements: header (logo, nav, "Request a consultation" action), WhatsA
 - Must read as an additional offering, not a fourth division (no division logo or colour block parity with the other three).
 
 ### Contact Us
+**Implemented in Stage 8 (2026-11-04), in order:** Hero (eyebrow "Get in touch"; "Let's Talk About What You Need."; an index of what the team can help with, each row linking to the enquiry form with that category chosen) · Contact information (Visit us: the office address; Call us: +234 805 554 4415, `tel:+2348055544415`; WhatsApp: +234 816 650 3634, `https://wa.me/2348166503634`) · Enquiry form (one form for every offering, with an optional appointment request). Copy is in `content/contact.ts`. **Not shown, because not supplied or confirmed:** a business email, opening hours, social links, a map or coordinates, and any response-time promise. There is no mailto link.
+
+**The enquiry form (frontend only; it does not send anything yet).**
+- *About you:* full name (required), phone number (required), email (optional), business or organisation (optional), location (optional).
+- *What do you need:* required category (General Enquiry, BOOM Energy, BOOM Security, BOOM Foods, Industrial Equipment, the last set apart as an additional offering) and optional specific interests (multi-select) for the chosen category: Energy (9 services), Security (7), Foods (7 products), Industrial Equipment (Pounding Machines). The allowlist is `content/enquiry-options.ts`.
+- *Your message:* required, 10 to 2,000 characters.
+- *Appointment (optional):* tick "I would like to request an appointment." to reveal a preferred date and time, both required only then. The date must be today or later (Africa/Lagos). Notice always shown: "Appointment requests are subject to confirmation by our team. Submitting a request does not constitute a confirmed booking." No hours, durations, notice periods or consultation methods are stated. The block carries `id="appointment"`; the enquiry section carries `id="enquiry"`. The enquiry type shown on the form is "Enquiry" or "Appointment request".
+- *Validation:* required fields, a phone check (Nigerian national `0` + 10 digits, `+234` / `234` numbers, or international `+` with 8 to 15 digits), an email check, length limits, an error summary that takes focus and links to each field, and inline messages with an icon (never colour alone).
+- *Submission:* a validated, typed payload is built and passed to `submitEnquiry`, which today makes no network request, stores nothing and returns "not connected". The visitor then sees an honest preview notice ("has not been sent and nothing has been saved") with phone and WhatsApp actions. A persistent "Development preview" notice sits above the form. Loading, success and error panels exist for the backend stage; success is unreachable until a real server response exists. Values are held in memory only (no localStorage, sessionStorage or cookies).
+
+**URL prefilling.** The page reads these (all validated against the allowlist; anything else is ignored):
+- `division=energy|security|foods` or `offering=industrial-equipment` selects the category (`offering` wins if both are present).
+- `product=<slug>` or `service=<slug>` (interchangeable) preselects that interest, only if it belongs to the chosen category.
+- `#appointment` ticks the appointment request; `#enquiry` scrolls to the form (both offset below the sticky header).
+- Examples: `/contact?division=foods&product=garri#enquiry`; `/contact?offering=industrial-equipment&product=pounding-machine#enquiry`; `/contact?division=energy&service=energy-assessment#appointment` (the "Request a Solar Assessment" action); `/contact?division=security&service=security-assessment#appointment`; `/contact?division=energy`; `/contact#appointment` (the header action). The Foods and Industrial Equipment link builders (`content/foods.ts`, `content/industrial-equipment.ts`) remain the source of truth for their patterns; the Energy and Security assessment actions now use `divisionAppointmentHref()` in `content/enquiry-links.ts`.
+
 - Address, main phone, WhatsApp, website. **[Confirmed]**
 - WhatsApp link: `https://wa.me/2348166503634` **[Confirmed number]**; click-to-call link for the main phone.
 - General enquiry form and appointment request form (or a clear route to each).
@@ -117,6 +133,8 @@ Order as supplied by the client:
 - Alt text: "Portrait of {name}, {position}".
 
 ## 4. Forms
+
+> **Stage 8 update:** the first implementation is ONE shared enquiry form for all offerings with an optional appointment request (see Contact Us above), not the six separate forms below. The per-offering fields listed below (property type, quantity and units, equipment details, appointment method and so on) are **not** implemented; add them only once the client confirms them. Treat the field lists below as the earlier proposal.
 
 Common to all forms: client-side validation for UX plus server-side validation as the authority; honeypot and rate limiting; clear in-page confirmation after submit ("Your enquiry has been received", plus what happens next. Wording must not promise a response time unless confirmed **[Confirm]**); WhatsApp alternative beside every form; consent statement linked to the privacy notice **[Recommendation]**. Never auto-confirm appointments. Field lists below are **[Proposed]** pending client review.
 

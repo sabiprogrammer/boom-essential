@@ -92,8 +92,8 @@ Final fields follow the form requirements in `content-specification.md` after cl
 | 1. Design system and shell — **COMPLETE, awaiting approval (2026-11-03)** | Tokens, typography, header/nav/footer, mobile menu, WhatsApp link, base UI primitives, temporary design preview (see §6.2) | Visual review at all breakpoints |
 | 2. Home — **COMPLETE, approved and committed (`9eebe17`, 2026-11-03)** | Hero, intro, divisions, featured solutions, industrial equipment, values, how we work, leadership preview, closing contact, plus temporary illustrative division images (see §6.3) | Design review (photography gap flagged) |
 | 3. About — **COMPLETE, approved and committed (`82772f7`, 2026-11-03)** | Hero, who we are, core values, divisions, leadership gallery with five real portraits, closing CTA (see §6.4) | Review |
-| 4. Division and equipment pages | Energy (**COMPLETE, approved and committed `eda3caf`**, §6.5); Security (**COMPLETE, approved and committed `f6f7f7b`**, §6.6); Foods (**COMPLETE, approved and committed `9fff678`**, §6.7); Industrial Equipment (**COMPLETE, awaiting approval and uncommitted, 2026-11-04**, §6.8) | Content accuracy review |
-| 5. Contact and forms (front end) | All six forms, validation UX, confirmation states | Review |
+| 4. Division and equipment pages | Energy (**COMPLETE, approved and committed `eda3caf`**, §6.5); Security (**COMPLETE, approved and committed `f6f7f7b`**, §6.6); Foods (**COMPLETE, approved and committed `9fff678`**, §6.7); Industrial Equipment (**COMPLETE, approved and committed `346b703`**, §6.8) | Content accuracy review |
+| 5. Contact and forms (front end) — **COMPLETE, awaiting approval and uncommitted (2026-11-04)** | One shared enquiry form with optional appointment request, URL prefilling, validation UX and preview/loading/success/error states, frontend only (see §6.9). The six separate forms were consolidated into one; per-offering fields await client confirmation | Review |
 | 6. Backend and data | Supabase projects, migrations, RLS, server actions, rate limiting/spam | RLS test results reviewed |
 | 7. Admin dashboard | Auth, overview, table, detail, notes, appointments, CSV | Walkthrough with owner |
 | 8. Hardening and QA | Accessibility, performance, SEO metadata, security headers, cross-device testing, content freeze | QA report |
@@ -178,6 +178,34 @@ Stages 5 and 6 may swap or be combined per milestone if review prefers it. Work 
 - **Content guard:** an in-browser check found no price, currency, cart, checkout, warranty, certification, factory/food-processing, capacity, power or brand wording, no `img` elements in `main`, and the restaurant business as the only audience.
 - **Shared change:** none to global components or tokens.
 - **Verification:** lint, typecheck and production build pass; headless Chrome review at 360, 390, 768, 1024, 1280 and 1440px found no horizontal overflow; with reduced motion on, no animations run and all content is visible. Real-device and screen-reader testing have not been done.
+
+### 6.9 Stage 5 outcome: Contact and enquiry interface, frontend only (recorded 2026-11-04)
+
+- **Git:** Industrial Equipment committed first (`346b703`, `feat(industrial): add pounding machine offering page`), including the removal of the hazard-stripe band at review (the hero now has only a thin gold tab; the closing section's stripe was removed too; `hazard-stripe.ts` was deleted). The Contact page is uncommitted pending review.
+- **Page** at `/contact` (`app/(site)/contact/page.tsx`; own title, description, canonical, Open Graph; fully static) from `components/contact/`: `ContactHero`, `ContactChannelsSection`, `EnquirySection` (`id="enquiry"`; the form sits in `Suspense` and its fallback is the same blank form, so ids and layout exist in the first HTML) and the form parts `EnquiryForm`, `PrefilledEnquiryForm`, `FormStep`, `FormField`, `CustomerFields`, `CategoryPicker`, `InterestPicker`, `MessageField`, `AppointmentFields` (`id="appointment"`), `ErrorSummary`, `PreviewNotice`, `EnquiryStatusPanel`, `SubmitBar`, `ContactActions`.
+- **Logic** (no UI): `lib/enquiry/types.ts` (typed form values, payload, status), `validation.ts`, `prefill.ts` (allowlisted URL parsing), `submit.ts` (the single backend seam; sends nothing today), `config.ts` (`enquirySubmissionEnabled = false`); `hooks/useEnquiryForm.ts`, `hooks/useAppointmentIntent.ts` (tracks the visitor's intent to request an appointment from link clicks and the URL hash, so the "Request a Consultation" actions tick the box, on arrival or while already on the page, without resetting typed data). Data: `content/contact.ts`, `content/enquiry-options.ts` (the allowlist), `content/enquiry-links.ts`.
+- **Link consistency:** the Energy and Security assessment actions (`solarAssessmentHref`, `securityAssessmentHref`) changed from the bare `/contact#appointment` to `/contact?division=<id>&service=<slug>#appointment`, so they preselect the division and the assessment and tick the appointment request. Foods and Industrial Equipment helpers are unchanged. The header and footer "Request a Consultation" action (`/contact#appointment`) ticks the appointment request with no category.
+- **Shared change:** a functional `--color-danger` / `--color-danger-tint` token pair for form errors only (muted red, always with text and an icon).
+- **Honesty rules enforced:** no false success (the only reachable outcome is a "preview" notice stating nothing was sent or saved), no browser storage, no mailto, no invented email, hours, map, social links or response times.
+- **Verification:** lint, typecheck and production build pass. Headless Chrome tests: general, Energy, Security, Foods and Industrial prefill; division-only; mismatched product ignored; unknown, scripted, array and oversized parameters ignored; normalised case and whitespace; hash-only appointment; empty and invalid submits (error summary focused); appointment missing, past and valid date; preview notice focused after a valid submit; zero network requests and nothing in storage; no horizontal overflow at 360, 390, 768, 1024, 1280 and 1440px, including the error and appointment states. Real-device and screen-reader testing have not been done.
+
+**Proposed enquiry payload** (what `submitEnquiry` will send to a future server action; the server assigns `id`, `created_at` and `status`, and must re-validate everything):
+
+```json
+{
+  "customer": { "fullName": "string", "phone": "string", "email": "string | null", "organisation": "string | null", "location": "string | null" },
+  "target": { "category": "general | energy | security | foods | industrial-equipment", "interests": ["slug"] },
+  "message": "string (10 to 2000)",
+  "type": "enquiry | appointment_request",
+  "appointment": { "preferredDate": "YYYY-MM-DD", "preferredTime": "HH:MM" } ,
+  "source": { "page": "/contact", "prefilled": true },
+  "honeypot": ""
+}
+```
+
+(`appointment` is `null` for a plain enquiry.) **Mapping to the schema proposed in §5:** the single `enquiries` table gains `type`, `category`, `interests text[]`; an appointment request is an `enquiries` row with `type = appointment_request` plus an `appointments` row (`enquiry_id`, `preferred_date`, `preferred_time`, `timezone = Africa/Lagos`, `status = requested`, never auto-confirmed). Category ids use `foods` and `industrial-equipment` (the plan's earlier `food`/`industrial` kinds should be aligned). Statuses stay server-assigned: enquiries `new`, appointments `requested`.
+
+**Outstanding backend requirements (Stage 6):** a server action with its own validation (the client checks are not the authority), rate limiting and spam protection (honeypot field `website` is already in the form; CAPTCHA only if approved), RLS (public insert only, no public read), Supabase schema and migrations, secrets in environment variables, a real success response before the success panel can appear, error handling, and `enquirySubmissionEnabled = true` (which removes the preview notice). No email notification is in scope. **Decisions still needed:** whether a privacy notice and consent statement are required and what they say; whether phone is the only required contact; the allowed appointment window (hours, minimum notice, horizon) and consultation methods; whether per-offering fields (property type, quantity and units, equipment details) are wanted; the real email address (and whether to show it); opening hours; whether a map link may be added; and the final status labels.
 
 ### 6.2 Stage 1 outcome (recorded 2026-11-03)
 
