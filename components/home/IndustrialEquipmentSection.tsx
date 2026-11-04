@@ -21,8 +21,8 @@ export function IndustrialEquipmentSection() {
               Industrial Equipment
             </h2>
             <p className="mt-5 max-w-xl text-lead text-charcoal">
-              Alongside its three principal divisions, BOOM MULTI GLOBAL supplies industrial food-processing
-              equipment, including pounding machines for restaurants and food-processing businesses.
+              We supply pounding machines in different sizes for the restaurant business. Contact our team to
+              discuss available options and your equipment requirements.
             </p>
             <div className="mt-8">
               <ButtonLink href="/industrial-equipment" variant="secondary" arrow>
@@ -36,7 +36,7 @@ export function IndustrialEquipmentSection() {
               <span aria-hidden="true" className="absolute top-0 right-0 h-10 w-10 border-t-2 border-r-2 border-gold" />
               <p className="font-heading text-xs font-bold tracking-[0.16em] text-ink-muted uppercase">Supplied</p>
               <p className="mt-2 font-heading text-h2 leading-tight font-extrabold text-navy">Pounding machines</p>
-              <p className="mt-3 text-base text-ink-muted">For restaurants and food-processing businesses.</p>
+              <p className="mt-3 text-base text-ink-muted">For the restaurant business.</p>
             </div>
           </div>
         </div>
