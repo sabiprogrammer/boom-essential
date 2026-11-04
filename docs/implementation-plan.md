@@ -92,7 +92,7 @@ Final fields follow the form requirements in `content-specification.md` after cl
 | 1. Design system and shell — **COMPLETE, awaiting approval (2026-11-03)** | Tokens, typography, header/nav/footer, mobile menu, WhatsApp link, base UI primitives, temporary design preview (see §6.2) | Visual review at all breakpoints |
 | 2. Home — **COMPLETE, approved and committed (`9eebe17`, 2026-11-03)** | Hero, intro, divisions, featured solutions, industrial equipment, values, how we work, leadership preview, closing contact, plus temporary illustrative division images (see §6.3) | Design review (photography gap flagged) |
 | 3. About — **COMPLETE, approved and committed (`82772f7`, 2026-11-03)** | Hero, who we are, core values, divisions, leadership gallery with five real portraits, closing CTA (see §6.4) | Review |
-| 4. Division and equipment pages | Energy (**COMPLETE, awaiting approval and uncommitted, 2026-11-04**, see §6.5), then Security, Foods, Industrial Equipment (one page per review) | Content accuracy review |
+| 4. Division and equipment pages | Energy (**COMPLETE, approved and committed `eda3caf`**, §6.5); Security (**COMPLETE, awaiting approval and uncommitted, 2026-11-04**, §6.6); then Foods and Industrial Equipment (one page per review) | Content accuracy review |
 | 5. Contact and forms (front end) | All six forms, validation UX, confirmation states | Review |
 | 6. Backend and data | Supabase projects, migrations, RLS, server actions, rate limiting/spam | RLS test results reviewed |
 | 7. Admin dashboard | Auth, overview, table, detail, notes, appointments, CSV | Walkthrough with owner |
@@ -138,12 +138,22 @@ Stages 5 and 6 may swap or be combined per milestone if review prefers it. Work 
 
 ### 6.5 Stage 4 outcome: BOOM Energy (recorded 2026-11-04)
 
-- **Git:** About Us committed first (`82772f7`). The Energy page is uncommitted pending review.
+- **Git:** About Us committed first (`82772f7`). The Energy page was approved and committed as `eda3caf` (`feat(energy): add solar solutions page`).
 - **Page** at `/energy` (`app/(site)/energy/page.tsx`; own title, description, canonical, Open Graph with the master logo), composed from `components/energy/`: `EnergyHero` + `SolarGraphic` (sun rising on the hero's bottom edge behind a tilted two-row array, full-bleed SVG), `EnergyIntroSection`, `EnergyServicesSection` (assembles `ServiceFeature` with `LoadProfileDiagram` / `BlueprintDiagram` for services 01-02, `SystemBand` for 03-05, `SustainBand` for 06-09), `WhoWeServeSection`, `ApproachSection` (vertical rail), `EnergyClosingSection`; shared helpers `EnergyIcon` (ten drawn line icons) and `SunArcs`. Copy and structure are in `content/energy.ts`.
 - **Imagery:** none supplied or used. All artwork is custom SVG/CSS in the brand palette (decorative, `aria-hidden`, no values or labels that could read as data). The approved homepage solar illustration is not reused here. No image was generated or sourced.
 - **Shared change:** `app/motion.css` gained a `sun-rise` keyframe and `.sunrise` class (gated on `prefers-reduced-motion: no-preference`).
 - **Links:** `Request a Solar Assessment` goes to `solarAssessmentHref` (= `/contact#appointment`, a proposed anchor); `/contact` still shows the 404 page until Stage 5.
 - **Content guard:** an in-browser text check found none of "BOOM SOLAR", "food-processing businesses", "warranty" or "guarantee" on the page.
+- **Verification:** lint, typecheck and production build pass; headless Chrome review at 360, 390, 768, 1024, 1280 and 1440px found no horizontal overflow; with reduced motion on, no animations run and all content is visible. Real-device and screen-reader testing have not been done.
+
+### 6.6 Stage 4 outcome: BOOM Security (recorded 2026-11-04)
+
+- **Git:** the homepage Industrial Equipment wording was corrected first (`dc9f871`, `fix(content): clarify industrial equipment offering`), then BOOM Energy committed (`eda3caf`). The Security page is uncommitted pending review.
+- **Page** at `/security` (`app/(site)/security/page.tsx`; own title, description, canonical, Open Graph with the master logo) from `components/security/`: `SecurityHero` + `SecurityPlanGraphic` (plan-view schematic of an imaginary property: fence line, gate, access point, building and four corner cameras whose fields of view sweep in once) inside a `Viewfinder`; `SecurityIntroSection` (spec-sheet of four considerations); `SecurityServicesSection` assembling `SurveillanceBand` (01-03, dashed signal line), `PerimeterPanels` (04-05 with `FenceDiagram`, `AccessDiagram`) and `MonitoringRows` (06-07 with `SignalDiagram`, `PlanDiagram`); `SecurityAudienceSection` (ledger rows, lock-on viewfinder on hover); `SecurityApproachSection` (checkpoint route); `SecurityClosingSection`. Shared helpers: `SecurityIcon` (14 drawn icons), `Viewfinder`, `ServiceIndex` (viewfinder-bracketed service numbers). Copy and structure in `content/security.ts`.
+- **Imagery:** none. The homepage CCTV illustration is not reused. All artwork is custom SVG/CSS and decorative (`aria-hidden`), with no values or labels that could read as data; the hero schematic is captioned as illustrative and not a BOOM installation.
+- **Shared change:** `app/motion.css` gained `scan-in` and `lock-on` keyframes and classes (one-time, gated on `prefers-reduced-motion: no-preference`; no looping animation).
+- **Links:** assessment CTAs use `securityAssessmentHref` (= `/contact#appointment`, a proposed anchor); `/contact` still shows the 404 page until the Contact stage.
+- **Content guard:** an in-browser text check found none of "BOOM SOLAR", "warrant", "guarantee", "24/7", "response time", "service-level" or "food-processing" on the page, and no `img` elements in `main`.
 - **Verification:** lint, typecheck and production build pass; headless Chrome review at 360, 390, 768, 1024, 1280 and 1440px found no horizontal overflow; with reduced motion on, no animations run and all content is visible. Real-device and screen-reader testing have not been done.
 
 ### 6.2 Stage 1 outcome (recorded 2026-11-03)

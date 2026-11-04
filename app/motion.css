@@ -58,7 +58,41 @@
   }
 }
 
+@keyframes scan-in {
+  from {
+    opacity: 0;
+    rotate: -22deg;
+  }
+  to {
+    opacity: 1;
+    rotate: 0deg;
+  }
+}
+
+@keyframes lock-on {
+  from {
+    opacity: 0;
+    scale: 1.12;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
+  /* A camera field of view sweeping into place once (BOOM Security hero). Set transform-origin inline. */
+  .scan-in {
+    animation: scan-in 1400ms var(--ease-standard) both;
+    animation-delay: var(--delay, 0ms);
+  }
+
+  /* A viewfinder frame settling onto its subject once. */
+  .lock-on {
+    animation: lock-on 1100ms var(--ease-standard) both;
+    animation-delay: var(--delay, 0ms);
+  }
+
   /* A sun rising from the horizon (BOOM Energy hero). */
   .sunrise {
     animation: sun-rise 1800ms var(--ease-standard) both;
