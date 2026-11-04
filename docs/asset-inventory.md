@@ -94,7 +94,7 @@ Supplied by Sabi Programmers on 2026-11-03 in `boom-homepage-assets-individual/`
 | Header/footer, all pages | Master logo (JPEG) | Vector/transparent logo |
 | Home | Master logo, division naming; three temporary illustrative (AI-generated) division images, §4a | Hero photography; authentic per-division photos to replace the illustrations |
 | About Us | Five portraits published (§2a; 01 and 02 caveats remain) | Higher-resolution CEO portrait; formal portrait for 02; office/team photos |
-| BOOM Energy | Only an older "BOOM SOLAR" mark exists, embedded in flyers (not the public name) | Real installation/product photos; standalone BOOM Energy logo |
+| BOOM Energy | Only an older "BOOM SOLAR" mark exists, embedded in flyers (not the public name). The `/energy` page (Stage 4) uses no image files: its hero and diagrams are custom SVG/CSS, and the homepage solar illustration (§4a) is deliberately not reused there. | Real installation/product photos; standalone BOOM Energy logo |
 | BOOM Security | none | Everything: logo, photos, product info |
 | BOOM Foods | Foods logos (with phone badge) | Product photos (garri, fufu, rice, fish, chicken); clean logo |
 | Industrial Equipment | none | Pounding-machine photos, specs, logo |

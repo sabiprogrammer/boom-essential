@@ -49,10 +49,12 @@ Persistent elements: header (logo, nav, "Request a consultation" action), WhatsA
 - **Mission and vision: [Confirm]** — not supplied. Do not write or imply them. Leave no placeholder text on the live page.
 
 ### BOOM Energy
+**Implemented in Stage 4 (2026-11-04), in order:** Hero (eyebrow "BOOM Energy · Solar Power & Energy Solutions"; "Reliable Power. A Brighter Tomorrow."; CTAs "Request a Solar Assessment" → `/contact#appointment` and "Talk to Our Energy Team" → WhatsApp) · Introduction · Services (all nine, exact titles and descriptions supplied by Sabi Programmers, in four compositions) · Who we serve (Residential, Commercial, Institutional, with the property types as supplied and a general, non-numerical note on how needs differ) · Our approach (five steps: Consultation, Assessment, System Design, Installation, Support; no timings) · Closing ("Let's Find the Right Energy Solution for You."; Request a Solar Assessment, WhatsApp Our Team, both phone numbers). Copy lives in `content/energy.ts`. No system capacities, performance figures, warranties, manufacturer partnerships, certifications, statistics, testimonials, completed-project claims or response times appear; none are confirmed. The assessment CTA target is the single constant `solarAssessmentHref` (currently the appointment anchor; Stage 5 may point it at a dedicated solar enquiry form). No photography is used; the page relies on custom SVG/CSS artwork.
+
 - Public name: **BOOM ENERGY** (client-confirmed). Do not use "BOOM SOLAR" on the site; it is an older branding reference from promotional materials.
 - Intro: Solar Power and Energy Solutions.
 - Services **[Confirmed]**: energy assessment and power audits; solar system design; solar installation; inverter solutions; battery storage; maintenance; upgrades; residential solar; commercial and institutional solar.
-- Who it is for: homeowners, businesses, offices, commercial property owners, schools, hotels, organisations (from flyers; **[Confirm]**).
+- Who it is for **[Confirmed, Stage 4 brief]**: Residential (homes, apartments and residential properties); Commercial (offices, shops, hotels, supermarkets and other business facilities); Institutional (schools, hospitals, factories, farms and other institutional properties). The older flyer wording (homeowners, commercial property owners, organisations) is not used.
 - Solar enquiry form; link to appointment request; WhatsApp link.
 
 ### BOOM Security
