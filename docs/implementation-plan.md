@@ -92,7 +92,7 @@ Final fields follow the form requirements in `content-specification.md` after cl
 | 1. Design system and shell — **COMPLETE, awaiting approval (2026-11-03)** | Tokens, typography, header/nav/footer, mobile menu, WhatsApp link, base UI primitives, temporary design preview (see §6.2) | Visual review at all breakpoints |
 | 2. Home — **COMPLETE, approved and committed (`9eebe17`, 2026-11-03)** | Hero, intro, divisions, featured solutions, industrial equipment, values, how we work, leadership preview, closing contact, plus temporary illustrative division images (see §6.3) | Design review (photography gap flagged) |
 | 3. About — **COMPLETE, approved and committed (`82772f7`, 2026-11-03)** | Hero, who we are, core values, divisions, leadership gallery with five real portraits, closing CTA (see §6.4) | Review |
-| 4. Division and equipment pages | Energy (**COMPLETE, approved and committed `eda3caf`**, §6.5); Security (**COMPLETE, approved and committed `f6f7f7b`**, §6.6); Foods (**COMPLETE, awaiting approval and uncommitted, 2026-11-04**, §6.7); then Industrial Equipment (one page per review) | Content accuracy review |
+| 4. Division and equipment pages | Energy (**COMPLETE, approved and committed `eda3caf`**, §6.5); Security (**COMPLETE, approved and committed `f6f7f7b`**, §6.6); Foods (**COMPLETE, approved and committed `9fff678`**, §6.7); Industrial Equipment (**COMPLETE, awaiting approval and uncommitted, 2026-11-04**, §6.8) | Content accuracy review |
 | 5. Contact and forms (front end) | All six forms, validation UX, confirmation states | Review |
 | 6. Backend and data | Supabase projects, migrations, RLS, server actions, rate limiting/spam | RLS test results reviewed |
 | 7. Admin dashboard | Auth, overview, table, detail, notes, appointments, CSV | Walkthrough with owner |
@@ -166,6 +166,17 @@ Stages 5 and 6 may swap or be combined per milestone if review prefers it. Work 
 - **Imagery:** none. The homepage Foods illustration, the flyers and any stock or generated imagery are not used. Artwork is custom SVG/CSS and decorative.
 - **Colour note:** white text is used on Agricultural Green (about 5.6:1); the muted on-dark grey is not, as it would fall below 4.5:1; gold appears only as rules, markers and one grain accent on green.
 - **Content guard:** an in-browser check found no price, currency, "affordable", cart, checkout, certification or warranty wording, no `img` elements in `main`, all seven products as headings, and the packaging line verbatim.
+- **Verification:** lint, typecheck and production build pass; headless Chrome review at 360, 390, 768, 1024, 1280 and 1440px found no horizontal overflow; with reduced motion on, no animations run and all content is visible. Real-device and screen-reader testing have not been done.
+
+### 6.8 Stage 4 outcome: Industrial Equipment (recorded 2026-11-04)
+
+- **Git:** BOOM Foods committed first (`9fff678`, `feat(foods): add food and agricultural products page`). The Industrial Equipment page is uncommitted pending review.
+- **Page** at `/industrial-equipment` (`app/(site)/industrial-equipment/page.tsx`; own title, description, canonical, Open Graph with the master logo) from `components/industrial/`: `IndustrialHero` (charcoal with a thin gold tab at its top edge and a gold-plinth product frame; the diagonal hazard-stripe band first proposed was removed at review as too loud), `OfferingMapSection` (three linked principal divisions beside a dashed, separate "Additional offering · You are here" marker), `ProductIntroSection`, `OptionsSection` (+ `SizeRangeDrawing`), `IndustrialAudienceSection` (+ `IndustrialIcon`), `EnquiryJourneySection` (chevron tabs), `IndustrialClosingSection`; shared `MachineUnit` / `MachineStage` drawings, and `ProductMedia` (the photo-ready slot). Copy and the enquiry helper are in `content/industrial-equipment.ts`.
+- **Structure made explicit:** the page states Industrial Equipment is an additional offering and not a fourth division (eyebrow, "Where this fits" map, closing copy). It is never numbered or styled as a division, and the enquiry parameter is `offering=`, not `division=`.
+- **Enquiry link:** `industrialEnquiryHref()` builds `/contact?offering=industrial-equipment&product=pounding-machine#enquiry`. Verified in the browser on all three enquiry buttons. The Contact stage must honour `offering`, `product` and `#enquiry`.
+- **Imagery:** none of BOOM's machines. Generic line drawings are captioned "Illustrative drawing. Not a BOOM machine."; flyer machine images unused; no generated or stock images. `ProductMedia` swaps in an authentic photograph (and drops the caption) when `industrialContent.productImage` is set.
+- **Content guard:** an in-browser check found no price, currency, cart, checkout, warranty, certification, factory/food-processing, capacity, power or brand wording, no `img` elements in `main`, and the restaurant business as the only audience.
+- **Shared change:** none to global components or tokens.
 - **Verification:** lint, typecheck and production build pass; headless Chrome review at 360, 390, 768, 1024, 1280 and 1440px found no horizontal overflow; with reduced motion on, no animations run and all content is visible. Real-device and screen-reader testing have not been done.
 
 ### 6.2 Stage 1 outcome (recorded 2026-11-03)

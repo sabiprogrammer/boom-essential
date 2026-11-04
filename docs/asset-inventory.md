@@ -97,7 +97,7 @@ Supplied by Sabi Programmers on 2026-11-03 in `boom-homepage-assets-individual/`
 | BOOM Energy | Only an older "BOOM SOLAR" mark exists, embedded in flyers (not the public name). The `/energy` page (Stage 4) uses no image files: its hero and diagrams are custom SVG/CSS, and the homepage solar illustration (§4a) is deliberately not reused there. | Real installation/product photos; standalone BOOM Energy logo |
 | BOOM Security | None. The `/security` page (Stage 5) uses no image files: its hero plan and diagrams are custom SVG/CSS, and the homepage CCTV illustration (§4a) is deliberately not reused there. | Everything real: logo, photos of actual installations, product info |
 | BOOM Foods | Foods logos (with phone badge). The `/foods` page (Stage 6) uses no image files: its hero field panel, packaging scale and protein motifs are custom SVG/CSS, and the homepage Foods illustration (§4a) is deliberately not reused there. | Product photos (garri, fufu, rice, fish, chicken); clean logo |
-| Industrial Equipment | none | Pounding-machine photos, specs, logo |
+| Industrial Equipment | None. The `/industrial-equipment` page (Stage 7) uses no image files: its hero and size-range artwork are generic SVG line drawings, captioned as illustrative and not a BOOM machine. The marketing-flyer machine images are not used. A `productImage` slot (`content/industrial-equipment.ts`) is ready for an authentic photograph. | Photographs of the actual pounding machines (priority), in the different sizes; specs only if the client wants them published; logo |
 | Contact Us | Address and phones from brief | Map pin, email, hours |
 | Admin | Master logo | — |
 

@@ -80,7 +80,15 @@ Persistent elements: header (logo, nav, "Request a consultation" action), WhatsA
 - Flyer items outside the brief (livestock, raw/processed foods, bulk supply): **[Confirm]** before including.
 
 ### Industrial Equipment
-- Intro: industrial food-processing equipment, particularly pounding machines. **[Confirmed]**
+**Implemented in Stage 7 (2026-11-04), in order:** Hero (eyebrow "Additional offering · Industrial Equipment"; "Equipment for the Restaurant Business."; "We supply pounding machines in different sizes for people in the restaurant business."; CTAs "Enquire About Pounding Machines" and "WhatsApp Our Team") · "Where this fits" (a map: the three principal divisions as linked numbered entries, and Industrial Equipment as a separate dashed "Additional offering … You are here" marker; states it is not a fourth division) · Product introduction ("Pounding Machines for Restaurant Businesses.", with an at-a-glance sheet of confirmed facts only) · Available options ("Different Sizes. Options to Discuss.", a generic size-range drawing and an enquiry action) · Who it serves (restaurants; restaurant owners and operators, and nothing else) · Suggested enquiry journey (01 Tell Us What You Need, 02 Discuss Available Options, 03 Make an Enquiry; labelled a suggestion, not a fixed process) · Closing ("Let's Discuss Your Equipment Requirements."; both CTAs, both phone numbers). Copy is in `content/industrial-equipment.ts`.
+
+**Enquiry link.** All enquiry actions use `/contact?offering=industrial-equipment&product=pounding-machine#enquiry`, built by `industrialEnquiryHref()` in `content/industrial-equipment.ts` (the only place that knows the path, parameter names and anchor). The Contact page (next stage) should read `offering` and `product` to preselect an Industrial Equipment enquiry and provide an element with `id="enquiry"`. Until then the links lead to the 404 page. (Foods uses `division=foods`; Industrial Equipment deliberately uses `offering=`, so it is never labelled a division.)
+
+**Imagery.** No photographs of BOOM machines exist. The hero and options artwork are generic line drawings of equipment (not a BOOM machine, size, capacity or feature), captioned "Illustrative drawing. Not a BOOM machine." The flyer machine images are not used. The page is ready for a real photograph: set `industrialContent.productImage` in `content/industrial-equipment.ts` (authentic, approved image only) and it replaces the drawing and the caption in the hero.
+
+**Content cautions.** No sizes, capacities, power ratings, dimensions, materials, brands, prices, warranties, certifications, or customer segments beyond the restaurant business (no factories or general food-processing companies). The corrected wording: pounding machines for the restaurant business (never "food-processing businesses").
+
+- Intro (earlier documentation): industrial food-processing equipment, particularly pounding machines. **[Confirmed]** Public copy on the page and homepage now describes the offering as pounding machines for the restaurant business.
 - No specifications, capacities, prices, brands or images supplied: **[Confirm]**. Page should be built to hold a product list later.
 - Industrial equipment enquiry form; WhatsApp link.
 - Must read as an additional offering, not a fourth division (no division logo or colour block parity with the other three).
