@@ -91,7 +91,37 @@
   }
 }
 
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    translate: 2.5rem 0;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
+  /* A side panel sliding in from the right (admin dashboard detail drawer). */
+  .panel-in {
+    animation: panel-in 320ms var(--ease-standard) both;
+  }
+
+  /* A backdrop fading in. */
+  .fade-in {
+    animation: fade-in 250ms var(--ease-standard) both;
+  }
+
   /* A stalk growing up from its base once (BOOM Foods hero). Set transform-origin inline. */
   .sprout {
     animation: sprout 1500ms var(--ease-standard) both;

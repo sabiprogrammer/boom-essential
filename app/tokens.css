@@ -29,6 +29,8 @@
   --color-line-strong: #b9c3d0;
   --color-tint: #edf1f6; /* quiet navy-tinted surface */
   --color-leaf: #e8f1ec; /* quiet green-tinted surface (BOOM Foods) */
+  --color-navy-deep: #061f40; /* darker shade of Deep Navy (dashboard sidebar footer, hairlines) */
+  --color-gold-tint: #fbf1d3; /* quiet gold-tinted surface (dashboard "in progress"/"requested" status chips, navy text on top) */
 
   /* Functional status colour for form errors only (always paired with text and an icon, never colour alone) */
   --color-danger: #9b2c2c; /* 7.6:1 on white */
@@ -86,6 +88,7 @@
   --shadow-*: initial;
   --shadow-header: 0 1px 0 rgb(9 44 89 / 0.05), 0 10px 28px -14px rgb(9 44 89 / 0.2);
   --shadow-raised: 0 2px 4px rgb(9 44 89 / 0.08), 0 12px 24px -10px rgb(9 44 89 / 0.28);
+  --shadow-panel: 0 1px 2px rgb(9 44 89 / 0.05), 0 6px 16px -10px rgb(9 44 89 / 0.16); /* dashboard panels */
   --shadow-menu: 0 0 0 1px rgb(9 44 89 / 0.06), 0 24px 48px -18px rgb(9 44 89 / 0.35);
 
   /* ---------- Motion ---------- */

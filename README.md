@@ -50,6 +50,8 @@ docs/             Project documentation (source of truth)
 boom-client-assets/  Client-supplied originals. Read-only, never served
 ```
 
+`/dashboard-preview` is a frontend-only demonstration of the admin dashboard using fictional data (`lib/dashboard-preview/`, `components/dashboard-preview/`). It also shows where Call and WhatsApp customer actions belong (demo notices only; the real links are prepared in `lib/dashboard-preview/contact-actions.ts`). It is open without login on purpose, is noindex, and connects to nothing: the real protected dashboard and all backend work have not started.
+
 Empty planned folders hold a `.gitkeep` placeholder until their stage begins.
 
 ## Documentation

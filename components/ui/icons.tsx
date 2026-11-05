@@ -1,9 +1,9 @@
 import type { SVGProps } from "react";
 
 /** Lightweight inline icons (no icon library). Decorative by default (aria-hidden). */
-type IconProps = SVGProps<SVGSVGElement>;
+export type IconProps = SVGProps<SVGSVGElement>;
 
-function Icon({ children, ...props }: IconProps) {
+export function Icon({ children, ...props }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
