@@ -1,12 +1,11 @@
-/**
- * Date helpers for the dashboard preview. Everything is computed against a FIXED demonstration date, never
- * the real clock: `new Date()` cannot run during prerender, and a fixed date keeps the sample data (which
- * records "upcoming" and "past" appointments) consistent. Appointment dates are plain calendar dates, so they
- * are parsed and formatted in UTC and never shift with the viewer's time zone.
- */
+import { lagosDateOf } from "./reference";
 
-/** The date the demonstration treats as "today" (YYYY-MM-DD). */
-export const demoToday = "2026-11-04";
+/**
+ * Date helpers for the dashboard preview. Nothing here reads the clock: every function that needs to know
+ * "today" is given it (the Lagos calendar day from `DemoReference`), so results are identical on the server,
+ * during hydration and on every later interaction. Appointment dates are plain calendar days (YYYY-MM-DD), so
+ * they are parsed and formatted in UTC and never shift with the viewer's time zone.
+ */
 
 const dayMs = 86_400_000;
 
@@ -27,6 +26,9 @@ export function daysBetween(from: string, to: string): number {
 const longDate = new Intl.DateTimeFormat("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 const shortDate = new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" });
 const plainDate = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+const weekdayMonth = new Intl.DateTimeFormat("en-GB", { weekday: "long", day: "numeric", month: "long", timeZone: "UTC" });
+const dayMonth = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", timeZone: "UTC" });
+const weekdayOnly = new Intl.DateTimeFormat("en-GB", { weekday: "long", timeZone: "UTC" });
 const monthOnly = new Intl.DateTimeFormat("en-GB", { month: "short", timeZone: "UTC" });
 const dayOnly = new Intl.DateTimeFormat("en-GB", { day: "numeric", timeZone: "UTC" });
 
@@ -44,6 +46,16 @@ export function formatPlainDate(date: string): string {
   return plainDate.format(utc(date));
 }
 
+/** "Monday 9 November" */
+export function formatWeekdayDayMonth(date: string): string {
+  return weekdayMonth.format(utc(date)).replace(",", "");
+}
+
+/** "9 November" */
+export function formatDayMonth(date: string): string {
+  return dayMonth.format(utc(date));
+}
+
 export function formatMonth(date: string): string {
   return monthOnly.format(utc(date));
 }
@@ -52,9 +64,9 @@ export function formatDayOfMonth(date: string): string {
   return dayOnly.format(utc(date));
 }
 
-/** "Today", "Tomorrow", "In 3 days", "Yesterday", "3 days ago". */
-export function describeRelativeDay(date: string): string {
-  const diff = daysBetween(demoToday, date);
+/** "Today", "Tomorrow", "In 3 days", "Yesterday", "3 days ago", relative to `today`. */
+export function describeRelativeDay(date: string, today: string): string {
+  const diff = daysBetween(today, date);
   if (diff === 0) return "Today";
   if (diff === 1) return "Tomorrow";
   if (diff === -1) return "Yesterday";
@@ -69,12 +81,16 @@ export function formatTime(time: string): string {
   return `${twelve}:${String(minutes).padStart(2, "0")} ${suffix}`;
 }
 
-const receivedDay = new Intl.DateTimeFormat("en-CA", { timeZone: "Africa/Lagos" });
 const receivedClock = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Africa/Lagos" });
 
 /** The Lagos calendar day (YYYY-MM-DD) of an ISO timestamp. */
 export function receivedDate(iso: string): string {
-  return receivedDay.format(new Date(iso));
+  return lagosDateOf(new Date(iso));
+}
+
+/** The Lagos wall-clock time of an ISO timestamp, "14:20". */
+export function receivedTime(iso: string): string {
+  return receivedClock.format(new Date(iso));
 }
 
 /** "3 Nov 2026" */
@@ -84,5 +100,19 @@ export function formatReceivedDate(iso: string): string {
 
 /** "3 Nov 2026, 14:20" */
 export function formatReceivedDateTime(iso: string): string {
-  return `${formatReceivedDate(iso)}, ${receivedClock.format(new Date(iso))}`;
+  return `${formatReceivedDate(iso)}, ${receivedTime(iso)}`;
+}
+
+/**
+ * A short, relative label for an activity-feed event: "Today, 08:42", "Yesterday, 17:00", a weekday name for
+ * the rest of the past week ("Monday, 14:30") and a date after that ("28 Oct, 09:15").
+ */
+export function describeActivityTime(iso: string, today: string): string {
+  const day = receivedDate(iso);
+  const clock = receivedTime(iso);
+  const ago = daysBetween(day, today);
+  if (ago <= 0) return `Today, ${clock}`;
+  if (ago === 1) return `Yesterday, ${clock}`;
+  if (ago < 7) return `${weekdayOnly.format(utc(day))}, ${clock}`;
+  return `${formatDayOfMonth(day)} ${formatMonth(day)}, ${clock}`;
 }

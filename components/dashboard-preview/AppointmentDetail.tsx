@@ -7,7 +7,7 @@ import { appointmentStatusLabels, divisionLabels } from "@/lib/dashboard-preview
 import type { DemoEnquiry } from "@/lib/dashboard-preview/types";
 import { CustomerContactBlock } from "./CustomerContactBlock";
 import { DateTile } from "./DateTile";
-import { useDemoData } from "./DemoDataProvider";
+import { useDemoData, useDemoToday } from "./DemoDataProvider";
 import { useDetailSelection } from "./DetailSelectionProvider";
 import { DemoChangeNotice } from "./DemoChangeNotice";
 import { DetailItem, DetailList, DetailSection, Quote } from "./DetailSection";
@@ -21,14 +21,15 @@ import { StatusSelector } from "./StatusSelector";
  */
 export function AppointmentDetail({ enquiry }: { enquiry: DemoEnquiry }) {
   const { setAppointmentStatus } = useDemoData();
+  const today = useDemoToday();
   const { openEnquiry } = useDetailSelection();
   const [changed, setChanged] = useState(false);
   const appointment = enquiry.appointment;
   if (!appointment) return null;
 
   const record = { enquiry, appointment };
-  const upcoming = isUpcoming(record);
-  const options = selectableStatuses(record).map((value) => ({ value, label: appointmentStatusLabels[value] }));
+  const upcoming = isUpcoming(record, today);
+  const options = selectableStatuses(record, today).map((value) => ({ value, label: appointmentStatusLabels[value] }));
 
   return (
     <>
@@ -38,7 +39,7 @@ export function AppointmentDetail({ enquiry }: { enquiry: DemoEnquiry }) {
           <div className="min-w-0">
             <p className="font-heading text-lead leading-tight font-extrabold text-navy">{formatLongDate(appointment.preferredDate)}</p>
             <p className="mt-0.5 text-base text-charcoal">
-              {formatTime(appointment.preferredTime)} <span className="text-ink-muted">· {describeRelativeDay(appointment.preferredDate)}</span>
+              {formatTime(appointment.preferredTime)} <span className="text-ink-muted">· {describeRelativeDay(appointment.preferredDate, today)}</span>
             </p>
           </div>
         </div>

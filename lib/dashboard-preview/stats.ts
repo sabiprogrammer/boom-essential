@@ -1,5 +1,5 @@
 import { appointmentRecords, isUpcoming } from "./appointments";
-import { daysBetween, demoToday, receivedDate } from "./dates";
+import { daysBetween, receivedDate } from "./dates";
 import { divisionLabels, divisionOrder } from "./labels";
 import type { DemoEnquiry, DivisionId } from "./types";
 
@@ -16,7 +16,7 @@ export type OverviewStats = {
 };
 
 /** Headline figures. Always computed from the records, so they cannot disagree with the lists. */
-export function overviewStats(enquiries: readonly DemoEnquiry[]): OverviewStats {
+export function overviewStats(enquiries: readonly DemoEnquiry[], today: string): OverviewStats {
   const records = appointmentRecords(enquiries);
   const count = (predicate: (enquiry: DemoEnquiry) => boolean) => enquiries.filter(predicate).length;
 
@@ -25,10 +25,10 @@ export function overviewStats(enquiries: readonly DemoEnquiry[]): OverviewStats 
     newCount: count((e) => e.status === "new"),
     inProgress: count((e) => e.status === "in_progress"),
     appointmentRequests: records.length,
-    receivedLastSevenDays: count((e) => daysBetween(receivedDate(e.receivedAt), demoToday) < 7),
+    receivedLastSevenDays: count((e) => daysBetween(receivedDate(e.receivedAt), today) < 7),
     awaitingContact: count((e) => e.status === "new"),
     awaitingConfirmation: records.filter((r) => r.appointment.status === "requested").length,
-    upcomingAppointments: records.filter((r) => isUpcoming(r) && r.appointment.status !== "cancelled").length,
+    upcomingAppointments: records.filter((r) => isUpcoming(r, today) && r.appointment.status !== "cancelled").length,
   };
 }
 

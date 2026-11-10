@@ -1,7 +1,10 @@
+"use client";
+
 import { isUpcoming } from "@/lib/dashboard-preview/appointments";
 import { formatShortDate, formatTime } from "@/lib/dashboard-preview/dates";
 import type { AppointmentRecord, AppointmentStatus } from "@/lib/dashboard-preview/types";
 import { DateTile } from "./DateTile";
+import { useDemoToday } from "./DemoDataProvider";
 import { DivisionTag } from "./DivisionTag";
 import { EnquiryContactActions } from "./EnquiryContactActions";
 import { AppointmentStatusBadge } from "./StatusBadge";
@@ -31,7 +34,8 @@ export function AppointmentItem({
   onOpen: (id: string) => void;
 }) {
   const { enquiry, appointment } = record;
-  const past = !isUpcoming(record);
+  const today = useDemoToday();
+  const past = !isUpcoming(record, today);
 
   return (
     <li

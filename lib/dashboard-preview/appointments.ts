@@ -1,4 +1,3 @@
-import { demoToday } from "./dates";
 import type { AppointmentRecord, AppointmentStatus, DemoEnquiry } from "./types";
 
 /** Every enquiry that carries an appointment request, paired with it. */
@@ -6,9 +5,12 @@ export function appointmentRecords(enquiries: readonly DemoEnquiry[]): Appointme
   return enquiries.flatMap((enquiry) => (enquiry.appointment ? [{ enquiry, appointment: enquiry.appointment }] : []));
 }
 
-/** Upcoming means on or after the demonstration date; everything earlier is past. */
-export function isUpcoming(record: AppointmentRecord): boolean {
-  return record.appointment.preferredDate >= demoToday;
+/**
+ * Upcoming means scheduled for today or later (a visit later today stays in the agenda until the day ends, as
+ * in any diary); anything on an earlier day is past. `today` is the Lagos calendar day from the demo reference.
+ */
+export function isUpcoming(record: AppointmentRecord, today: string): boolean {
+  return record.appointment.preferredDate >= today;
 }
 
 function byDateTime(a: AppointmentRecord, b: AppointmentRecord): number {
@@ -19,13 +21,13 @@ function byDateTime(a: AppointmentRecord, b: AppointmentRecord): number {
 }
 
 /** Soonest first. */
-export function upcomingAppointments(records: readonly AppointmentRecord[]): AppointmentRecord[] {
-  return records.filter(isUpcoming).sort(byDateTime);
+export function upcomingAppointments(records: readonly AppointmentRecord[], today: string): AppointmentRecord[] {
+  return records.filter((record) => isUpcoming(record, today)).sort(byDateTime);
 }
 
 /** Most recent first. */
-export function pastAppointments(records: readonly AppointmentRecord[]): AppointmentRecord[] {
-  return records.filter((record) => !isUpcoming(record)).sort((a, b) => byDateTime(b, a));
+export function pastAppointments(records: readonly AppointmentRecord[], today: string): AppointmentRecord[] {
+  return records.filter((record) => !isUpcoming(record, today)).sort((a, b) => byDateTime(b, a));
 }
 
 /** Groups already-sorted records by calendar day, keeping their order. */
@@ -43,7 +45,7 @@ export function groupByDate(records: readonly AppointmentRecord[]): { date: stri
  * The statuses an administrator may move an appointment to. A future appointment can be requested, confirmed
  * or cancelled; a past one can only be completed or cancelled. The current status is always included.
  */
-export function selectableStatuses(record: AppointmentRecord): AppointmentStatus[] {
-  const options: AppointmentStatus[] = isUpcoming(record) ? ["requested", "confirmed", "cancelled"] : ["completed", "cancelled"];
+export function selectableStatuses(record: AppointmentRecord, today: string): AppointmentStatus[] {
+  const options: AppointmentStatus[] = isUpcoming(record, today) ? ["requested", "confirmed", "cancelled"] : ["completed", "cancelled"];
   return options.includes(record.appointment.status) ? options : [record.appointment.status, ...options];
 }

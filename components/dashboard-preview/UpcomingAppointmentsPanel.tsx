@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ArrowRightIcon } from "@/components/ui/icons";
 import { appointmentRecords, upcomingAppointments } from "@/lib/dashboard-preview/appointments";
 import { AppointmentItem } from "./AppointmentItem";
-import { useDemoData } from "./DemoDataProvider";
+import { useDemoData, useDemoToday } from "./DemoDataProvider";
 import { useDetailSelection } from "./DetailSelectionProvider";
 import { EmptyState } from "./EmptyState";
 import { Panel } from "./Panel";
@@ -14,9 +14,10 @@ const shown = 5;
 /** The next appointments that are still live (requested or confirmed), soonest first, each led by a calendar tile. */
 export function UpcomingAppointmentsPanel() {
   const { enquiries } = useDemoData();
+  const today = useDemoToday();
   const { selection, openAppointment } = useDetailSelection();
   const selectedId = selection?.kind === "appointment" ? selection.id : null;
-  const records = upcomingAppointments(appointmentRecords(enquiries)).filter((r) => r.appointment.status !== "cancelled");
+  const records = upcomingAppointments(appointmentRecords(enquiries), today).filter((r) => r.appointment.status !== "cancelled");
 
   return (
     <Panel

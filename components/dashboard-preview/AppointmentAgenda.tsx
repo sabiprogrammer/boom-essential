@@ -3,6 +3,7 @@
 import { describeRelativeDay, formatLongDate } from "@/lib/dashboard-preview/dates";
 import type { AppointmentRecord } from "@/lib/dashboard-preview/types";
 import { AppointmentItem } from "./AppointmentItem";
+import { useDemoToday } from "./DemoDataProvider";
 import { useDetailSelection } from "./DetailSelectionProvider";
 
 /**
@@ -17,6 +18,7 @@ export function AppointmentAgenda({
   past: boolean;
 }) {
   const { selection, openAppointment } = useDetailSelection();
+  const today = useDemoToday();
   const selectedId = selection?.kind === "appointment" ? selection.id : null;
 
   return (
@@ -33,7 +35,7 @@ export function AppointmentAgenda({
                 past ? "bg-tint text-ink-muted" : "bg-navy/[0.07] text-navy"
               }`}
             >
-              {describeRelativeDay(group.date)}
+              {describeRelativeDay(group.date, today)}
             </span>
           </h3>
           <ul>

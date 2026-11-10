@@ -2,7 +2,7 @@
 
 Corporate website and private enquiry/appointment dashboard for BOOM MULTI GLOBAL COMPANY LIMITED (Akure, Ondo State, Nigeria). Delivered by Sabi Programmers.
 
-**Status:** Stage 2 (homepage) approved and committed; Stage 3 (About Us, `/about`) approved and committed; Stage 4 in progress (BOOM Energy, `/energy`, approved and committed; BOOM Security, `/security`, approved and committed; BOOM Foods, `/foods`, approved and committed; Industrial Equipment, `/industrial-equipment`, approved and committed; Contact and enquiry interface, `/contact`, frontend only and awaiting review). The enquiry form does not send anything yet: backend integration is a later stage. See `docs/implementation-plan.md` for the staged plan.
+**Status:** Stage 2 (homepage) approved and committed; Stage 3 (About Us, `/about`) approved and committed; Stage 4 in progress (BOOM Energy, `/energy`, approved and committed; BOOM Security, `/security`, approved and committed; BOOM Foods, `/foods`, approved and committed; Industrial Equipment, `/industrial-equipment`, approved and committed; Contact and enquiry interface, `/contact`, frontend only and committed; a frontend-only demo dashboard preview at `/dashboard-preview` is also committed and deployed at https://boom-essential.vercel.app/). The enquiry form does not send anything yet: backend integration is a later stage. See `docs/implementation-plan.md` for the staged plan.
 
 ## Stack
 
@@ -29,8 +29,9 @@ npm run dev        # http://localhost:3000
 | `npm run start` | Serve the production build (run `build` first) |
 | `npm run lint` | ESLint |
 | `npm run typecheck` | Generate route types, then `tsc --noEmit` |
+| `npm test` | Unit tests in `tests/` (Node's built-in test runner, no extra dependency) |
 
-Before handing over any milestone, `npm run lint`, `npm run typecheck` and `npm run build` must all pass.
+Before handing over any milestone, `npm run lint`, `npm run typecheck`, `npm test` and `npm run build` must all pass.
 
 ## Environment variables
 

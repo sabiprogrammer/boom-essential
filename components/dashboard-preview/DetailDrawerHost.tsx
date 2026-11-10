@@ -15,9 +15,9 @@ import { AppointmentStatusBadge, EnquiryStatusBadge } from "./StatusBadge";
  */
 export function DetailDrawerHost() {
   const { selection, close } = useDetailSelection();
-  const { enquiries } = useDemoData();
+  const { enquiries, reference } = useDemoData();
 
-  if (!selection) return null;
+  if (!selection || !reference) return null;
   const enquiry = enquiries.find((item) => item.id === selection.id);
   if (!enquiry) return null;
 
@@ -46,7 +46,11 @@ export function DetailDrawerHost() {
   return (
     <DetailDrawer
       key={`appointment-${enquiry.id}`}
-      eyebrow={`Appointment · ${enquiry.reference}`}
+      eyebrow={
+        <>
+          Appointment · <span className="whitespace-nowrap">{enquiry.reference}</span>
+        </>
+      }
       title={enquiry.customer.name}
       subtitle={enquiry.customer.organisation}
       onClose={close}
@@ -55,7 +59,7 @@ export function DetailDrawerHost() {
           <>
             <AppointmentStatusBadge status={enquiry.appointment.status} />
             <DivisionTag division={enquiry.division} />
-            <span className="text-sm text-ink-muted">{describeRelativeDay(enquiry.appointment.preferredDate)}</span>
+            <span className="text-sm text-ink-muted">{describeRelativeDay(enquiry.appointment.preferredDate, reference.today)}</span>
           </>
         ) : null
       }

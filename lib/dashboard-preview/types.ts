@@ -38,6 +38,8 @@ export type DemoNote = {
   author: string;
   /** Pre-formatted label ("3 Nov 2026, 16:05" or "Just now (demo)"). */
   at: string;
+  /** ISO 8601 timestamp (an instant); null for a note added live during the demonstration. */
+  createdAt: string | null;
   text: string;
 };
 
@@ -52,7 +54,7 @@ export type DemoEnquiry = {
   /** One-line summary shown in lists. */
   summary: string;
   message: string;
-  /** ISO 8601 with the Lagos offset. */
+  /** ISO 8601 timestamp (an instant; shown in Africa/Lagos time). */
   receivedAt: string;
   status: EnquiryStatus;
   appointment: DemoAppointment | null;

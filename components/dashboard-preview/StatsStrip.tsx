@@ -2,7 +2,7 @@
 
 import { appointmentRecords } from "@/lib/dashboard-preview/appointments";
 import { overviewStats } from "@/lib/dashboard-preview/stats";
-import { useDemoData } from "./DemoDataProvider";
+import { useDemoData, useDemoToday } from "./DemoDataProvider";
 import { CalendarIcon, ClockIcon, InboxIcon, MailIcon } from "./icons";
 import { KpiTile } from "./KpiTile";
 
@@ -19,7 +19,8 @@ function Fill({ value, className }: { value: number; className: string }) {
  */
 export function StatsStrip() {
   const { enquiries } = useDemoData();
-  const stats = overviewStats(enquiries);
+  const today = useDemoToday();
+  const stats = overviewStats(enquiries, today);
   const appointments = appointmentRecords(enquiries).length;
   const contacted = enquiries.filter((e) => e.status === "contacted").length;
   const resolved = enquiries.filter((e) => e.status === "resolved").length;

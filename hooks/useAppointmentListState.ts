@@ -19,13 +19,13 @@ function countByStatus(records: readonly AppointmentRecord[]): Record<Appointmen
 }
 
 /** Upcoming/past choice and status filter for the Appointments list. Status counts follow the chosen timeframe. */
-export function useAppointmentListState(enquiries: readonly DemoEnquiry[]) {
+export function useAppointmentListState(enquiries: readonly DemoEnquiry[], today: string) {
   const [timeframe, setTimeframe] = useState<Timeframe>("upcoming");
   const [status, setStatus] = useState<AppointmentStatusFilter>("all");
 
   const all = useMemo(() => appointmentRecords(enquiries), [enquiries]);
-  const upcoming = useMemo(() => upcomingAppointments(all), [all]);
-  const past = useMemo(() => pastAppointments(all), [all]);
+  const upcoming = useMemo(() => upcomingAppointments(all, today), [all, today]);
+  const past = useMemo(() => pastAppointments(all, today), [all, today]);
 
   const inTimeframe = timeframe === "upcoming" ? upcoming : past;
   const counts = useMemo(() => countByStatus(inTimeframe), [inTimeframe]);

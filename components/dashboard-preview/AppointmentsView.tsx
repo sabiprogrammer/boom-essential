@@ -3,14 +3,15 @@
 import { useAppointmentListState } from "@/hooks/useAppointmentListState";
 import { AppointmentAgenda } from "./AppointmentAgenda";
 import { AppointmentFilters } from "./AppointmentFilters";
-import { useDemoData } from "./DemoDataProvider";
+import { useDemoData, useDemoToday } from "./DemoDataProvider";
 import { EmptyState } from "./EmptyState";
 import { Panel } from "./Panel";
 
 /** The Appointments screen: upcoming or past, filtered by status, grouped by day. */
 export function AppointmentsView() {
   const { enquiries } = useDemoData();
-  const list = useAppointmentListState(enquiries);
+  const today = useDemoToday();
+  const list = useAppointmentListState(enquiries, today);
   const upcoming = list.timeframe === "upcoming";
 
   return (

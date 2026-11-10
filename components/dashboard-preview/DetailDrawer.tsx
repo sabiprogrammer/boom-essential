@@ -19,7 +19,7 @@ export function DetailDrawer({
   onClose,
   children,
 }: {
-  eyebrow: string;
+  eyebrow: ReactNode;
   title: string;
   subtitle?: string;
   /** Status and other at-a-glance facts, shown under the title. */
@@ -55,7 +55,7 @@ export function DetailDrawer({
           <div className="flex items-start justify-between gap-4">
             <p className="flex items-center gap-2.5 pt-2.5 font-heading text-xs font-bold tracking-[0.14em] text-ink-muted uppercase">
               <span aria-hidden="true" className="h-px w-5 bg-gold" />
-              {eyebrow}
+              <span>{eyebrow}</span>
             </p>
             <button
               type="button"

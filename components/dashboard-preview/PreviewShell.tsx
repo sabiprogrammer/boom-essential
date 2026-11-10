@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { DemoBanner } from "./DemoBanner";
+import { DemoReadyGate } from "./DemoReadyGate";
 import { DetailDrawerHost } from "./DetailDrawerHost";
 import { PreviewProviders } from "./PreviewProviders";
 import { Sidebar } from "./Sidebar";
@@ -25,7 +26,9 @@ export function PreviewShell({ children }: { children: ReactNode }) {
             <TopBar />
           </div>
           <main id="dashboard-main" tabIndex={-1} className="flex-1 px-gutter pt-6 pb-28 outline-none lg:pt-8 lg:pb-12">
-            <div className="mx-auto w-full max-w-[88rem]">{children}</div>
+            <div className="mx-auto w-full max-w-[88rem]">
+              <DemoReadyGate>{children}</DemoReadyGate>
+            </div>
           </main>
         </div>
       </div>
