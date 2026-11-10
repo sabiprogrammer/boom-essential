@@ -9,6 +9,14 @@ export const homeLink: NavLinkItem = { label: "Home", href: "/" };
 export const aboutLink: NavLinkItem = { label: "About Us", href: "/about" };
 export const contactLink: NavLinkItem = { label: "Contact Us", href: "/contact" };
 
+/** Added at the client's request (10 Nov 2026): the catalogue and the project photographs. */
+export const productsLink: NavLinkItem = { label: "Products catalogue", href: "/products" };
+export const projectsLink: NavLinkItem = { label: "Projects", href: "/projects" };
+
+/** Footer-only links (client request, 10 Nov 2026). "Our team" is the leadership section of About Us. */
+export const ourTeamLink: NavLinkItem = { label: "Our team", href: "/about#leadership" };
+export const careersLink: NavLinkItem = { label: "Careers", href: "/careers" };
+
 /** The three principal divisions. Industrial Equipment is deliberately NOT in this list. */
 export const divisionsLabel = "Our Divisions";
 export const divisionLinks: readonly NavLinkItem[] = [

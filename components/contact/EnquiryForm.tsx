@@ -16,7 +16,7 @@ import { PreviewNotice } from "./PreviewNotice";
 import { SubmitBar } from "./SubmitBar";
 
 /**
- * The one enquiry form for every part of BOOM MULTI GLOBAL: general, Energy, Security, Foods and Industrial
+ * The one enquiry form for every part of Boom Multi Global: general, Energy, Security, Foods and Industrial
  * Equipment, with an optional appointment request. It validates in the browser and hands a typed payload to
  * `submitEnquiry`, which today sends nothing (see lib/enquiry/config.ts). Values stay in memory only.
  * Pass `initial` (from the URL) to pre-select a category, a product or the appointment request, and

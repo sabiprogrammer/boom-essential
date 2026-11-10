@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { divisionLabels, featuredSolutions } from "@/content/featured-solutions";
+import { featuredSolutionGroups } from "@/content/featured-solutions";
 import type { DivisionId } from "@/content/divisions";
 import { Container } from "@/components/ui/Container";
 import { ArrowRightIcon } from "@/components/ui/icons";
@@ -16,7 +16,8 @@ const marker: Record<DivisionId, string> = {
 
 /**
  * Selected solutions as an editorial index on Charcoal Navy: a sticky introduction beside a long,
- * ruled list that interleaves the three divisions. Deliberately not a grid of cards.
+ * ruled list. The list is arranged by category (Energy, Security, Foods), each with its own heading;
+ * the numbering runs on continuously across the three groups. Deliberately not a grid of cards.
  */
 export function FeaturedSolutionsSection() {
   return (
@@ -43,34 +44,41 @@ export function FeaturedSolutionsSection() {
             </div>
           </div>
 
-          <ol className="border-t border-line-on-dark lg:col-span-8" aria-label="Featured solutions">
-            {featuredSolutions.map((item, index) => (
-              <li
-                key={item.title}
-                className="reveal border-b border-line-on-dark"
-                style={{ "--i": index % 3 } as CSSProperties}
-              >
-                <SmartLink
-                  href={item.href}
-                  className="group/item relative grid grid-cols-[2.5rem_1fr_auto] items-center gap-x-4 py-6 transition-colors duration-300 hover:bg-white/[0.04] focus-visible:bg-white/[0.04] sm:grid-cols-[4rem_1fr_auto] sm:gap-x-6 sm:py-7"
-                >
-                  <span className="pl-1 font-heading text-sm font-bold text-on-dark-muted tabular-nums">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span>
-                    <span className="block font-heading text-h3 font-bold text-white transition-transform duration-300 group-hover/item:translate-x-1.5">
-                      {item.title}
-                    </span>
-                    <span className="mt-2 flex items-center gap-2.5 text-sm text-on-dark-muted">
-                      <span aria-hidden="true" className={`size-2 ${marker[item.division]}`} />
-                      {divisionLabels[item.division]}
-                    </span>
-                  </span>
-                  <ArrowRightIcon className="mr-1 size-6 text-gold transition-transform duration-300 group-hover/item:translate-x-1" />
-                </SmartLink>
-              </li>
-            ))}
-          </ol>
+          <div className="space-y-12 lg:col-span-8">
+            {featuredSolutionGroups.map((group) => {
+              const { start } = group;
+              return (
+                <div key={group.division} className="reveal">
+                  <h3 className="flex items-center gap-3 pb-4 font-heading text-sm font-bold tracking-[0.14em] text-on-dark-muted uppercase">
+                    <span aria-hidden="true" className={`size-2.5 ${marker[group.division]}`} />
+                    {group.label}
+                  </h3>
+                  <ol className="border-t border-line-on-dark" start={start} aria-label={`${group.label} featured solutions`}>
+                    {group.items.map((item, index) => (
+                      <li
+                        key={item.title}
+                        className="reveal border-b border-line-on-dark"
+                        style={{ "--i": index } as CSSProperties}
+                      >
+                        <SmartLink
+                          href={item.href}
+                          className="group/item relative grid grid-cols-[2.5rem_1fr_auto] items-center gap-x-4 py-6 transition-colors duration-300 hover:bg-white/[0.04] focus-visible:bg-white/[0.04] sm:grid-cols-[4rem_1fr_auto] sm:gap-x-6 sm:py-7"
+                        >
+                          <span className="pl-1 font-heading text-sm font-bold text-on-dark-muted tabular-nums">
+                            {String(start + index).padStart(2, "0")}
+                          </span>
+                          <span className="block font-heading text-h3 font-bold text-white transition-transform duration-300 group-hover/item:translate-x-1.5">
+                            {item.title}
+                          </span>
+                          <ArrowRightIcon className="mr-1 size-6 text-gold transition-transform duration-300 group-hover/item:translate-x-1" />
+                        </SmartLink>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </Container>
     </Section>

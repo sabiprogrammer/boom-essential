@@ -9,7 +9,7 @@ import { WhoWeServeSection } from "@/components/energy/WhoWeServeSection";
 
 const title = "BOOM Energy: Solar Power and Energy Solutions";
 const description =
-  "BOOM ENERGY, a division of BOOM MULTI GLOBAL in Akure, Ondo State, provides solar power and energy solutions: energy assessment and power audits, solar system design and installation, inverters, battery storage, maintenance and upgrades for homes, businesses and institutions.";
+  "BOOM ENERGY, a division of Boom Multi Global, with its head office in Akure, Ondo State, provides solar power and energy solutions: energy assessment and power audits, solar system design and installation, inverters, battery storage, maintenance and upgrades for homes, businesses and institutions.";
 
 export const metadata: Metadata = {
   title,
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "/assets/branding/boom-multi-global-logo.jpeg",
         width: 1080,
         height: 1080,
-        alt: "BOOM MULTI GLOBAL logo",
+        alt: "Boom Multi Global logo",
       },
     ],
   },

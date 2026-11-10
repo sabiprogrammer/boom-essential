@@ -1,4 +1,4 @@
-import { aboutLink, contactLink, homeLink, industrialLink } from "@/content/navigation";
+import { aboutLink, contactLink, homeLink, industrialLink, productsLink, projectsLink } from "@/content/navigation";
 import { DivisionsMenu } from "./DivisionsMenu";
 import { NavLink } from "./NavLink";
 
@@ -17,6 +17,12 @@ export function DesktopNav() {
           <NavLink item={aboutLink} />
         </li>
         <DivisionsMenu />
+        <li>
+          <NavLink item={productsLink} />
+        </li>
+        <li>
+          <NavLink item={projectsLink} />
+        </li>
         <li aria-hidden="true" className="mx-2 h-5 w-px bg-line-strong" />
         <li>
           <NavLink item={industrialLink} />

@@ -1,7 +1,8 @@
 import { company } from "./company";
+import { productPhotos } from "./product-photos";
 
 /**
- * Industrial Equipment page copy. Industrial Equipment is an ADDITIONAL OFFERING of BOOM MULTI GLOBAL,
+ * Industrial Equipment page copy. Industrial Equipment is an ADDITIONAL OFFERING of Boom Multi Global,
  * never a fourth principal division. Sources: the confirmed documentation (docs/project-overview.md)
  * and the original client information supplied by Sabi Programmers: pounding machines, in different
  * sizes, for the restaurant business.
@@ -27,15 +28,16 @@ export function industrialEnquiryHref(productSlug: string = poundingMachineSlug)
   return `${enquiry.path}?${params.toString()}#${enquiry.anchor}`;
 }
 
-/** An authentic photograph of a BOOM machine, once the client supplies one. Never a generated or stock image. */
+/** An authentic photograph of a BOOM machine. Never a generated or stock image. */
 export type ProductImage = { src: string; alt: string; width: number; height: number };
 
 export const industrialContent = {
   /**
-   * Leave undefined until an authentic product photograph is supplied and approved. When set, the hero
-   * and options panels show it in place of the illustrative drawing (and the "illustrative" caption goes).
+   * The client's own photograph of the smaller pounding machines (supplied 10 Nov 2026; the flyer banner and price
+   * are cropped out). The hero shows it in place of the illustrative drawing, and the "illustrative" caption goes.
+   * Set to undefined to fall back to the drawing.
    */
-  productImage: undefined as ProductImage | undefined,
+  productImage: productPhotos.poundingMachinesSmall as ProductImage | undefined,
 
   hero: {
     eyebrow: "Additional offering · Industrial Equipment",
@@ -48,7 +50,7 @@ export const industrialContent = {
 
   position: {
     label: "Where this fits",
-    text: "BOOM MULTI GLOBAL has three principal business divisions. Industrial Equipment is an additional offering alongside them, not a fourth division.",
+    text: "Boom Multi Global has three principal business divisions. Industrial Equipment is an additional offering alongside them, not a fourth division.",
     divisionsLabel: "Principal divisions",
     additionalLabel: "Additional offering",
     additionalName: "Industrial Equipment",
@@ -59,7 +61,7 @@ export const industrialContent = {
     eyebrow: "The product",
     heading: "Pounding Machines for Restaurant Businesses.",
     paragraphs: [
-      "BOOM MULTI GLOBAL provides pounding machines in different sizes for restaurant businesses.",
+      "Boom Multi Global provides pounding machines in different sizes for restaurant businesses.",
       "If you run a restaurant, our team can talk you through the available options.",
     ],
     sheetLabel: "At a glance",

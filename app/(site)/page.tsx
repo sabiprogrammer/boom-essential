@@ -13,7 +13,7 @@ import { OrganizationJsonLd } from "@/components/seo/OrganizationJsonLd";
 
 const title = `${company.shortName}: Power. Protection. Provision.`;
 const description =
-  "BOOM MULTI GLOBAL COMPANY LIMITED is a Nigerian company in Akure, Ondo State, with three principal divisions: BOOM Energy (solar power and energy solutions), BOOM Security (security and surveillance) and BOOM Foods (food and agricultural products).";
+  "Boom Multi Global Company Limited is a Nigerian company with its head office in Akure, Ondo State, and three principal divisions: BOOM Energy (solar power and energy solutions), BOOM Security (security and surveillance) and BOOM Foods (food and agricultural products).";
 
 export const metadata: Metadata = {
   title: { absolute: title },
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
         url: "/assets/branding/boom-multi-global-logo.jpeg",
         width: 1080,
         height: 1080,
-        alt: "BOOM MULTI GLOBAL logo",
+        alt: "Boom Multi Global logo",
       },
     ],
   },

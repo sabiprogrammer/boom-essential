@@ -9,7 +9,7 @@ import { PreviewShell } from "@/components/dashboard-preview/PreviewShell";
  */
 export const metadata: Metadata = {
   title: "Dashboard preview (demo)",
-  description: "A demonstration of the BOOM MULTI GLOBAL administration dashboard using sample data only.",
+  description: "A demonstration of the Boom Multi Global administration dashboard using sample data only.",
   robots: { index: false, follow: false, nocache: true, googleBot: { index: false, follow: false } },
 };
 

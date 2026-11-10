@@ -1,13 +1,14 @@
 import type { CSSProperties } from "react";
 import { industrialContent, industrialEnquiryHref } from "@/content/industrial-equipment";
+import { productPhotos } from "@/content/product-photos";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
+import { PhotoFigure } from "@/components/ui/PhotoFigure";
 import { Section } from "@/components/ui/Section";
-import { SizeRangeDrawing } from "./SizeRangeDrawing";
 
 /**
- * Available options on Deep Navy: the explanation and an enquiry action beside a size-range drawing.
- * No product catalogue, no sizes, no specifications: the goal is to start a conversation.
+ * Available options on Deep Navy: the explanation and an enquiry action beside the client's photographs of a
+ * smaller and a larger pounding machine. No sizes, capacities or specifications: the goal is to start a conversation.
  */
 export function OptionsSection() {
   const { eyebrow, heading, copy, smaller, larger, cta } = industrialContent.options;
@@ -33,11 +34,24 @@ export function OptionsSection() {
           </div>
 
           <div className="reveal lg:col-span-7" style={{ "--i": 1 } as CSSProperties}>
-            <div className="border-t-[3px] border-gold bg-charcoal p-6 sm:p-10">
-              <SizeRangeDrawing className="block h-auto w-full" />
-              <div aria-hidden="true" className="mt-3 flex justify-between font-heading text-sm font-bold tracking-[0.12em] text-on-dark-muted uppercase">
-                <span>{smaller}</span>
-                <span>{larger}</span>
+            <div className="grid items-end gap-8 sm:grid-cols-2">
+              <div>
+                <p className="mb-3 font-heading text-sm font-bold tracking-[0.12em] text-on-dark-muted uppercase">{smaller}</p>
+                <PhotoFigure
+                  photo={productPhotos.poundingMachinesSmall}
+                  aspect="4 / 3"
+                  surface="dark"
+                  sizes="(min-width: 1024px) 28vw, (min-width: 640px) 45vw, 92vw"
+                />
+              </div>
+              <div>
+                <p className="mb-3 font-heading text-sm font-bold tracking-[0.12em] text-on-dark-muted uppercase">{larger}</p>
+                <PhotoFigure
+                  photo={productPhotos.poundingMachine}
+                  aspect="4 / 5"
+                  surface="dark"
+                  sizes="(min-width: 1024px) 28vw, (min-width: 640px) 45vw, 92vw"
+                />
               </div>
             </div>
           </div>

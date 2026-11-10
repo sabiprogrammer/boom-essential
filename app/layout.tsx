@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: `%s | ${company.shortName}`,
   },
   description:
-    "BOOM MULTI GLOBAL COMPANY LIMITED, Akure, Ondo State, Nigeria: BOOM Energy, BOOM Security and BOOM Foods. Power. Protection. Provision.",
+    "Boom Multi Global Company Limited, Akure, Ondo State, Nigeria: BOOM Energy, BOOM Security and BOOM Foods. Power. Protection. Provision.",
 };
 
 export const viewport: Viewport = {

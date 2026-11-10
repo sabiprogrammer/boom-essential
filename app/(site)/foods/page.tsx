@@ -10,7 +10,7 @@ import { SupplyEnquirySection } from "@/components/foods/SupplyEnquirySection";
 
 const title = "BOOM Foods: Food and Agricultural Products";
 const description =
-  "BOOM FOODS, a division of BOOM MULTI GLOBAL in Akure, Ondo State, supplies food and agricultural products: garri, Ekiti garri, fufu powder, Ofada rice and Igbemo rice in bag sizes from 1kg to 100kg, plus smoked fish and frozen chicken. Enquire about products and quantities.";
+  "BOOM FOODS, a division of Boom Multi Global, with its head office in Akure, Ondo State, supplies food and agricultural products: garri, Garri Ekiti, fufu powder, Ofada rice and Igbemo rice in bag sizes from 1kg to 100kg, plus smoked fish and frozen chicken. Enquire about products and quantities.";
 
 export const metadata: Metadata = {
   title,
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
         url: "/assets/branding/boom-multi-global-logo.jpeg",
         width: 1080,
         height: 1080,
-        alt: "BOOM MULTI GLOBAL logo",
+        alt: "Boom Multi Global logo",
       },
     ],
   },

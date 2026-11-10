@@ -6,7 +6,7 @@ import { EnquirySection } from "@/components/contact/EnquirySection";
 
 const title = "Contact Us";
 const description =
-  "Contact BOOM MULTI GLOBAL COMPANY LIMITED in Akure, Ondo State, Nigeria. Visit our office, call or WhatsApp our team, or send one enquiry about BOOM Energy, BOOM Security, BOOM Foods or Industrial Equipment, with an optional appointment request.";
+  "Contact Boom Multi Global Company Limited in Akure, Ondo State, Nigeria. Visit our office, call or WhatsApp our team, or send one enquiry about BOOM Energy, BOOM Security, BOOM Foods or Industrial Equipment, with an optional appointment request.";
 
 export const metadata: Metadata = {
   title,
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
         url: "/assets/branding/boom-multi-global-logo.jpeg",
         width: 1080,
         height: 1080,
-        alt: "BOOM MULTI GLOBAL logo",
+        alt: "Boom Multi Global logo",
       },
     ],
   },

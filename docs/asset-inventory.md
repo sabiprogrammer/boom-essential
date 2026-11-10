@@ -110,3 +110,24 @@ Supplied by Sabi Programmers on 2026-11-03 in `boom-homepage-assets-individual/`
 5. **Product specification sheets** for anything we may describe (equipment, storage systems, freezers).
 6. **Legal/company documents** if the client wants registration or certification shown.
 7. Until real images arrive, use type-led layouts and clearly marked development placeholders; no generated or stock images presented as Boom's work. Illustrative supporting visuals (including stock) are considered only with Sabi Programmers' approval and must be clearly distinguished from real company work (`design-system.md` §8).
+
+## 8. New client photographs (received 2026-11-10)
+
+Twelve images in `boom-client-assets/new_from_client/` (read-only; WhatsApp-compressed JPEGs). Sabi Programmers approved publication on 2026-11-10, including consent for the people shown and the visible equipment brands. Web copies are **crops** in `public/assets/images/projects/` and `public/assets/images/products/`; the originals are untouched. Registered in `content/project-photos.ts` and `content/product-photos.ts`.
+
+| Original (timestamp) | Web copy | Used on | Cropped out |
+|---|---|---|---|
+| 11.53.34 | projects/inverter-battery-installation-team.jpg | Projects | none (whole frame; five men pose beside the system) |
+| 11.54.13 | projects/inverter-wall-installation.jpg | Projects, Energy 04, catalogue | **GPS stamp** (street address, coordinates, date) |
+| 11.55.33 | projects/battery-rack-with-inverter.jpg | Projects | empty ceiling, phone watermark |
+| 11.56.58 | projects/battery-storage-racks.jpg | Projects, Energy 05, catalogue | none |
+| 15.29.56 | projects/inverters-and-battery-units.jpg | Projects | none |
+| 15.29.571 | projects/inverter-and-battery-room.jpg | Projects | none |
+| 15.29.572 | projects/wall-inverter-and-battery.jpg | Projects | phone screenshot status bar, black bars, buttons (low resolution: 484 px wide) |
+| 15.29.579 | projects/inverter-battery-and-control-panel.jpg | Projects, Energy 03 | manufacturer **logo overlay** |
+| 15.29.5622 | products/solar-street-lights.jpg | Catalogue (Energy) | none; a stock photograph, not an installation |
+| 15.33.5211 | products/solar-powered-ptz-camera.jpg | Security page, catalogue | white margins; a **product image**, not an installation |
+| 13.51.22 | products/pounding-machine-engine-frame.jpg | Industrial options, catalogue | flyer **banner and price panel (₦450,000)** |
+| 13.51.2211 | products/pounding-machines-small.jpg | Industrial hero and options, catalogue | flyer **banner and price panel (₦300,000)** |
+
+Gaps that remain: no photographs of CCTV or security installations, of any food product, or of machines in use. See `docs/security-imagery-brief.md`.

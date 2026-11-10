@@ -10,7 +10,7 @@ import { ProductIntroSection } from "@/components/industrial/ProductIntroSection
 
 const title = "Industrial Equipment: Pounding Machines for Restaurants";
 const description =
-  "Industrial Equipment is an additional offering of BOOM MULTI GLOBAL in Akure, Ondo State. We supply pounding machines in different sizes for the restaurant business. Contact our team to discuss available options and your equipment requirements.";
+  "Industrial Equipment is an additional offering of Boom Multi Global, which has its head office in Akure, Ondo State. We supply pounding machines in different sizes for the restaurant business. Contact our team to discuss available options and your equipment requirements.";
 
 export const metadata: Metadata = {
   title,
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
         url: "/assets/branding/boom-multi-global-logo.jpeg",
         width: 1080,
         height: 1080,
-        alt: "BOOM MULTI GLOBAL logo",
+        alt: "Boom Multi Global logo",
       },
     ],
   },

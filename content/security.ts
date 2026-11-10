@@ -71,6 +71,22 @@ export const securityContent = {
     },
   },
 
+  /** CCTV equipment in view. The first line repeats the confirmed wording of service 01. Types are generic; no brands, models or specifications. */
+  equipment: {
+    eyebrow: "CCTV equipment",
+    heading: "Cameras and Recording Equipment.",
+    lead: "Supply of CCTV cameras, recording equipment, storage devices and related surveillance accessories.",
+    photoNote: "Product image",
+    drawingsLabel: "Common CCTV equipment types",
+    drawingsNote: "Illustrative drawings of common equipment types. Not BOOM products.",
+    drawings: [
+      { id: "dome", label: "Dome camera" },
+      { id: "bullet", label: "Bullet camera" },
+      { id: "recorder", label: "Recording unit and monitor" },
+    ],
+    cta: "See the products catalogue",
+  },
+
   audiences: {
     eyebrow: "Who we serve",
     heading: "Different Properties. Different Security Needs.",

@@ -19,11 +19,11 @@ export function LeadershipPreviewSection() {
             <SectionHeading
               id="leadership-heading"
               eyebrow="Leadership"
-              title="The people leading BOOM MULTI GLOBAL"
+              title="The people leading Boom Multi Global"
             />
             <p className="mt-8">
               <TextLink href="/about" arrow>
-                Meet the team on our About Us page
+                Meet our leadership team
               </TextLink>
             </p>
           </div>

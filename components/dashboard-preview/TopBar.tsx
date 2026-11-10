@@ -22,7 +22,7 @@ export function TopBar() {
   return (
     <header className="flex items-center gap-3 border-b border-line bg-white px-gutter py-3 lg:py-3.5">
       <span className="shrink-0 rounded-md border border-line p-0.5 lg:hidden">
-        <LogoImage alt="BOOM MULTI GLOBAL logo" sizes="40px" className="size-9" />
+        <LogoImage alt="Boom Multi Global logo" sizes="40px" className="size-9" />
       </span>
       <div className="min-w-0 flex-1">
         <h1 className="truncate font-heading text-h3 leading-tight font-extrabold text-navy">{section.title}</h1>

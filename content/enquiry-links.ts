@@ -14,6 +14,15 @@ export const energyAssessmentSlug = "energy-assessment";
 export const securityAssessmentSlug = "security-assessment";
 
 /**
+ * Link to the Contact page's enquiry form, pre-selecting an Energy or Security service (`service` must be one of the
+ * slugs in content/enquiry-options.ts, otherwise the Contact page ignores it). Used by the Products catalogue.
+ */
+export function divisionEnquiryHref(division: "energy" | "security", serviceSlug: string): string {
+  const params = new URLSearchParams({ division, service: serviceSlug });
+  return `/contact?${params.toString()}#enquiry`;
+}
+
+/**
  * Link to the Contact page's appointment request, pre-selecting a division and one of its services.
  * Used by the "Request a Solar Assessment" and "Request a Security Assessment" actions.
  */

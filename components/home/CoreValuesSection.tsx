@@ -17,7 +17,7 @@ export function CoreValuesSection() {
             id="values-heading"
             surface="dark"
             eyebrow="Our core values"
-            title="What guides BOOM MULTI GLOBAL"
+            title="What guides Boom Multi Global"
           />
         </div>
 

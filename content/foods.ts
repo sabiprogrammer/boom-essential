@@ -34,7 +34,7 @@ export type FoodProduct = {
 
 export const foodProducts: readonly FoodProduct[] = [
   { number: "01", slug: "garri", name: "Garri", group: "staple" },
-  { number: "02", slug: "ekiti-garri", name: "Ekiti Garri", group: "staple" },
+  { number: "02", slug: "ekiti-garri", name: "Garri Ekiti", group: "staple" },
   { number: "03", slug: "fufu-powder", name: "Fufu Powder", group: "staple" },
   { number: "04", slug: "ofada-rice", name: "Ofada Rice", group: "staple" },
   { number: "05", slug: "igbemo-rice", name: "Igbemo Rice", group: "staple" },
@@ -76,7 +76,7 @@ export const foodsContent = {
     eyebrow: "Introduction",
     heading: "Everyday Food Products. Supplied With Care.",
     paragraphs: [
-      "BOOM FOODS is the food and agricultural products division of BOOM MULTI GLOBAL COMPANY LIMITED.",
+      "BOOM FOODS is the food and agricultural products division of Boom Multi Global Company Limited.",
       "Its offerings include household staples and protein products, supplied to households, businesses, organisations and institutions.",
     ],
     groups: [

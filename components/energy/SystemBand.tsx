@@ -1,7 +1,11 @@
 import type { CSSProperties } from "react";
 import { energyContent, energyServices } from "@/content/energy";
+import { energyServicePhotos } from "@/content/energy-service-photos";
+import { projectsLink } from "@/content/navigation";
 import { Container } from "@/components/ui/Container";
+import { PhotoFigure } from "@/components/ui/PhotoFigure";
 import { Section } from "@/components/ui/Section";
+import { TextLink } from "@/components/ui/TextLink";
 import { EnergyIcon } from "./EnergyIcon";
 
 /** Installation, inverter and battery storage: the working system, joined by a dashed flow line. */
@@ -40,9 +44,24 @@ export function SystemBand() {
               </p>
               <h4 className="mt-2 text-h3 font-extrabold text-white">{service.title}</h4>
               <p className="mt-4 max-w-sm text-body text-on-dark-muted">{service.description}</p>
+              {energyServicePhotos[service.number] ? (
+                <PhotoFigure
+                  photo={energyServicePhotos[service.number]}
+                  aspect="4 / 3"
+                  surface="dark"
+                  sizes="(min-width: 1024px) 30vw, 92vw"
+                  className="mt-8"
+                />
+              ) : null}
             </li>
           ))}
         </ol>
+
+        <p className="reveal mt-14 lg:mt-16">
+          <TextLink href={projectsLink.href} surface="dark" arrow>
+            See more of our installations
+          </TextLink>
+        </p>
       </Container>
     </Section>
   );

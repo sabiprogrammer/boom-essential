@@ -30,8 +30,8 @@ export function IntroSection() {
 
           <div className="reveal space-y-6 text-lead text-charcoal lg:col-span-6 lg:pt-12" style={{ "--i": 1 } as CSSProperties}>
             <p>
-              BOOM MULTI GLOBAL COMPANY LIMITED is an indigenous Nigerian company operating across energy,
-              security and food supply from Akure, Ondo State.
+              Boom Multi Global Company Limited is an indigenous Nigerian company with its head office in
+              Akure, Ondo State, operating across energy, security and food supply.
             </p>
             <p className="text-ink-muted">
               We begin by understanding what our customers need, then recommend the solutions that suit

@@ -1,12 +1,16 @@
 import { company } from "@/content/company";
 import {
   aboutLink,
+  careersLink,
   consultation,
   contactLink,
   divisionLinks,
   divisionsLabel,
   homeLink,
   industrialLink,
+  ourTeamLink,
+  productsLink,
+  projectsLink,
 } from "@/content/navigation";
 import { Container } from "@/components/ui/Container";
 import { MapPinIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
@@ -17,6 +21,9 @@ const linkTone =
   "py-1.5 text-base text-white underline decoration-transparent decoration-1 underline-offset-4 transition-colors duration-200 hover:decoration-gold";
 const linkClass = `inline-block ${linkTone}`;
 const contactLinkClass = `flex items-start gap-3 ${linkTone}`;
+
+/** Quick links, in order. Careers and Our team were added at the client's request (10 Nov 2026). */
+const quickLinks = [homeLink, aboutLink, ourTeamLink, productsLink, projectsLink, careersLink, contactLink, consultation];
 
 const headingClass = "mb-4 font-heading text-xs font-bold tracking-[0.16em] text-on-dark-muted uppercase";
 
@@ -30,7 +37,7 @@ export function SiteFooter() {
           <div className="lg:col-span-4">
             <div className="flex items-center gap-5">
               <div className="shrink-0 bg-white p-1.5">
-                <LogoImage sizes="96px" alt="BOOM MULTI GLOBAL logo" className="size-20" />
+                <LogoImage sizes="96px" alt="Boom Multi Global logo" className="size-20" />
               </div>
               <p className="font-heading text-sm leading-tight font-extrabold tracking-[0.14em]">
                 BOOM
@@ -55,26 +62,13 @@ export function SiteFooter() {
             <div>
               <h2 className={headingClass}>Quick links</h2>
               <ul>
-                <li>
-                  <SmartLink href={homeLink.href} className={linkClass}>
-                    {homeLink.label}
-                  </SmartLink>
-                </li>
-                <li>
-                  <SmartLink href={aboutLink.href} className={linkClass}>
-                    {aboutLink.label}
-                  </SmartLink>
-                </li>
-                <li>
-                  <SmartLink href={contactLink.href} className={linkClass}>
-                    {contactLink.label}
-                  </SmartLink>
-                </li>
-                <li>
-                  <SmartLink href={consultation.href} className={linkClass}>
-                    {consultation.label}
-                  </SmartLink>
-                </li>
+                {quickLinks.map((link) => (
+                  <li key={link.href}>
+                    <SmartLink href={link.href} className={linkClass}>
+                      {link.label}
+                    </SmartLink>
+                  </li>
+                ))}
               </ul>
             </div>
 

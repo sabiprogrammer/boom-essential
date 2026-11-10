@@ -66,6 +66,7 @@ export const energyContent = {
     eyebrow: "Who we serve",
     heading: "Three Kinds of Property. Three Different Energy Needs.",
     lead: "Energy requirements differ from one kind of property to the next, which is why every solution starts with an assessment.",
+    drawingsNote: "Illustrative drawings of generic properties. Not Boom projects.",
   },
 
   approach: {

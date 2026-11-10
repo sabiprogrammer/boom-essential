@@ -28,7 +28,7 @@ export function WhatsAppAction() {
   return (
     <SmartLink
       href={company.whatsapp.href}
-      aria-label="Chat with BOOM MULTI GLOBAL on WhatsApp (opens in a new tab)"
+      aria-label="Chat with Boom Multi Global on WhatsApp (opens in a new tab)"
       inert={hidden}
       className={`fixed right-[max(1rem,env(safe-area-inset-right))] bottom-[max(1rem,env(safe-area-inset-bottom))] z-30 inline-flex h-14 min-w-14 items-center justify-center gap-2.5 rounded-full bg-green px-4 font-heading text-sm font-semibold text-white shadow-raised transition-[opacity,translate,background-color] duration-300 hover:bg-green-hover print:hidden md:px-6 ${
         hidden ? "pointer-events-none translate-y-3 opacity-0" : "translate-y-0 opacity-100"

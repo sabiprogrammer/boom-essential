@@ -4,7 +4,7 @@
  */
 export const company = {
   legalName: "BOOM MULTI GLOBAL COMPANY LIMITED",
-  shortName: "BOOM MULTI GLOBAL",
+  shortName: "Boom Multi Global",
   tagline: "POWER. PROTECTION. PROVISION.",
   taglineWords: ["Power.", "Protection.", "Provision."],
   website: "www.boomessential.com",

@@ -35,7 +35,7 @@ export function HeroSection() {
 
             <p className="rise mt-8 max-w-xl text-lead text-on-dark-muted" style={delay(260)}>
               From dependable solar power and integrated security solutions to quality food and agricultural
-              products, BOOM MULTI GLOBAL provides practical solutions for homes, businesses and institutions.
+              products, Boom Multi Global provides practical solutions for homes, businesses and institutions.
             </p>
 
             <div className="rise mt-10 flex flex-col gap-4 sm:flex-row" style={delay(400)}>

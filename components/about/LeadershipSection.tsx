@@ -14,7 +14,7 @@ export function LeadershipSection() {
   const [chief, ...team] = leadership;
 
   return (
-    <Section tone="tint" space="lg" aria-labelledby="about-leadership-heading">
+    <Section tone="tint" space="lg" id="leadership" aria-labelledby="about-leadership-heading">
       <Container>
         <div className="reveal">
           <SectionHeading id="about-leadership-heading" eyebrow={eyebrow} title={heading} lead={lead} />

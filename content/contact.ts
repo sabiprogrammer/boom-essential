@@ -37,7 +37,7 @@ export const contactContent = {
   enquiry: {
     eyebrow: "Enquiry form",
     heading: "Send Us an Enquiry.",
-    lead: "One form for every part of BOOM MULTI GLOBAL. Tell us what you need and, if you like, request an appointment.",
+    lead: "One form for every part of Boom Multi Global. Tell us what you need and, if you like, request an appointment.",
     sideLabel: "Prefer to talk?",
   },
 

@@ -41,7 +41,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-3 xl:gap-6">
           <DesktopNav />
 
-          <div className="hidden md:block">
+          <div className="hidden md:block lg:hidden xl:block">
             <ButtonLink href={consultation.href} size="sm" arrow>
               {consultation.label}
             </ButtonLink>

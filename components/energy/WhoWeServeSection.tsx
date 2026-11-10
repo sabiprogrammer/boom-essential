@@ -3,11 +3,20 @@ import { energyAudiences, energyContent } from "@/content/energy";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { CommercialScene } from "./CommercialScene";
 import { EnergyIcon } from "./EnergyIcon";
+import { InstitutionalScene } from "./InstitutionalScene";
+import { ResidentialScene } from "./ResidentialScene";
 
-/** Residential, commercial and institutional: three hairline-divided columns with large gold line glyphs. */
+const scenes = {
+  residential: ResidentialScene,
+  commercial: CommercialScene,
+  institutional: InstitutionalScene,
+} as const;
+
+/** Residential, commercial and institutional: three hairline-divided columns, each with a drawing of that kind of property. */
 export function WhoWeServeSection() {
-  const { eyebrow, heading, lead } = energyContent.audiences;
+  const { eyebrow, heading, lead, drawingsNote } = energyContent.audiences;
 
   return (
     <Section tone="navy" space="lg" id="who-we-serve" aria-labelledby="energy-audiences-heading">
@@ -25,8 +34,16 @@ export function WhoWeServeSection() {
               }`}
               style={{ "--i": index } as CSSProperties}
             >
-              <EnergyIcon name={audience.icon} className="size-16 text-gold" strokeWidth={1.1} />
-              <h3 className="mt-8 text-h2 font-extrabold tracking-wide text-white uppercase">{audience.label}</h3>
+              <div className="aspect-[5/3] overflow-hidden">
+                {(() => {
+                  const Scene = scenes[audience.id];
+                  return <Scene className="size-full" />;
+                })()}
+              </div>
+              <div className="mt-8 flex items-center gap-4">
+                <EnergyIcon name={audience.icon} className="size-9 text-gold" strokeWidth={1.2} />
+                <h3 className="text-h2 font-extrabold tracking-wide text-white uppercase">{audience.label}</h3>
+              </div>
               <p className="mt-3 text-lead text-white">{audience.includes}</p>
 
               <div className="mt-8 border-t border-line-on-dark pt-6">
@@ -38,6 +55,7 @@ export function WhoWeServeSection() {
             </li>
           ))}
         </ul>
+        <p className="mt-10 text-sm text-on-dark-muted">{drawingsNote}</p>
       </Container>
     </Section>
   );

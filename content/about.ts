@@ -7,17 +7,17 @@ import type { DivisionId } from "./divisions";
  */
 export const aboutContent = {
   hero: {
-    eyebrow: "About BOOM MULTI GLOBAL",
+    eyebrow: "About Boom Multi Global",
     heading: "A Company Built Around Essential Needs.",
     statement:
-      "BOOM MULTI GLOBAL is an indigenous Nigerian company in Akure, Ondo State, operating across energy, security and food supply.",
+      "Boom Multi Global is an indigenous Nigerian company with its head office in Akure, Ondo State, operating across energy, security and food supply.",
   },
 
   whoWeAre: {
     eyebrow: "Who we are",
     heading: "More Than Products. A Commitment to Solutions.",
     statement:
-      "BOOM MULTI GLOBAL COMPANY LIMITED is an indigenous Nigerian company based in Akure, Ondo State, committed to powering lives, protecting assets and providing essential products for households and businesses.",
+      "Boom Multi Global Company Limited is an indigenous Nigerian company with its head office in Akure, Ondo State, committed to powering lives, protecting assets and providing essential products for households and businesses.",
     divisionsIntro: "The company operates through three principal business divisions:",
     belief:
       "The company believes that good service begins with listening to customers, understanding their needs and working towards solutions that meet their expectations.",
@@ -31,7 +31,7 @@ export const aboutContent = {
   divisions: {
     eyebrow: "Our business divisions",
     heading: "Three Areas of Focus. One Company.",
-    lead: "BOOM MULTI GLOBAL operates through three principal business divisions.",
+    lead: "Boom Multi Global operates through three principal business divisions.",
     /** Concise descriptions assembled only from the confirmed service and product lists. */
     descriptions: {
       energy:
@@ -49,8 +49,8 @@ export const aboutContent = {
 
   leadership: {
     eyebrow: "Leadership and management",
-    heading: "The People Behind BOOM MULTI GLOBAL.",
-    lead: "The management team of BOOM MULTI GLOBAL COMPANY LIMITED.",
+    heading: "The People Behind Boom Multi Global.",
+    lead: "The Management Team.",
   },
 
   closing: {

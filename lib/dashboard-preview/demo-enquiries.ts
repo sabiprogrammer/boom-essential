@@ -342,10 +342,10 @@ export function createDemoEnquiries(reference: DemoReference): DemoEnquiry[] {
       number: 115,
       receivedAt: clock.at(-4, "16:30"),
       division: "foods",
-      service: "Ekiti garri and Igbemo rice",
-      summary: "Ekiti garri and Igbemo rice for a canteen",
+      service: "Garri Ekiti and Igbemo rice",
+      summary: "Garri Ekiti and Igbemo rice for a canteen",
       message:
-        "Our staff canteen needs Ekiti garri and Igbemo rice every month, in 100kg bags. Please tell us how to arrange regular supply.",
+        "Our staff canteen needs Garri Ekiti and Igbemo rice every month, in 100kg bags. Please tell us how to arrange regular supply.",
       status: "in_progress",
       customer: customer("Sample Staff Canteen Services", "Ado-Ekiti, Ekiti State"),
       notes: [note("n-115-1", clock.at(-2, "10:20"), "Discussing a regular supply arrangement with the customer.")],

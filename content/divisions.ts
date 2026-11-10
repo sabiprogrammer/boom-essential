@@ -57,7 +57,7 @@ export const divisions: readonly Division[] = [
     word: "Provision",
     descriptor: "Food and Agricultural Products",
     highlights: [
-      "Garri and Ekiti garri",
+      "Garri and Garri Ekiti",
       "Fufu powder",
       "Ofada rice and Igbemo rice",
       "Smoked fish and frozen chicken",

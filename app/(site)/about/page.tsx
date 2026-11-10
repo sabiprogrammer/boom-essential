@@ -9,7 +9,7 @@ import { WhoWeAreSection } from "@/components/about/WhoWeAreSection";
 
 const title = "About Us";
 const description =
-  "BOOM MULTI GLOBAL COMPANY LIMITED is an indigenous Nigerian company in Akure, Ondo State, operating across energy, security and food supply. Meet our core values, our three principal divisions and our management team.";
+  "Boom Multi Global Company Limited is an indigenous Nigerian company with its head office in Akure, Ondo State, operating across energy, security and food supply. Meet our core values, our three principal divisions and our management team.";
 
 export const metadata: Metadata = {
   title,
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "/assets/branding/boom-multi-global-logo.jpeg",
         width: 1080,
         height: 1080,
-        alt: "BOOM MULTI GLOBAL logo",
+        alt: "Boom Multi Global logo",
       },
     ],
   },
