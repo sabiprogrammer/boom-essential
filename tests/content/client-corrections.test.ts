@@ -8,6 +8,7 @@ import { foodProducts } from "@/content/foods";
 import { productPhotos } from "@/content/product-photos";
 import { catalogueSections } from "@/content/product-catalogue";
 import { projectGallery, projectPhotos } from "@/content/project-photos";
+import { securityIllustrativeImages } from "@/content/security-illustrative-images";
 import { industrialContent } from "@/content/industrial-equipment";
 import { parseEnquiryPrefill } from "@/lib/enquiry/prefill";
 
@@ -138,7 +139,7 @@ describe("Products catalogue", () => {
 
   it("labels every drawing as illustrative by giving each non-photograph a drawing id", () => {
     for (const item of items) {
-      if (item.visual?.kind === "drawing") assert.ok(["recorder", "fence", "access", "signal"].includes(item.visual.drawing));
+      if (item.visual?.kind === "drawing") assert.ok(["recorder", "signal"].includes(item.visual.drawing));
     }
   });
 
@@ -149,5 +150,51 @@ describe("Products catalogue", () => {
       assert.match(item.enquiryHref, /offering=industrial-equipment/);
       assert.doesNotMatch(item.enquiryHref, /division=/, "Industrial Equipment must never use division=");
     }
+  });
+});
+
+describe("stock photographs used as illustrations (Security)", () => {
+  const images = Object.values(securityIllustrativeImages);
+
+  it("exist as files in public/", () => {
+    for (const image of images) assert.ok(existsSync(join(root, "public", image.src)), image.src);
+  });
+
+  it("say in their alt text that they are stock photographs and not BOOM installations", () => {
+    for (const image of images) {
+      assert.match(image.alt, /stock photograph/i, image.src);
+      assert.match(image.alt, /not a BOOM installation/i, image.src);
+      assert.match(image.caption, /^Illustrative image/, image.src);
+    }
+  });
+
+  it("name no brand, place, date or price", () => {
+    const forbidden = /(dahua|hikvision|zkteco|srne|luxsun|felicity|ikeja|lagos|akure|₦|price|\b20\d\d\b)/i;
+    for (const image of images) {
+      assert.doesNotMatch(image.alt, forbidden, image.src);
+      assert.doesNotMatch(image.caption, forbidden, image.src);
+    }
+  });
+
+  it("record the photographer, the page and the licence they came from", () => {
+    for (const image of images) {
+      assert.ok(image.source.photographer.length > 2);
+      assert.match(image.source.page, /^https:\/\/(unsplash|www\.pexels)\.com\//);
+      assert.match(image.source.licence, /License$/);
+    }
+  });
+
+  it("never appear on the Projects page or in the client's own photographs", () => {
+    const own = [...projectGallery, ...Object.values(projectPhotos), ...Object.values(productPhotos)].map((photo) => photo.src);
+    for (const image of images) assert.ok(!own.includes(image.src), image.src);
+  });
+
+  it("are the pictures the catalogue shows for fencing and access control", () => {
+    const security = catalogueSections.find((section) => section.id === "security");
+    const visual = (slug: string) => security?.items.find((item) => item.slug === slug)?.visual;
+    const fencing = visual("security-fencing");
+    const access = visual("access-control");
+    assert.ok(fencing?.kind === "illustrative" && fencing.image === securityIllustrativeImages.perimeterFence);
+    assert.ok(access?.kind === "illustrative" && access.image === securityIllustrativeImages.accessControl);
   });
 });

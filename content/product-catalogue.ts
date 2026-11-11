@@ -1,9 +1,11 @@
 import { categoryEnquiryHref } from "./enquiry-options";
+import type { IllustrativeImage } from "./illustrative-image";
 import { divisionEnquiryHref } from "./enquiry-links";
 import { foodProducts, foodsEnquiryHref } from "./foods";
 import { industrialEnquiryHref } from "./industrial-equipment";
 import { productPhotos } from "./product-photos";
 import { projectPhotos } from "./project-photos";
+import { securityIllustrativeImages } from "./security-illustrative-images";
 import type { SitePhoto } from "./site-photo";
 
 /**
@@ -11,14 +13,16 @@ import type { SitePhoto } from "./site-photo";
  * wording of the division pages; nothing is added. NO PRICES anywhere: not in data, not in wording, and the
  * flyer price panels are cropped out of the machine photographs. Never add brands, models, specifications,
  * sizes, capacities or availability. Pictures: authentic client photographs where they exist; otherwise a
- * drawing labelled illustrative.
+ * drawing or a stock photograph, both labelled illustrative.
  */
 
-export type CatalogueDrawing = "recorder" | "fence" | "access" | "signal";
+export type CatalogueDrawing = "recorder" | "signal";
 
 export type CatalogueVisual =
   | { kind: "photo"; photo: SitePhoto; note?: string; fit?: "cover" | "contain" }
-  | { kind: "drawing"; drawing: CatalogueDrawing };
+  | { kind: "drawing"; drawing: CatalogueDrawing }
+  /** A stock photograph used as an illustration: always labelled, never presented as BOOM work. */
+  | { kind: "illustrative"; image: IllustrativeImage };
 
 export type CatalogueItem = {
   slug: string;
@@ -106,14 +110,14 @@ export const catalogueSections: readonly CatalogueSectionData[] = [
         name: "Security fencing",
         description:
           "Supply and installation of security fencing solutions designed to strengthen property boundaries and improve perimeter protection.",
-        visual: { kind: "drawing", drawing: "fence" },
+        visual: { kind: "illustrative", image: securityIllustrativeImages.perimeterFence },
         enquiryHref: divisionEnquiryHref("security", "security-fencing"),
       },
       {
         slug: "access-control",
         name: "Access control",
         description: "Installation and configuration of access control systems for controlled entry and restricted areas.",
-        visual: { kind: "drawing", drawing: "access" },
+        visual: { kind: "illustrative", image: securityIllustrativeImages.accessControl },
         enquiryHref: divisionEnquiryHref("security", "access-control"),
       },
       {

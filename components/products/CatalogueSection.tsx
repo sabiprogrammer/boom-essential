@@ -35,7 +35,7 @@ export function CatalogueSection({ section, tone }: CatalogueSectionProps) {
             title={section.heading}
             lead={section.lead}
           />
-          <p>
+          <p className="shrink-0 whitespace-nowrap">
             <TextLink href={section.pageHref} surface={dark ? "dark" : "light"} arrow>
               {section.pageLabel}
             </TextLink>

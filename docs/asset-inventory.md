@@ -131,3 +131,14 @@ Twelve images in `boom-client-assets/new_from_client/` (read-only; WhatsApp-comp
 | 13.51.2211 | products/pounding-machines-small.jpg | Industrial hero and options, catalogue | flyer **banner and price panel (₦300,000)** |
 
 Gaps that remain: no photographs of CCTV or security installations, of any food product, or of machines in use. See `docs/security-imagery-brief.md`.
+
+## 9. Licensed stock photographs (approved 2026-11-10)
+
+Two stock photographs, used only as **illustrations** (labelled "Illustrative image", never as BOOM work). Approved by Sabi Programmers; downloaded 2026-11-10 from the sources below; web copies in `public/assets/images/security/illustrative/` have no metadata. Registered in `content/security-illustrative-images.ts`. Both licences allow commercial use and editing without credit; credit is given here as a courtesy.
+
+| Web copy | Photographer and source | Licence | Edit made |
+|---|---|---|---|
+| perimeter-fence-illustrative.jpg | Ben Marler, [Unsplash](https://unsplash.com/photos/razor-wire-sits-atop-a-tall-protective-fence-wW5vKD8MJGA) | Unsplash License | Resized to 1600 px wide |
+| access-control-terminal-illustrative.jpg | panumas nikhomkhai, [Pexels](https://www.pexels.com/photo/modern-fingerprint-access-control-system-37538043/) | Pexels License | Resized to 1600 px wide; top 150 px cropped off (mirrored room-sign lettering) |
+
+Considered and rejected: a Pexels dome-camera photograph (29866272), because a manufacturer's name is printed on the camera. Used on the Security page (fencing and access control panels) and in the Products catalogue. The earlier drawn fence and access diagrams were removed because nothing used them any more (they remain in git history, commit f6f7f7b).

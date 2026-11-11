@@ -1,9 +1,9 @@
 import type { CSSProperties, ReactNode } from "react";
 import { securityContent, securityServices, type SecurityService } from "@/content/security";
+import { securityIllustrativeImages } from "@/content/security-illustrative-images";
 import { Container } from "@/components/ui/Container";
+import { IllustrativePhoto } from "@/components/ui/IllustrativePhoto";
 import { Section } from "@/components/ui/Section";
-import { AccessDiagram } from "./AccessDiagram";
-import { FenceDiagram } from "./FenceDiagram";
 import { SecurityIcon } from "./SecurityIcon";
 import { ServiceIndex } from "./ServiceIndex";
 
@@ -15,7 +15,7 @@ function Panel({ service, visual, index }: { service: SecurityService; visual: R
       className="reveal border-t-[3px] border-gold bg-white"
       style={{ "--i": index } as CSSProperties}
     >
-      <div className="aspect-[5/3] overflow-hidden">{visual}</div>
+      {visual}
       <div className="p-7 sm:p-10">
         <div className="flex items-center justify-between gap-4 text-navy">
           <ServiceIndex number={service.number} />
@@ -30,7 +30,7 @@ function Panel({ service, visual, index }: { service: SecurityService; visual: R
   );
 }
 
-/** Security fencing and access control as two side-by-side panels, each with its own diagram. */
+/** Security fencing and access control as two side-by-side panels, each with an illustrative stock photograph (labelled as such). */
 export function PerimeterPanels() {
   const [fencing, access] = securityServices.slice(3, 5);
 
@@ -44,8 +44,8 @@ export function PerimeterPanels() {
           Services 04 and 05 &middot; {securityContent.services.groups.perimeter}
         </h3>
         <div className="mt-10 grid gap-8 lg:grid-cols-2 lg:gap-x-10">
-          <Panel service={fencing} visual={<FenceDiagram className="size-full" />} index={0} />
-          <Panel service={access} visual={<AccessDiagram className="size-full" />} index={1} />
+          <Panel service={fencing} visual={<IllustrativePhoto image={securityIllustrativeImages.perimeterFence} aspect="5 / 3" sizes="(min-width: 1024px) 45vw, 92vw" />} index={0} />
+          <Panel service={access} visual={<IllustrativePhoto image={securityIllustrativeImages.accessControl} aspect="5 / 3" sizes="(min-width: 1024px) 45vw, 92vw" />} index={1} />
         </div>
       </Container>
     </Section>
