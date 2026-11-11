@@ -67,13 +67,17 @@ export const projectPhotos = {
   },
 } satisfies Record<string, SitePhoto>;
 
-/** The Projects page gallery, best-presented first. */
+/**
+ * The Projects page gallery, in reading order. The order matches the grid in `components/projects/gallery-layout.ts`:
+ * the wide landscape photograph leads (it is the wide feature tile), then the best-lit shots, with the lowest-resolution
+ * photograph last in the narrowest tile.
+ */
 export const projectGallery: readonly SitePhoto[] = [
+  projectPhotos.team,
   projectPhotos.controlPanel,
   projectPhotos.batteryRacks,
-  projectPhotos.team,
-  projectPhotos.inverterRoom,
   projectPhotos.inverterWall,
+  projectPhotos.inverterRoom,
   projectPhotos.rackWithInverter,
   projectPhotos.inverterUnits,
   projectPhotos.wallPair,
