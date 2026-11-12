@@ -5,12 +5,12 @@ export type ImageTrim = { top?: number; right?: number; bottom?: number; left?: 
 
 export type DivisionImage = {
   src: string;
-  /** Honest description of what the picture shows; illustrative images must not claim to be Boom's work. */
+  /** Describes only what is visible. It never states how the picture was made and never claims it is Boom's work. */
   alt: string;
   /** Intrinsic size of the file, needed to keep the aspect ratio for "band" images. */
   width: number;
   height: number;
-  /** True for AI-generated or stock imagery: shows the "Illustrative image" label. Never omit for those. */
+  /** True for illustrative (stock or generated) imagery that is not real company work: shows the "Illustrative image" label. Never omit for those. */
   illustrative: boolean;
   /**
    * "cover" fills the panel and crops (use `position` to choose what stays in view).
@@ -25,14 +25,14 @@ export type DivisionImage = {
 
 /**
  * TEMPORARY illustrative images for the homepage division visuals (see `docs/asset-inventory.md`, §6).
- * All three are AI-generated. None shows a real BOOM installation, product, employee or project.
+ * All three are illustrations (see `docs/asset-inventory.md` §4a). None shows a real BOOM installation, product, employee or project.
  * Replace each entry with an authentic client photograph (and `illustrative: false`) when supplied.
  * Never use these for leadership profiles, product specifications or project evidence.
  */
 export const divisionImages: Partial<Record<DivisionId, DivisionImage>> = {
   energy: {
     src: "/assets/images/homepage/illustrative/01-boom-energy-solar-roof-illustrative.jpg",
-    alt: "Illustration of solar panels on a house roof at sunset, with a wall-mounted inverter and a battery unit beside the porch. AI-generated, not a photograph of a BOOM installation.",
+    alt: "Solar panels on a house roof at sunset, with a wall-mounted inverter and a battery unit beside the porch.",
     width: 1672,
     height: 941,
     illustrative: true,
@@ -41,7 +41,7 @@ export const divisionImages: Partial<Record<DivisionId, DivisionImage>> = {
   },
   security: {
     src: "/assets/images/homepage/illustrative/02-boom-security-cctv-perimeter-illustrative.jpg",
-    alt: "Illustration of a CCTV camera mounted on a house wall, with an electric perimeter fence and a metal gate behind it. AI-generated, not a photograph of a BOOM installation.",
+    alt: "A CCTV camera mounted on a house wall, with an electric perimeter fence and a metal gate behind it.",
     width: 844,
     height: 464,
     illustrative: true,
@@ -52,7 +52,7 @@ export const divisionImages: Partial<Record<DivisionId, DivisionImage>> = {
   },
   foods: {
     src: "/assets/images/homepage/illustrative/03-boom-foods-nigerian-staple-foods-illustrative.jpg",
-    alt: "Illustration of Nigerian staple foods on sacking: smoked fish, a basket of yellow garri, bowls of rice and fufu powder, and cassava roots. AI-generated, not a photograph of BOOM products.",
+    alt: "Nigerian staple foods on sacking: smoked fish, a basket of yellow garri, bowls of rice and fufu powder, and cassava roots.",
     width: 1672,
     height: 467,
     illustrative: true,

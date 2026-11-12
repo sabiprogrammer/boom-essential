@@ -3,7 +3,7 @@ import { divisionImages } from "@/content/division-images";
 import { IllustrativeLabel } from "@/components/home/IllustrativeLabel";
 
 /**
- * The homepage's illustrative Foods picture, reused above the Foods catalogue entries. It is AI-generated, so it
+ * The homepage's illustrative Foods picture, reused above the Foods catalogue entries. It is an illustration, so it
  * carries the "Illustrative image" label and shows no BOOM product. Replace with authentic photographs when supplied.
  * The 3.7:1 frame, anchored to the bottom, trims the white strip along the file's top edge.
  */

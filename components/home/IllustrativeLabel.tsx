@@ -3,7 +3,7 @@ type IllustrativeLabelProps = {
   className?: string;
 };
 
-/** Discreet disclosure that an image is illustrative (AI-generated or stock), not real company work. */
+/** Discreet disclosure that an image is illustrative (stock or generated), not real company work. */
 export function IllustrativeLabel({ className = "top-4 left-4 sm:top-5 sm:left-5" }: IllustrativeLabelProps) {
   return (
     <span
