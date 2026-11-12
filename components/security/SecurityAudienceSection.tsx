@@ -1,14 +1,17 @@
 import type { CSSProperties } from "react";
 import { securityAudiences, securityContent } from "@/content/security";
+import { securityAudienceImages } from "@/content/security-scene-images";
 import { Container } from "@/components/ui/Container";
+import { IllustrativePhoto } from "@/components/ui/IllustrativePhoto";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SecurityIcon } from "./SecurityIcon";
 import { Viewfinder } from "./Viewfinder";
 
 /**
- * Residential, commercial and institutional as three ledger rows with oversized labels. On hover or
- * focus the viewfinder around each icon tightens, as a camera locking on.
+ * Residential, commercial and institutional as three ledger rows with oversized labels, each with an
+ * illustrative (labelled) picture of that kind of property. On hover or focus the viewfinder
+ * around each icon tightens, as a camera locking on.
  */
 export function SecurityAudienceSection() {
   const { eyebrow, heading, lead } = securityContent.audiences;
@@ -43,6 +46,12 @@ export function SecurityAudienceSection() {
               <div className="lg:col-span-5">
                 <p className="text-lead text-white">{audience.includes}</p>
                 <p className="mt-3 max-w-md text-body text-on-dark-muted">{audience.focus}</p>
+                <IllustrativePhoto
+                  image={securityAudienceImages[audience.id]}
+                  aspect="16 / 9"
+                  sizes="(min-width: 1024px) 40vw, 92vw"
+                  className="mt-8 border-t-[3px] border-gold"
+                />
               </div>
             </li>
           ))}

@@ -78,6 +78,7 @@ export const catalogueSections: readonly CatalogueSectionData[] = [
       {
         slug: "solar-street-lights",
         name: "Solar street lights",
+        description: "Solar-powered street lights for outdoor and roadside lighting.",
         visual: { kind: "photo", photo: productPhotos.streetLights },
         enquiryHref: categoryEnquiryHref("energy"),
       },

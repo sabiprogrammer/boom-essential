@@ -9,13 +9,13 @@ Owner: Sabi Programmers. Nothing in this file has been downloaded, generated or 
 |---|---|---|
 | A. Custom SVG drawings | Dome camera, bullet camera, recorder and monitor (Security page and Products catalogue); fence, access and monitoring diagrams already existed | **Done.** Each is labelled "illustrative" and says it is not a BOOM product |
 | Client photograph | One solar-powered multi-lens CCTV camera, white background, supplied by the client | **Done.** Shown as a "Product image" (Security page, Products catalogue). It is a product shot, not an installation |
-| B. AI-generated images | Photorealistic scenes for the Security page and the catalogue | **Waiting on Sabi Programmers** to generate from the prompts below |
+| B. Generated scene images | Photorealistic scenes for the Security page and the catalogue | **Done (2026-11-12).** Sabi Programmers generated all six prompts (three variants each; two variants of prompts 2 and 5 were missing). Four are live: dome (prompt 1), bullet shopfront (4), solar pole (2) and monitoring desk (3), on the Security page; credits and the reasons the rest are unused are in `docs/asset-inventory.md` §10 |
 | C. Licensed stock photographs | Free-licence photographs, labelled illustrative | **Partly done.** Two are live (perimeter fence, access control terminal) on the Security page and in the catalogue; credits in `docs/asset-inventory.md` §9. Dome camera, control room and the rest are still open (see "Route C") |
 | D. The client's own installation photographs | The only authentic option | **To request** (message below) |
 
 ## Rules that apply to every route
 
-- Anything that is not a photograph of real BOOM work carries the **"Illustrative image"** label (`IllustrativeLabel`) and an honest alt text that says it is AI-generated or stock and not a BOOM installation. See `docs/asset-inventory.md` §4a and `content/division-images.ts` for the existing pattern.
+- Anything that is not a photograph of real BOOM work carries the **"Illustrative image"** label (`IllustrativeLabel`) and an alt text that describes only what is visible (Sabi Programmers' instruction, 2026-11-12: the site never states how an image was made; stock photographs also say "stock photograph" and "not a BOOM installation" in their alt text, as already live). See `docs/asset-inventory.md` §4a and `content/division-images.ts` for the existing pattern.
 - Never use illustrative images as project evidence, never on the Projects page, never as "our work".
 - No readable brand names, logos, licence plates, street names or house numbers; no identifiable faces.
 - No camera counts, ranges, resolutions or other specifications in captions.
@@ -34,7 +34,7 @@ Generate at 16:9 or wider, 2000 px on the long edge or more. Add to every prompt
 | 5 | `access-control-keypad.jpg` | Access control | A keypad and card reader mounted beside a glass office door, close shot, shallow depth of field, no readable text on the device |
 | 6 | `cctv-solar-pole-school.jpg` | Institutional audience, solar-powered camera | A solar-powered CCTV camera on a steel pole at the entrance gate of a school compound, morning light, no children or people in frame |
 
-Suggested alt text pattern: "Illustration of a dome CCTV camera under the eave of a two-storey house, with a perimeter wall and gate behind it. AI-generated, not a photograph of a BOOM installation."
+Suggested alt text pattern: "A dome CCTV camera under the eave of a two-storey house, with a perimeter wall and gate behind it."
 
 ## Route C: licensed stock photographs
 

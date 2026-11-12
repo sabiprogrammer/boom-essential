@@ -39,8 +39,14 @@ Web copies in `public/assets/images/projects/` and `public/assets/images/product
 
 ## Still needed from the client
 
-- Wording for Careers (vacancies, roles, how to apply; an email address if they want one).
-- Confirmation that BOOM supplies solar street lights (shown in the catalogue with no description) and the solar-powered camera model.
-- Photographs of CCTV and security installations, of the food products, and of machines in use (see `docs/security-imagery-brief.md`).
-- Whether "Garri and Garri Ekiti" is the wording they want in the Foods summary lines.
+- Wording for Careers (vacancies, roles, how to apply). Email addresses are coming from Sabi Programmers.
+- Confirmation of "From our farms and trusted sources to your table." (BOOM Foods hero): does BOOM operate farms? It stays a pre-launch blocker until answered.
 - Whether the flyers' names ("Pounded yam machine") should replace "pounding machine" (the site follows the original brief: pounding machines for the restaurant business).
+
+## Answers received (Sabi Programmers, 2026-11-11)
+
+- **Solar street lights:** confirmed as supplied by BOOM. The catalogue entry now carries one factual line ("Solar-powered street lights for outdoor and roadside lighting.") and nothing more: no specifications, wattage, quantities or availability.
+- **Solar-powered camera model:** no model name is shown. Sabi Programmers suggested inventing a "very common model"; declined because a model name on the site is a product claim, and an invented one could be false. The camera stays "Solar-powered CCTV camera" with the "Product image" note until the client names the model.
+- **"Garri and Garri Ekiti" in the Foods summary lines:** kept. These are two products (Garri and Garri Ekiti), and the client's correction #3 supplies the Garri Ekiti name.
+- **Legal name:** left in capitals as the client wrote it (decision 2 above stands).
+- **Photographs:** the client is supplying none; Sabi Programmers were asked to source the CCTV imagery. Stock and AI images stay, always labelled "Illustrative image".

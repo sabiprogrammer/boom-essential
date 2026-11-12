@@ -1,11 +1,12 @@
 import type { CSSProperties, ReactNode } from "react";
 import { securityContent, securityServices, type SecurityService } from "@/content/security";
+import { securitySceneImages } from "@/content/security-scene-images";
 import { Container } from "@/components/ui/Container";
+import { IllustrativePhoto } from "@/components/ui/IllustrativePhoto";
 import { Section } from "@/components/ui/Section";
 import { PlanDiagram } from "./PlanDiagram";
 import { SecurityIcon } from "./SecurityIcon";
 import { ServiceIndex } from "./ServiceIndex";
-import { SignalDiagram } from "./SignalDiagram";
 
 function Row({ service, visual, index }: { service: SecurityService; visual: ReactNode; index: number }) {
   const headingId = `security-service-${service.number}`;
@@ -32,7 +33,10 @@ function Row({ service, visual, index }: { service: SecurityService; visual: Rea
   );
 }
 
-/** Remote monitoring and security assessment as ledger rows: marker, text and a small diagram. */
+/**
+ * Remote monitoring and security assessment as ledger rows: marker, text and a picture. Monitoring shows an
+ * illustrative (labelled) monitoring desk; the assessment keeps its plan diagram.
+ */
 export function MonitoringRows() {
   const [monitoring, assessment] = securityServices.slice(5);
 
@@ -46,7 +50,18 @@ export function MonitoringRows() {
           Services 06 and 07 &middot; {securityContent.services.groups.monitoring}
         </h3>
         <div className="mt-6 border-t-2 border-navy">
-          <Row service={monitoring} visual={<SignalDiagram className="size-full" />} index={0} />
+          <Row
+            service={monitoring}
+            visual={
+              <IllustrativePhoto
+                image={securitySceneImages.monitoring}
+                aspect="20 / 11"
+                sizes="(min-width: 1024px) 40vw, 92vw"
+                className="size-full"
+              />
+            }
+            index={0}
+          />
           <Row service={assessment} visual={<PlanDiagram className="size-full" />} index={1} />
         </div>
       </Container>
