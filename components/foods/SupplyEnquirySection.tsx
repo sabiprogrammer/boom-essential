@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import { foodsContent, foodsEnquiryHref } from "@/content/foods";
 import { Container } from "@/components/ui/Container";
-import { ArrowRightIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { ArrowRightIcon, MailIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { Section } from "@/components/ui/Section";
 import { SmartLink } from "@/components/ui/SmartLink";
 
@@ -14,7 +14,7 @@ const rowStyles =
  */
 export function SupplyEnquirySection() {
   const { eyebrow, heading, copy, tellUs, tellUsLabel, channelsLabel, enquireOnline } = foodsContent.supply;
-  const { phone, whatsapp } = foodsContent.contact;
+  const { phone, whatsapp, email } = foodsContent.contact;
 
   return (
     <Section tone="leaf" space="lg" id="enquiry" aria-labelledby="foods-supply-heading">
@@ -71,6 +71,15 @@ export function SupplyEnquirySection() {
                     <span className="mt-1 block font-heading text-h3 font-extrabold text-navy">{phone.display}</span>
                   </span>
                   <PhoneIcon className="size-7 shrink-0 text-green" />
+                </SmartLink>
+              </li>
+              <li>
+                <SmartLink href={email.href} className={rowStyles}>
+                  <span className="min-w-0">
+                    <span className="block font-heading text-xs font-bold tracking-[0.16em] text-ink-muted uppercase">Email</span>
+                    <span className="mt-1 block font-heading text-h3 font-extrabold text-navy [overflow-wrap:anywhere]">{email.display}</span>
+                  </span>
+                  <MailIcon className="size-7 shrink-0 text-green" />
                 </SmartLink>
               </li>
             </ul>

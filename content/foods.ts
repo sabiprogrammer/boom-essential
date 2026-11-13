@@ -137,6 +137,7 @@ export const foodsContent = {
   contact: {
     phone: company.phone,
     whatsapp: company.whatsapp,
+    email: company.email.general,
   },
 } as const;
 

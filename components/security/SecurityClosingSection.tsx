@@ -3,7 +3,7 @@ import { company } from "@/content/company";
 import { securityAssessmentHref, securityContent } from "@/content/security";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
-import { PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { MailIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { Section } from "@/components/ui/Section";
 import { SmartLink } from "@/components/ui/SmartLink";
 import { Viewfinder } from "./Viewfinder";
@@ -69,6 +69,15 @@ export function SecurityClosingSection() {
                 <SmartLink href={company.whatsapp.href} className={contactLinkStyles}>
                   <WhatsAppIcon className="size-6 text-gold" />
                   {company.whatsapp.display}
+                </SmartLink>
+              </dd>
+            </div>
+            <div>
+              <dt className="mb-2 font-heading text-xs font-bold tracking-[0.16em] text-on-dark-muted uppercase">Email</dt>
+              <dd>
+                <SmartLink href={company.email.general.href} className={contactLinkStyles}>
+                  <MailIcon className="size-6 text-gold" />
+                  <span className="min-w-0 [overflow-wrap:anywhere]">{company.email.general.display}</span>
                 </SmartLink>
               </dd>
             </div>

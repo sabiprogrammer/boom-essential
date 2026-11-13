@@ -18,7 +18,7 @@ import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
 import { isActivePath } from "@/lib/navigation";
 import { ButtonLink } from "@/components/ui/ButtonLink";
-import { CloseIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { CloseIcon, MailIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { SmartLink } from "@/components/ui/SmartLink";
 import { TextLink } from "@/components/ui/TextLink";
 
@@ -182,6 +182,10 @@ export function MobileDrawer({ id, open, onClose }: MobileDrawerProps) {
             <TextLink href={company.whatsapp.href} surface="dark">
               <WhatsAppIcon className="size-5" />
               WhatsApp {company.whatsapp.display}
+            </TextLink>
+            <TextLink href={company.email.general.href} surface="dark">
+              <MailIcon className="size-5" />
+              {company.email.general.display}
             </TextLink>
           </div>
         </div>

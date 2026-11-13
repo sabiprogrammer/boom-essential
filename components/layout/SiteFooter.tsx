@@ -14,7 +14,7 @@ import {
   projectsLink,
 } from "@/content/navigation";
 import { Container } from "@/components/ui/Container";
-import { MapPinIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { MailIcon, MapPinIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { SmartLink } from "@/components/ui/SmartLink";
 import { LogoImage } from "./LogoImage";
 
@@ -120,6 +120,12 @@ export function SiteFooter() {
                     <span className="block text-sm text-on-dark-muted">WhatsApp</span>
                     {company.whatsapp.display}
                   </span>
+                </SmartLink>
+              </p>
+              <p>
+                <SmartLink href={company.email.general.href} className={contactLinkClass}>
+                  <MailIcon className="mt-0.5 size-5 shrink-0 text-gold" />
+                  <span className="min-w-0 [overflow-wrap:anywhere]">{company.email.general.display}</span>
                 </SmartLink>
               </p>
             </address>

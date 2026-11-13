@@ -1,7 +1,7 @@
 import { energyContent, solarAssessmentHref } from "@/content/energy";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
-import { PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { MailIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { Section } from "@/components/ui/Section";
 import { SmartLink } from "@/components/ui/SmartLink";
 import { SunArcs } from "./SunArcs";
@@ -12,7 +12,7 @@ const contactLinkStyles =
 /** Closing call to action on Deep Navy, with the sun's glow rising from the section's bottom edge. */
 export function EnergyClosingSection() {
   const { eyebrow, heading, copy, primaryCta, secondaryCta } = energyContent.closing;
-  const { phone, whatsapp } = energyContent.contact;
+  const { phone, whatsapp, email } = energyContent.contact;
 
   return (
     <Section tone="navy" space="lg" aria-labelledby="energy-closing-heading" className="relative isolate overflow-hidden">
@@ -66,6 +66,15 @@ export function EnergyClosingSection() {
               <SmartLink href={whatsapp.href} className={contactLinkStyles}>
                 <WhatsAppIcon className="size-6 text-gold" />
                 {whatsapp.display}
+              </SmartLink>
+            </dd>
+          </div>
+          <div>
+            <dt className="mb-2 font-heading text-xs font-bold tracking-[0.16em] text-on-dark-muted uppercase">Email</dt>
+            <dd>
+              <SmartLink href={email.href} className={contactLinkStyles}>
+                <MailIcon className="size-6 text-gold" />
+                <span className="min-w-0 [overflow-wrap:anywhere]">{email.display}</span>
               </SmartLink>
             </dd>
           </div>

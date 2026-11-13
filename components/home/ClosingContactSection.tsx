@@ -2,7 +2,7 @@ import { company } from "@/content/company";
 import { consultation } from "@/content/navigation";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
-import { PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { MailIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { Section } from "@/components/ui/Section";
 import { SmartLink } from "@/components/ui/SmartLink";
 import { TextLink } from "@/components/ui/TextLink";
@@ -65,6 +65,15 @@ export function ClosingContactSection() {
               >
                 <WhatsAppIcon className="size-6 text-gold" />
                 {company.whatsapp.display}
+              </SmartLink>
+            </dd>
+          </div>
+          <div>
+            <dt className="mb-2 font-heading text-xs font-bold tracking-[0.16em] text-on-dark-muted uppercase">Email</dt>
+            <dd>
+              <SmartLink href={company.email.general.href} className="inline-flex items-center gap-3 font-heading text-h3 font-bold text-white underline decoration-white/30 decoration-1 underline-offset-8 transition-colors duration-200 hover:decoration-gold">
+                <MailIcon className="size-6 text-gold" />
+                <span className="min-w-0 [overflow-wrap:anywhere]">{company.email.general.display}</span>
               </SmartLink>
             </dd>
           </div>

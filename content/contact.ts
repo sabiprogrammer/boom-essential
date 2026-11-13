@@ -2,8 +2,8 @@ import { company } from "./company";
 
 /**
  * Contact page copy. Only confirmed facts are used: the legal name, office address, main phone, WhatsApp
- * number and website. There is deliberately NO business email, NO opening hours, NO social links, NO map or
- * coordinates, and NO response-time promise, because none has been supplied or confirmed.
+ * number, general enquiries email (confirmed 2026-11-13) and website. There is deliberately NO opening hours,
+ * NO social links, NO map or coordinates, and NO response-time promise, because none has been supplied or confirmed.
  */
 export const contactContent = {
   hero: {
@@ -31,6 +31,10 @@ export const contactContent = {
     whatsapp: {
       label: "WhatsApp",
       note: "Message our team",
+    },
+    email: {
+      label: "Email",
+      note: "General enquiries",
     },
   },
 

@@ -85,6 +85,7 @@ export const energyContent = {
   contact: {
     phone: company.phone,
     whatsapp: company.whatsapp,
+    email: company.email.general,
   },
 } as const;
 

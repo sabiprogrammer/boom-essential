@@ -1,7 +1,7 @@
 import { foodsContent, foodsEnquiryHref } from "@/content/foods";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
-import { PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { MailIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { Section } from "@/components/ui/Section";
 import { SmartLink } from "@/components/ui/SmartLink";
 import { TextLink } from "@/components/ui/TextLink";
@@ -13,7 +13,7 @@ const contactLinkStyles =
 /** Closing call to action on Agricultural Green with field stripes: enquire, WhatsApp, contact and both numbers. */
 export function FoodsClosingSection() {
   const { eyebrow, heading, primaryCta, secondaryCta, contactCta, contactHref } = foodsContent.closing;
-  const { phone, whatsapp } = foodsContent.contact;
+  const { phone, whatsapp, email } = foodsContent.contact;
 
   return (
     <Section tone="green" space="lg" aria-labelledby="foods-closing-heading" className="relative isolate" style={fieldStripes(0.1)}>
@@ -62,6 +62,15 @@ export function FoodsClosingSection() {
               <SmartLink href={whatsapp.href} className={contactLinkStyles}>
                 <WhatsAppIcon className="size-6" />
                 {whatsapp.display}
+              </SmartLink>
+            </dd>
+          </div>
+          <div>
+            <dt className="mb-2 font-heading text-xs font-bold tracking-[0.16em] text-white uppercase">Email</dt>
+            <dd>
+              <SmartLink href={email.href} className={contactLinkStyles}>
+                <MailIcon className="size-6" />
+                <span className="min-w-0 [overflow-wrap:anywhere]">{email.display}</span>
               </SmartLink>
             </dd>
           </div>

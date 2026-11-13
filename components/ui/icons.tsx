@@ -98,6 +98,15 @@ export function PhoneIcon(props: IconProps) {
   );
 }
 
+export function MailIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <rect x="3" y="5.5" width="18" height="13" rx="1.5" />
+      <path d="m3.5 7 8.5 6.5L20.5 7" />
+    </Icon>
+  );
+}
+
 export function MapPinIcon(props: IconProps) {
   return (
     <Icon {...props}>

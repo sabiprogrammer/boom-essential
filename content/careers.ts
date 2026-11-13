@@ -2,8 +2,8 @@ import { company } from "./company";
 
 /**
  * Careers page copy. A deliberately minimal page: the client has not supplied vacancies, roles, requirements
- * or an application process, and no email address exists, so none are stated. It only says that no vacancies
- * are listed and points to the confirmed phone and WhatsApp numbers. Replace once the client supplies wording.
+ * or an application process, so none are stated. It only says that no vacancies are listed and points to the
+ * confirmed phone, WhatsApp and general enquiries email. Replace once the client supplies wording.
  */
 export const careersContent = {
   header: {
@@ -24,5 +24,6 @@ export const careersContent = {
   contact: {
     phone: company.phone,
     whatsapp: company.whatsapp,
+    email: company.email.general,
   },
 } as const;

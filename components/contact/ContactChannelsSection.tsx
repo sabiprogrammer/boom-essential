@@ -2,7 +2,7 @@ import type { CSSProperties, ReactNode } from "react";
 import { company } from "@/content/company";
 import { contactContent } from "@/content/contact";
 import { Container } from "@/components/ui/Container";
-import { MapPinIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { MailIcon, MapPinIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SmartLink } from "@/components/ui/SmartLink";
@@ -10,10 +10,10 @@ import { SmartLink } from "@/components/ui/SmartLink";
 const linkStyles =
   "inline-block font-heading text-h3 font-extrabold text-navy underline decoration-navy/30 decoration-1 underline-offset-8 transition-colors duration-200 hover:decoration-gold";
 
-function Channel({ icon, label, note, index, children }: { icon: ReactNode; label: string; note: string; index: number; children: ReactNode }) {
+function Channel({ icon, label, note, index, wide = false, children }: { icon: ReactNode; label: string; note: string; index: number; wide?: boolean; children: ReactNode }) {
   return (
     <li
-      className={`reveal border-t-2 border-navy py-8 lg:py-10 ${index === 0 ? "lg:pr-10" : "lg:border-l lg:border-l-line-strong lg:px-10"}`}
+      className={`reveal border-t-2 border-navy py-8 lg:py-10 ${wide ? "lg:col-span-3 lg:mt-0" : index === 0 ? "lg:pr-10" : "lg:border-l lg:border-l-line-strong lg:px-10"}`}
       style={{ "--i": index } as CSSProperties}
     >
       <span className="grid size-14 place-items-center border-2 border-navy text-navy">{icon}</span>
@@ -25,11 +25,11 @@ function Channel({ icon, label, note, index, children }: { icon: ReactNode; labe
 }
 
 /**
- * The three confirmed contact channels. The office has no map, link or opening hours, and no email
- * or social account is shown: none has been supplied.
+ * The confirmed contact channels (office, phone and WhatsApp, with the general enquiries email as a full-width row below). The office
+ * has no map, link or opening hours, and no social account is shown: none has been supplied.
  */
 export function ContactChannelsSection() {
-  const { eyebrow, heading, visit, call, whatsapp } = contactContent.channels;
+  const { eyebrow, heading, visit, call, whatsapp, email } = contactContent.channels;
 
   return (
     <Section tone="white" space="lg" aria-labelledby="contact-channels-heading">
@@ -58,6 +58,12 @@ export function ContactChannelsSection() {
           <Channel index={2} icon={<WhatsAppIcon className="size-7" />} label={whatsapp.label} note={whatsapp.note}>
             <SmartLink href={company.whatsapp.href} className={linkStyles}>
               {company.whatsapp.display}
+            </SmartLink>
+          </Channel>
+
+          <Channel index={3} wide icon={<MailIcon className="size-7" />} label={email.label} note={email.note}>
+            <SmartLink href={company.email.general.href} className={`${linkStyles} [overflow-wrap:anywhere]`}>
+              {company.email.general.display}
             </SmartLink>
           </Channel>
         </ul>

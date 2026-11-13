@@ -1,7 +1,7 @@
 import { industrialContent, industrialEnquiryHref } from "@/content/industrial-equipment";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
-import { PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { MailIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { Section } from "@/components/ui/Section";
 import { SmartLink } from "@/components/ui/SmartLink";
 
@@ -11,7 +11,7 @@ const contactLinkStyles =
 /** Closing call to action on Deep Navy. */
 export function IndustrialClosingSection() {
   const { eyebrow, heading, copy, primaryCta, secondaryCta } = industrialContent.closing;
-  const { phone, whatsapp } = industrialContent.contact;
+  const { phone, whatsapp, email } = industrialContent.contact;
 
   return (
     <Section tone="navy" space="lg" aria-labelledby="industrial-closing-heading">
@@ -56,6 +56,15 @@ export function IndustrialClosingSection() {
               <SmartLink href={whatsapp.href} className={contactLinkStyles}>
                 <WhatsAppIcon className="size-6 text-gold" />
                 {whatsapp.display}
+              </SmartLink>
+            </dd>
+          </div>
+          <div>
+            <dt className="mb-2 font-heading text-xs font-bold tracking-[0.16em] text-on-dark-muted uppercase">Email</dt>
+            <dd>
+              <SmartLink href={email.href} className={contactLinkStyles}>
+                <MailIcon className="size-6 text-gold" />
+                <span className="min-w-0 [overflow-wrap:anywhere]">{email.display}</span>
               </SmartLink>
             </dd>
           </div>

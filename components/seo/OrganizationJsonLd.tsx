@@ -2,7 +2,7 @@ import { company } from "@/content/company";
 
 /**
  * schema.org Organization data built only from confirmed company facts
- * (name, website, telephone, address, logo). No ratings, awards, social profiles or hours.
+ * (name, website, telephone, email, address, logo). No ratings, awards, social profiles or hours.
  */
 export function OrganizationJsonLd() {
   const data = {
@@ -13,6 +13,7 @@ export function OrganizationJsonLd() {
     logo: `https://${company.website}/assets/branding/boom-multi-global-logo.jpeg`,
     slogan: company.tagline,
     telephone: company.phone.display,
+    email: company.email.general.display,
     address: {
       "@type": "PostalAddress",
       streetAddress: "Petrocam Filling Station, Federal Housing Estate, Shagari",
