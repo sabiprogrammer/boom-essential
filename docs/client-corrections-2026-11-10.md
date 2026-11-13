@@ -40,7 +40,7 @@ Web copies in `public/assets/images/projects/` and `public/assets/images/product
 ## Still needed from the client
 
 - Wording for Careers (vacancies, roles, how to apply). Email addresses are coming from Sabi Programmers.
-- Confirmation of "From our farms and trusted sources to your table." (BOOM Foods hero): does BOOM operate farms? It stays a pre-launch blocker until answered.
+- Confirmation of "From our farms and trusted sources to your table." (BOOM Foods hero): does BOOM operate farms? Not confirmed, so the line was REMOVED before launch (2026-11-13) and replaced with neutral wording ("Household staples, smoked fish and frozen chicken for your table."). It can return only if the client confirms it in writing.
 - Whether the flyers' names ("Pounded yam machine") should replace "pounding machine" (the site follows the original brief: pounding machines for the restaurant business).
 
 ## Answers received (Sabi Programmers, 2026-11-11)

@@ -62,11 +62,12 @@ export const foodsContent = {
     headline: ["Good Food.", "Healthy Lives."],
     copy: "Quality food and agricultural products for households, businesses, organisations and institutions.",
     /**
-     * Client-supplied marketing wording (flyer; repeated in the Stage 6 brief). LAUNCH BLOCKER: it is not
-     * confirmed that BOOM operates farms. Keep for development only; the client must confirm it before
-     * public launch, otherwise remove or reword it. See CLAUDE.md (maintenance items).
+     * Neutral wording built only from the confirmed product list. It deliberately makes NO claim about where the
+     * products come from: the flyer line "From our farms and trusted sources to your table." was never confirmed
+     * (it is not known that BOOM operates farms), so it was removed before launch. Do not restore sourcing wording
+     * (farms, growers, origin, "trusted sources") unless the client confirms it in writing.
      */
-    statement: "From our farms and trusted sources to your table.",
+    statement: "Household staples, smoked fish and frozen chicken for your table.",
     primaryCta: "Enquire About Products",
     secondaryCta: "See Our Products",
     indexLabel: "Our products",
