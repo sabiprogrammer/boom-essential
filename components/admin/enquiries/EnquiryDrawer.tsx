@@ -2,7 +2,7 @@
 
 import { useCallback, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
-import { DetailDrawer } from "@/components/dashboard-preview/DetailDrawer";
+import { DetailDrawer } from "@/components/admin/ui/DetailDrawer";
 
 /**
  * The side panel for one enquiry. It is opened by the address (?enquiry=<id>) and closed by going back to the same

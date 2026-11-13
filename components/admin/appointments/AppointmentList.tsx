@@ -3,7 +3,7 @@ import { appointmentsHref } from "@/lib/admin/appointments/query-params";
 import { displayStatus } from "@/lib/admin/appointments/transitions";
 import type { AppointmentListQuery, AppointmentWithEnquiry } from "@/lib/admin/appointments/types";
 import { describeRequest } from "@/lib/admin/enquiries/labels";
-import { Avatar } from "@/components/dashboard-preview/Avatar";
+import { Avatar } from "@/components/admin/ui/Avatar";
 import { EnquiryContactActions } from "@/components/admin/enquiries/EnquiryContactActions";
 import { AppointmentStateBadge } from "./AppointmentStateBadge";
 import { AppointmentWhen } from "./AppointmentWhen";

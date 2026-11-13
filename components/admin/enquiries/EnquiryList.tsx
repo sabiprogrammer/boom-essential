@@ -2,9 +2,9 @@ import Link from "next/link";
 import { describeRequest } from "@/lib/admin/enquiries/labels";
 import { enquiriesHref } from "@/lib/admin/enquiries/query-params";
 import type { EnquiryListQuery, EnquiryRecord } from "@/lib/admin/enquiries/types";
-import { formatReceivedDate } from "@/lib/dashboard-preview/dates";
-import { Avatar } from "@/components/dashboard-preview/Avatar";
-import { EnquiryStatusBadge } from "@/components/dashboard-preview/StatusBadge";
+import { formatReceivedDate } from "@/lib/admin/shared/dates";
+import { Avatar } from "@/components/admin/ui/Avatar";
+import { EnquiryStatusBadge } from "@/components/admin/ui/StatusBadge";
 import { DivisionBadge } from "./DivisionBadge";
 import { EnquiryContactActions } from "./EnquiryContactActions";
 

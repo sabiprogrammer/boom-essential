@@ -1,5 +1,5 @@
 import type { NoteRecord } from "@/lib/admin/enquiries/types";
-import { formatReceivedDateTime } from "@/lib/dashboard-preview/dates";
+import { formatReceivedDateTime } from "@/lib/admin/shared/dates";
 import { AddNoteForm } from "./AddNoteForm";
 
 /** Previous internal notes (newest first), then the form to add one. Internal notes are never shown to customers. */

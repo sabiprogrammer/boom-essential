@@ -5,9 +5,9 @@ import { useRouter } from "next/navigation";
 import { maxSearchLength } from "@/lib/admin/enquiries/query-params";
 import { appointmentsHref } from "@/lib/admin/appointments/query-params";
 import type { AppointmentListQuery, AppointmentStatusFilter } from "@/lib/admin/appointments/types";
-import { appointmentStatusLabels, appointmentStatusOrder } from "@/lib/dashboard-preview/labels";
-import { FilterChips } from "@/components/dashboard-preview/FilterChips";
-import { SearchField } from "@/components/dashboard-preview/SearchField";
+import { appointmentStatusLabels, appointmentStatusOrder } from "@/lib/admin/shared/labels";
+import { FilterChips } from "@/components/admin/ui/FilterChips";
+import { SearchField } from "@/components/admin/ui/SearchField";
 
 const SEARCH_DELAY_MS = 350;
 

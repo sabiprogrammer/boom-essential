@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { pageWindow } from "@/lib/admin/enquiries/page-window";
-import { ChevronLeftIcon, ChevronRightIcon } from "@/components/dashboard-preview/icons";
+import { ChevronLeftIcon, ChevronRightIcon } from "@/components/admin/ui/icons";
 
 const control =
   "inline-flex h-11 min-w-11 items-center justify-center gap-1 rounded-md border px-3 font-heading text-sm font-semibold transition-colors";

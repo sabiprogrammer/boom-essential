@@ -1,5 +1,5 @@
 import { cleanSingleLine } from "@/lib/enquiry/server/text";
-import { enquiryStatusOrder } from "@/lib/dashboard-preview/labels";
+import { enquiryStatusOrder } from "@/lib/admin/shared/labels";
 import { isAdminDivision } from "./labels";
 import type { DivisionFilter, EnquiryListQuery, EnquiryStatus, StatusFilter } from "./types";
 

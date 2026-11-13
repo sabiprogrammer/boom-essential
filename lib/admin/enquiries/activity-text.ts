@@ -1,4 +1,4 @@
-import { appointmentStatusLabels, enquiryStatusLabels } from "@/lib/dashboard-preview/labels";
+import { appointmentStatusLabels, enquiryStatusLabels } from "@/lib/admin/shared/labels";
 import type { ActivityRecord, AppointmentStatus, EnquiryStatus } from "./types";
 
 export type ActivityKind = "enquiry" | "appointment" | "status" | "note";

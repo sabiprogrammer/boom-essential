@@ -1,4 +1,4 @@
-import type { AppointmentStatus, EnquiryStatus } from "@/lib/dashboard-preview/types";
+import type { AppointmentStatus, EnquiryStatus } from "@/lib/admin/shared/types";
 
 /**
  * Shapes of the REAL enquiry data shown in /admin (read from Supabase), as opposed to the dashboard preview's

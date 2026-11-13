@@ -11,6 +11,7 @@ import { ErrorSummary } from "./ErrorSummary";
 import { FormStep } from "./FormStep";
 import { InterestPicker } from "./InterestPicker";
 import { MessageField } from "./MessageField";
+import { PrivacyNote } from "./PrivacyNote";
 import { SubmitBar } from "./SubmitBar";
 
 /**
@@ -125,6 +126,7 @@ export function EnquiryForm({
       <EnquiryStatusPanel status={status} panelRef={statusRef} onSendAnother={form.reset} />
 
       <SubmitBar type={form.type} submitting={submitting} />
+      <PrivacyNote />
     </form>
   );
 }

@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { enquiryStatusLabels } from "@/lib/dashboard-preview/labels";
+import { enquiryStatusLabels } from "@/lib/admin/shared/labels";
 import { requireAdmin } from "@/lib/auth/require-admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { ActionState } from "./action-state";

@@ -5,7 +5,7 @@ import { APPOINTMENT_COLUMNS, ENQUIRY_COLUMNS } from "./columns";
 import { compact, toActivityRecord, toAppointmentRecord, toEnquiryRecord, toNoteRecord } from "./mappers";
 import { enquiryPageSize } from "./query-params";
 import { orFilterForTerm, searchTerms } from "./search-filter";
-import { enquiryStatusOrder } from "@/lib/dashboard-preview/labels";
+import { enquiryStatusOrder } from "@/lib/admin/shared/labels";
 import type { EnquiryDetailData, EnquiryListQuery, EnquiryListResult, StatusFilter } from "./types";
 
 /**

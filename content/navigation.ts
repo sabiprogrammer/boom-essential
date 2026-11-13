@@ -17,6 +17,9 @@ export const projectsLink: NavLinkItem = { label: "Projects", href: "/projects" 
 export const ourTeamLink: NavLinkItem = { label: "Our team", href: "/about#leadership" };
 export const careersLink: NavLinkItem = { label: "Careers", href: "/careers" };
 
+/** Footer-only (13 Nov 2026): the Privacy Notice, linked from the footer's bottom bar. */
+export const privacyLink: NavLinkItem = { label: "Privacy Notice", href: "/privacy" };
+
 /** The three principal divisions. Industrial Equipment is deliberately NOT in this list. */
 export const divisionsLabel = "Our Divisions";
 export const divisionLinks: readonly NavLinkItem[] = [

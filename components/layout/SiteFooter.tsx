@@ -9,6 +9,7 @@ import {
   homeLink,
   industrialLink,
   ourTeamLink,
+  privacyLink,
   productsLink,
   projectsLink,
 } from "@/content/navigation";
@@ -131,7 +132,12 @@ export function SiteFooter() {
           <p>
             © {company.copyrightYear} {company.legalName}. All rights reserved.
           </p>
-          <p>{company.website}</p>
+          <p className="flex flex-wrap items-center gap-x-6 gap-y-1">
+            <SmartLink href={privacyLink.href} className="py-1.5 text-white underline decoration-gold decoration-1 underline-offset-4 transition-colors hover:text-gold">
+              {privacyLink.label}
+            </SmartLink>
+            <span>{company.website}</span>
+          </p>
         </Container>
       </div>
     </footer>

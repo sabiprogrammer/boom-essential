@@ -40,10 +40,11 @@ describe("content: nothing is claimed that the client has not confirmed", () => 
 });
 
 describe("SEO: robots.txt and the sitemap", () => {
-  it("robots.txt allows the public site and keeps crawlers out of the admin area, the API and the demo", () => {
+  it("robots.txt allows the public site and keeps crawlers out of the admin area and the API", () => {
     const source = code("app/robots.ts");
     assert.match(source, /allow: "\/"/);
-    for (const hidden of ["/admin", "/api/", "/dashboard-preview"]) assert.ok(source.includes(`"${hidden}"`), hidden);
+    for (const hidden of ["/admin", "/api/"]) assert.ok(source.includes(`"${hidden}"`), hidden);
+    assert.doesNotMatch(source, /dashboard-preview/, "the demo route no longer exists, so robots.txt no longer mentions it");
     assert.match(source, /sitemap: `https:\/\/\$\{company\.website\}\/sitemap\.xml`/);
   });
 

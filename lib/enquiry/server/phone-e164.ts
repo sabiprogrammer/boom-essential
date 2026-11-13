@@ -1,4 +1,4 @@
-import { normaliseNigerianMobile } from "@/lib/dashboard-preview/phone";
+import { normaliseNigerianMobile } from "@/lib/admin/shared/phone";
 
 /**
  * The normalised international form (+234...) stored beside the phone number exactly as typed, so the dashboard

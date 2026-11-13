@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { requireAdmin } from "@/lib/auth/require-admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { formatLongDate, formatTime } from "@/lib/dashboard-preview/dates";
+import { formatLongDate, formatTime } from "@/lib/admin/shared/dates";
 import { composeCancellationNote, parseCancel, parseComplete, parseConfirm, parseReschedule } from "./action-validation";
 import type { AppointmentActionState, CancelPayload, CompletePayload, ConfirmPayload, ReschedulePayload } from "./action-state";
 import { lagosToday } from "./slot";

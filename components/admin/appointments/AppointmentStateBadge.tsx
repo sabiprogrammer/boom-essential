@@ -1,4 +1,4 @@
-import { appointmentStatusLabels } from "@/lib/dashboard-preview/labels";
+import { appointmentStatusLabels } from "@/lib/admin/shared/labels";
 import type { DisplayStatus } from "@/lib/admin/appointments/types";
 
 /**

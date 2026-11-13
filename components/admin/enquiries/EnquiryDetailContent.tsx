@@ -1,8 +1,8 @@
 import { adminDivisionLabels, requestedLabels } from "@/lib/admin/enquiries/labels";
 import type { EnquiryDetailData } from "@/lib/admin/enquiries/types";
-import { formatReceivedDateTime } from "@/lib/dashboard-preview/dates";
-import { DetailItem, DetailList, DetailSection, Quote } from "@/components/dashboard-preview/DetailSection";
-import { BuildingIcon, CalendarIcon, CheckIcon, ClockIcon, InboxIcon, NoteIcon } from "@/components/dashboard-preview/icons";
+import { formatReceivedDateTime } from "@/lib/admin/shared/dates";
+import { DetailItem, DetailList, DetailSection, Quote } from "@/components/admin/ui/DetailSection";
+import { BuildingIcon, CalendarIcon, CheckIcon, ClockIcon, InboxIcon, NoteIcon } from "@/components/admin/ui/icons";
 import { ActivityTimeline } from "./ActivityTimeline";
 import { AppointmentSummary } from "./AppointmentSummary";
 import { CustomerSection } from "./CustomerSection";

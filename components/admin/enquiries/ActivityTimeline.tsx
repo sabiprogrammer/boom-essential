@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 import { describeActivity, type ActivityKind } from "@/lib/admin/enquiries/activity-text";
 import type { ActivityRecord } from "@/lib/admin/enquiries/types";
-import { formatReceivedDateTime } from "@/lib/dashboard-preview/dates";
-import { CalendarIcon, CheckIcon, InboxIcon, NoteIcon } from "@/components/dashboard-preview/icons";
+import { formatReceivedDateTime } from "@/lib/admin/shared/dates";
+import { CalendarIcon, CheckIcon, InboxIcon, NoteIcon } from "@/components/admin/ui/icons";
 
 /** Soft, same-family tints so each kind of event is recognisable at a glance; the icon and the sentence carry the meaning. */
 const looks: Record<ActivityKind, { icon: ReactNode; className: string }> = {

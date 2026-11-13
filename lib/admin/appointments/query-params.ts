@@ -1,4 +1,4 @@
-import { appointmentStatusOrder } from "@/lib/dashboard-preview/labels";
+import { appointmentStatusOrder } from "@/lib/admin/shared/labels";
 import { isUuid, maxSearchLength, type RawSearchParams } from "@/lib/admin/enquiries/query-params";
 import { cleanSingleLine } from "@/lib/enquiry/server/text";
 import type { AppointmentListQuery, AppointmentStatusFilter } from "./types";

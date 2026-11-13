@@ -98,33 +98,28 @@ describe("administrator area: structure that the security model depends on", () 
     }
   });
 
-  it("the dashboard preview stays separate: /admin never imports its demo data, demo state or demo shell", () => {
-    // /admin reuses ONLY the preview's purely visual building blocks and pure helpers (same look, one source), listed here.
-    // Anything that carries demo records or demo state (providers, hooks, demo-*, the shell) must never be imported.
+  it("the public dashboard demonstration is gone, and nothing in the application refers to it", () => {
+    assert.ok(!existsSync(join(root, "app/dashboard-preview")), "the /dashboard-preview route must not exist");
+    for (const gone of ["components/dashboard-preview", "lib/dashboard-preview", "content/dashboard-preview.ts", "tests/dashboard-preview", "hooks/useDemoReference.ts"]) {
+      assert.ok(!existsSync(join(root, gone)), `${gone} must not exist`);
+    }
+    const everything = [...files("app"), ...files("components"), ...files("lib"), ...files("hooks"), ...files("content"), "proxy.ts"];
+    for (const file of everything) {
+      assert.doesNotMatch(code(file), /dashboard-preview|DemoReady|DemoDataProvider|createDemoEnquiries|demo-enquiries|useDemo/, file);
+    }
+  });
+
+  it("the administrator screens take their shared building blocks from components/admin/ui and lib/admin/shared only", () => {
     const allowed = new Set([
-      "@/components/dashboard-preview/Avatar",
-      "@/components/dashboard-preview/DateTile",
-      "@/components/dashboard-preview/DetailDrawer",
-      "@/components/dashboard-preview/DetailSection",
-      "@/components/dashboard-preview/EmptyState",
-      "@/components/dashboard-preview/FilterChips",
-      "@/components/dashboard-preview/Panel",
-      "@/components/dashboard-preview/SearchField",
-      "@/components/dashboard-preview/SelectField",
-      "@/components/dashboard-preview/StatusBadge",
-      "@/components/dashboard-preview/icons",
-      "@/lib/dashboard-preview/types",
-      "@/lib/dashboard-preview/labels",
-      "@/lib/dashboard-preview/dates",
-      "@/lib/dashboard-preview/phone",
-      "@/lib/dashboard-preview/contact-actions",
+      "@/components/admin/ui/Avatar", "@/components/admin/ui/DateTile", "@/components/admin/ui/DetailDrawer", "@/components/admin/ui/DetailSection",
+      "@/components/admin/ui/EmptyState", "@/components/admin/ui/FilterChips", "@/components/admin/ui/Panel", "@/components/admin/ui/SearchField",
+      "@/components/admin/ui/SelectField", "@/components/admin/ui/StatusBadge", "@/components/admin/ui/icons",
+      "@/lib/admin/shared/types", "@/lib/admin/shared/labels", "@/lib/admin/shared/dates", "@/lib/admin/shared/phone", "@/lib/admin/shared/contact-actions",
     ]);
-    for (const file of [...files("app/admin"), ...files("components/admin"), ...files("lib/auth"), ...files("lib/admin")]) {
-      const source = code(file);
-      for (const [, specifier] of source.matchAll(/from "([^"]*dashboard-preview[^"]*)"/g)) {
-        assert.ok(allowed.has(specifier), `${file} imports ${specifier}, which is not an approved purely-visual or pure-helper module`);
+    for (const file of [...files("app/admin"), ...files("components/admin"), ...files("lib/auth"), ...files("lib/admin"), "lib/enquiry/server/phone-e164.ts"]) {
+      for (const [, specifier] of code(file).matchAll(/from "(@\/(?:components\/admin\/ui|lib\/admin\/shared)\/[^"]+)"/g)) {
+        assert.ok(allowed.has(specifier), `${file} imports ${specifier}, which is not an approved shared module`);
       }
-      assert.doesNotMatch(source, /demo-enquiries|createDemoEnquiries|DemoReady|DemoDataProvider|useDemo|PreviewShell|demo-reducer|demo-activity/, file);
     }
     // The workspace copy states no figures.
     assert.doesNotMatch(code("content/admin-auth.ts"), /\d/, "the workspace copy states no figures");

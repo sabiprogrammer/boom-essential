@@ -3,7 +3,7 @@ import { APPOINTMENT_COLUMNS, ENQUIRY_COLUMNS } from "@/lib/admin/enquiries/colu
 import { compact, toActivityRecord, toAppointmentRecord } from "@/lib/admin/enquiries/mappers";
 import type { QueryResult } from "@/lib/admin/enquiries/queries";
 import { orFilterForTerm, searchTerms } from "@/lib/admin/enquiries/search-filter";
-import { appointmentStatusOrder } from "@/lib/dashboard-preview/labels";
+import { appointmentStatusOrder } from "@/lib/admin/shared/labels";
 import { requireAdmin } from "@/lib/auth/require-admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { toAppointmentWithEnquiry, toStatusHistoryRecord } from "./mappers";

@@ -5,10 +5,10 @@ import { useRouter } from "next/navigation";
 import { adminDivisionLabels, adminDivisionOrder } from "@/lib/admin/enquiries/labels";
 import { enquiriesHref, maxSearchLength } from "@/lib/admin/enquiries/query-params";
 import type { DivisionFilter, EnquiryListQuery, StatusFilter } from "@/lib/admin/enquiries/types";
-import { enquiryStatusLabels, enquiryStatusOrder } from "@/lib/dashboard-preview/labels";
-import { FilterChips } from "@/components/dashboard-preview/FilterChips";
-import { SearchField } from "@/components/dashboard-preview/SearchField";
-import { SelectField } from "@/components/dashboard-preview/SelectField";
+import { enquiryStatusLabels, enquiryStatusOrder } from "@/lib/admin/shared/labels";
+import { FilterChips } from "@/components/admin/ui/FilterChips";
+import { SearchField } from "@/components/admin/ui/SearchField";
+import { SelectField } from "@/components/admin/ui/SelectField";
 
 const SEARCH_DELAY_MS = 350;
 

@@ -1,4 +1,4 @@
-import { appointmentStatusOrder } from "@/lib/dashboard-preview/labels";
+import { appointmentStatusOrder } from "@/lib/admin/shared/labels";
 import { isAdminDivision } from "./labels";
 import { isEnquiryStatus } from "./query-params";
 import type { ActivityAction, ActivityRecord, AppointmentRecord, AppointmentStatus, EnquiryRecord, NoteRecord } from "./types";

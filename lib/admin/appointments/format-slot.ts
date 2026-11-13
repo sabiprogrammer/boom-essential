@@ -1,4 +1,4 @@
-import { formatLongDate, formatPlainDate, formatTime } from "@/lib/dashboard-preview/dates";
+import { formatLongDate, formatPlainDate, formatTime } from "@/lib/admin/shared/dates";
 
 /**
  * Appointment dates are plain calendar days and times are wall-clock times in Africa/Lagos (Nigeria has a single time

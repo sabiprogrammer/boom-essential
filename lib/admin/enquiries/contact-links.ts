@@ -1,5 +1,5 @@
-import { followUpMessage } from "@/lib/dashboard-preview/contact-actions";
-import { normaliseNigerianMobile } from "@/lib/dashboard-preview/phone";
+import { followUpMessage } from "@/lib/admin/shared/contact-actions";
+import { normaliseNigerianMobile } from "@/lib/admin/shared/phone";
 import { describeRequest } from "./labels";
 import type { EnquiryRecord } from "./types";
 

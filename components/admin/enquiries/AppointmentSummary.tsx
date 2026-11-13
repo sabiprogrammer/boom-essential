@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { appointmentsHref } from "@/lib/admin/appointments/query-params";
 import type { AppointmentRecord } from "@/lib/admin/enquiries/types";
-import { formatLongDate, formatTime } from "@/lib/dashboard-preview/dates";
-import { DateTile } from "@/components/dashboard-preview/DateTile";
-import { DetailItem, DetailList } from "@/components/dashboard-preview/DetailSection";
-import { AppointmentStatusBadge } from "@/components/dashboard-preview/StatusBadge";
+import { formatLongDate, formatTime } from "@/lib/admin/shared/dates";
+import { DateTile } from "@/components/admin/ui/DateTile";
+import { DetailItem, DetailList } from "@/components/admin/ui/DetailSection";
+import { AppointmentStatusBadge } from "@/components/admin/ui/StatusBadge";
 
 /**
  * The appointment requests attached to an enquiry: what the customer asked for, and the confirmed slot once an

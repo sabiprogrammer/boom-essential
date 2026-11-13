@@ -17,6 +17,7 @@ const publicPaths = [
   { path: "/projects", priority: 0.7 },
   { path: "/careers", priority: 0.4 },
   { path: "/contact", priority: 0.9 },
+  { path: "/privacy", priority: 0.3 },
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {

@@ -4,10 +4,10 @@ import { formatSlotLong, lagosTimeNote } from "@/lib/admin/appointments/format-s
 import type { AppointmentDetailData, AppointmentListQuery } from "@/lib/admin/appointments/types";
 import { adminDivisionLabels, requestedLabels } from "@/lib/admin/enquiries/labels";
 import { enquiriesHref } from "@/lib/admin/enquiries/query-params";
-import { formatReceivedDateTime } from "@/lib/dashboard-preview/dates";
-import { DetailItem, DetailList, DetailSection, Quote } from "@/components/dashboard-preview/DetailSection";
-import { BuildingIcon, CalendarIcon, CheckIcon, ClockIcon, InboxIcon } from "@/components/dashboard-preview/icons";
-import { EnquiryStatusBadge } from "@/components/dashboard-preview/StatusBadge";
+import { formatReceivedDateTime } from "@/lib/admin/shared/dates";
+import { DetailItem, DetailList, DetailSection, Quote } from "@/components/admin/ui/DetailSection";
+import { BuildingIcon, CalendarIcon, CheckIcon, ClockIcon, InboxIcon } from "@/components/admin/ui/icons";
+import { EnquiryStatusBadge } from "@/components/admin/ui/StatusBadge";
 import { ActivityTimeline } from "@/components/admin/enquiries/ActivityTimeline";
 import { CustomerSection } from "@/components/admin/enquiries/CustomerSection";
 import { AppointmentChain } from "./AppointmentChain";

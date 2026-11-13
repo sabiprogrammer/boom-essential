@@ -3,7 +3,7 @@ import { appointmentsHref } from "@/lib/admin/appointments/query-params";
 import { displayStatus } from "@/lib/admin/appointments/transitions";
 import type { AppointmentListQuery } from "@/lib/admin/appointments/types";
 import { adminDivisionLabels } from "@/lib/admin/enquiries/labels";
-import { formatReceivedDateTime } from "@/lib/dashboard-preview/dates";
+import { formatReceivedDateTime } from "@/lib/admin/shared/dates";
 import { DivisionBadge } from "@/components/admin/enquiries/DivisionBadge";
 import { EnquiryDrawer } from "@/components/admin/enquiries/EnquiryDrawer";
 import { AppointmentDetailContent } from "./AppointmentDetailContent";

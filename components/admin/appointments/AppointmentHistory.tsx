@@ -1,7 +1,7 @@
 import type { AppointmentRecord } from "@/lib/admin/enquiries/types";
 import type { StatusHistoryRecord } from "@/lib/admin/appointments/types";
-import { appointmentStatusLabels } from "@/lib/dashboard-preview/labels";
-import { formatReceivedDateTime } from "@/lib/dashboard-preview/dates";
+import { appointmentStatusLabels } from "@/lib/admin/shared/labels";
+import { formatReceivedDateTime } from "@/lib/admin/shared/dates";
 import type { AppointmentStatus } from "@/lib/admin/enquiries/types";
 
 const who = { you: "You", administrator: "An administrator", system: "The system" } as const;

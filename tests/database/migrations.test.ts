@@ -3,7 +3,7 @@ import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { describe, it } from "node:test";
 import { enquiryCategories } from "@/content/enquiry-options";
-import { appointmentStatusOrder, enquiryStatusOrder } from "@/lib/dashboard-preview/labels";
+import { appointmentStatusOrder, enquiryStatusOrder } from "@/lib/admin/shared/labels";
 
 /**
  * Static guards for the Stage 6.3 database files. These tests read the SQL as text: they do NOT run it. The

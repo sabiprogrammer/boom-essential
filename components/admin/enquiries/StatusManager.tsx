@@ -4,7 +4,7 @@ import { useState, useTransition } from "react";
 import { idleState, type ActionState } from "@/lib/admin/enquiries/action-state";
 import { updateEnquiryStatusAction } from "@/lib/admin/enquiries/enquiry-actions";
 import type { EnquiryStatus } from "@/lib/admin/enquiries/types";
-import { enquiryStatusLabels, enquiryStatusOrder } from "@/lib/dashboard-preview/labels";
+import { enquiryStatusLabels, enquiryStatusOrder } from "@/lib/admin/shared/labels";
 
 /**
  * Changes an enquiry's status. Each button calls a Server Action that re-checks the administrator, validates the

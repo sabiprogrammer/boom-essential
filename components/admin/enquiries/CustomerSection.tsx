@@ -1,6 +1,6 @@
 import type { EnquiryRecord } from "@/lib/admin/enquiries/types";
-import { Avatar } from "@/components/dashboard-preview/Avatar";
-import { DetailItem, DetailList } from "@/components/dashboard-preview/DetailSection";
+import { Avatar } from "@/components/admin/ui/Avatar";
+import { DetailItem, DetailList } from "@/components/admin/ui/DetailSection";
 import { EnquiryContactActions } from "./EnquiryContactActions";
 
 /**
