@@ -4,7 +4,7 @@ import { PhotoFigure } from "@/components/ui/PhotoFigure";
 
 const SIZES = "(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 92vw";
 
-/** The picture for one catalogue entry: an authentic client photograph, or an illustrative picture that carries the "Illustrative image" label. */
+/** The picture for one catalogue entry: an authentic client photograph, or an illustrative picture. */
 export function CatalogueVisual({ visual }: { visual: CatalogueVisualData }) {
   if (visual.kind === "photo") {
     return (
@@ -20,11 +20,8 @@ export function CatalogueVisual({ visual }: { visual: CatalogueVisualData }) {
   }
 
   return (
-    <figure>
-      <div className="border-t-[3px] border-gold">
-        <IllustrativePhoto image={visual.image} aspect="4 / 3" sizes={SIZES} />
-      </div>
-      <figcaption className="mt-3 text-sm text-ink-muted">{visual.image.caption}</figcaption>
-    </figure>
+    <div className="border-t-[3px] border-gold">
+      <IllustrativePhoto image={visual.image} aspect="4 / 3" sizes={SIZES} />
+    </div>
   );
 }

@@ -30,7 +30,7 @@ function Panel({ service, visual, index }: { service: SecurityService; visual: R
   );
 }
 
-/** Security fencing and access control as two side-by-side panels, each with an illustrative stock photograph (labelled as such). */
+/** Security fencing and access control as two side-by-side panels, each with an illustrative stock photograph. */
 export function PerimeterPanels() {
   const [fencing, access] = securityServices.slice(3, 5);
 

@@ -34,7 +34,7 @@ function Row({ service, visual, index }: { service: SecurityService; visual: Rea
 
 /**
  * Remote monitoring and security assessment as ledger rows: marker, text and a picture. Both pictures are
- * illustrative (labelled): a monitoring desk, and a gated property with its boundary wall.
+ * illustrative: a monitoring desk, and a gated property with its boundary wall.
  */
 export function MonitoringRows() {
   const [monitoring, assessment] = securityServices.slice(5);

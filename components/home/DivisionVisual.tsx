@@ -7,7 +7,7 @@ type DivisionVisualProps = {
   division: Division;
   /**
    * Picture for this division (see `content/division-images.ts`). Without one, the CSS-generated field
-   * is shown. Generated or stock imagery must carry `illustrative: true`, which adds the visible label.
+   * is shown.
    */
   image?: DivisionImage;
 };

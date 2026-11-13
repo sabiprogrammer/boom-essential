@@ -3,7 +3,6 @@ import type { CSSProperties } from "react";
 import { divisions, type DivisionId } from "@/content/divisions";
 import { SmartLink } from "@/components/ui/SmartLink";
 import { heroBarImages } from "./hero-bar-images";
-import { IllustrativeLabel } from "./IllustrativeLabel";
 import { SwooshMark } from "./SwooshMark";
 
 /**
@@ -29,21 +28,19 @@ export function HeroBars() {
                 href={division.href}
                 aria-label={`${division.name}: ${division.descriptor}`}
                 style={{ "--delay": `${500 + index * 160}ms` } as CSSProperties}
-                className={`grow-up group/bar relative isolate flex h-full w-full flex-col justify-end gap-6 overflow-hidden border-t-[3px] border-gold p-3.5 text-white sm:p-5 ${image.illustrative ? "pb-9 sm:pb-10" : ""} ${bar.surface}`}
+                className={`grow-up group/bar relative isolate flex h-full w-full flex-col justify-end gap-6 overflow-hidden border-t-[3px] border-gold p-3.5 text-white sm:p-5 ${bar.surface}`}
               >
                 <Image
                   src={image.src}
                   alt=""
                   fill
                   priority
-                  sizes="(min-width: 1024px) 14vw, 30vw"
+                  sizes={image.sizes}
                   className="-z-10 object-cover transition-transform duration-700 ease-(--ease-standard) group-hover/bar:scale-105"
                   style={{ objectPosition: image.position }}
                 />
                 {/* Keeps the white division name legible over any part of the picture. */}
                 <span aria-hidden="true" className="absolute inset-0 -z-10 bg-linear-to-t from-navy/90 via-navy/45 to-navy/20" />
-                {/* A strip along the bottom of the bar: the swoosh sweeps across the tops, so a label there could be covered. */}
-                {image.illustrative ? <IllustrativeLabel size="small" className="inset-x-0 bottom-0 text-center" /> : null}
                 <span
                   aria-hidden="true"
                   className="rotate-180 self-start font-heading text-h3 font-extrabold tracking-tight uppercase [writing-mode:vertical-rl]"

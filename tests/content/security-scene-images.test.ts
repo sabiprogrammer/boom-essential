@@ -23,9 +23,9 @@ describe("scene pictures used as illustrations (Security)", () => {
   it("describe only what is visible: no provenance wording and no claim that the scene is BOOM's", () => {
     for (const image of images) {
       assert.doesNotMatch(image.alt, /\b(AI|generated|stock|rendered)\b/i, image.src);
-      assert.doesNotMatch(`${image.alt} ${image.caption}`, /\b(our|BOOM)\b/i, image.src);
+      assert.doesNotMatch(image.alt, /\b(our|BOOM)\b/i, image.src);
       assert.ok(image.alt.length > 40, image.src);
-      assert.equal(image.caption, "Illustrative image.");
+      assert.ok(!("caption" in image), "no visible caption or label");
     }
   });
 
@@ -37,7 +37,6 @@ describe("scene pictures used as illustrations (Security)", () => {
     const forbidden = /(dahua|hikvision|zkteco|srne|luxsun|felicity|ikeja|lagos|akure|nigeria|₦|price|\b20\d\d\b)/i;
     for (const image of images) {
       assert.doesNotMatch(image.alt, forbidden, image.src);
-      assert.doesNotMatch(image.caption, forbidden, image.src);
     }
   });
 

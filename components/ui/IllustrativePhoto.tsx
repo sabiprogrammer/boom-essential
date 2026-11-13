@@ -1,6 +1,5 @@
 import Image from "next/image";
 import type { IllustrativeImageBase } from "@/content/illustrative-image";
-import { IllustrativeLabel } from "@/components/home/IllustrativeLabel";
 
 type IllustrativePhotoProps = {
   image: IllustrativeImageBase;
@@ -13,13 +12,14 @@ type IllustrativePhotoProps = {
 };
 
 /**
- * A stock photograph or other illustrative picture shown as an illustration: the "Illustrative image" label sits on the
- * picture itself, so it can never be shown without it. Fills a frame of the given aspect ratio. Authentic client photographs use
- * `PhotoFigure` instead; the two are deliberately separate so one can never pass for the other.
+ * A stock photograph or generated scene picture, filling a frame of the given aspect ratio. It shows no label (removed at
+ * Sabi Programmers' request, 2026-11-13), so its alt text must describe only what is visible and never claim the scene as BOOM's,
+ * and it must never be used on the Projects page. Authentic client photographs use `PhotoFigure` instead; the two stay separate
+ * components so the difference between them is always visible in the code.
  */
 export function IllustrativePhoto({ image, sizes, aspect = "5 / 3", priority = false, className = "" }: IllustrativePhotoProps) {
   return (
-    <div className={`relative overflow-hidden bg-tint ${className}`} style={{ aspectRatio: aspect }}>
+    <div data-pic className={`relative overflow-hidden bg-tint ${className}`} style={{ aspectRatio: aspect }}>
       <Image
         src={image.src}
         alt={image.alt}
@@ -29,7 +29,6 @@ export function IllustrativePhoto({ image, sizes, aspect = "5 / 3", priority = f
         className="object-cover"
         style={{ objectPosition: image.position ?? "50% 50%" }}
       />
-      <IllustrativeLabel className="top-3 left-3" />
     </div>
   );
 }

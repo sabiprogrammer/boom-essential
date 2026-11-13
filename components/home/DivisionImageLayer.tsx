@@ -2,7 +2,6 @@ import Image from "next/image";
 import type { DivisionImage } from "@/content/division-images";
 import type { DivisionId } from "@/content/divisions";
 import { DivisionGeometry } from "./DivisionGeometry";
-import { IllustrativeLabel } from "./IllustrativeLabel";
 
 const SIZES = "(min-width: 1024px) 45vw, 100vw";
 
@@ -14,10 +13,10 @@ function trimInset(trim: DivisionImage["trim"]) {
 }
 
 /**
- * The picture inside a division panel, with its "Illustrative image" label when it has one.
- * "cover" fills the panel and crops, steered by `position`; the label sits on the picture.
+ * The picture inside a division panel.
+ * "cover" fills the panel and crops, steered by `position`.
  * "band" keeps a panoramic picture whole at its own aspect ratio on top of the generated field, so
- * no subject is cropped away; the label hangs just below the strip so it never covers the food.
+ * no subject is cropped away.
  */
 export function DivisionImageLayer({ id, image }: { id: DivisionId; image: DivisionImage }) {
   if (image.fit === "band") {
@@ -30,7 +29,6 @@ export function DivisionImageLayer({ id, image }: { id: DivisionId; image: Divis
               <Image src={image.src} alt={image.alt} fill sizes={SIZES} className="object-cover" />
             </div>
           </div>
-          {image.illustrative ? <IllustrativeLabel className="top-full left-4 sm:left-5" /> : null}
         </div>
       </>
     );
@@ -50,7 +48,6 @@ export function DivisionImageLayer({ id, image }: { id: DivisionId; image: Divis
       </div>
       {/* Keeps the white number and name legible over light parts of the picture. */}
       <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-2/5 bg-linear-to-t from-navy/80 to-transparent" />
-      {image.illustrative ? <IllustrativeLabel /> : null}
     </>
   );
 }

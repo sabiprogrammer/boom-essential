@@ -137,7 +137,7 @@ describe("Products catalogue", () => {
     }
   });
 
-  it("uses no drawings: every picture is an authentic photograph or a labelled illustrative picture", () => {
+  it("uses no drawings: every picture is an authentic photograph or an illustrative picture", () => {
     for (const item of items) {
       if (item.visual) assert.ok(["photo", "illustrative"].includes(item.visual.kind), item.slug);
     }
@@ -160,11 +160,10 @@ describe("stock photographs used as illustrations (Security)", () => {
     for (const image of images) assert.ok(existsSync(join(root, "public", image.src)), image.src);
   });
 
-  it("say in their alt text that they are stock photographs and not BOOM installations", () => {
+  it("have alt text that describes only what is visible: no disclaimer, and no claim that the picture is BOOM's", () => {
     for (const image of images) {
-      assert.match(image.alt, /stock photograph/i, image.src);
-      assert.match(image.alt, /not a BOOM installation/i, image.src);
-      assert.match(image.caption, /^Illustrative image/, image.src);
+      assert.ok(image.alt.length > 40, image.src);
+      assert.doesNotMatch(image.alt, /not a BOOM|stock photograph|\b(our|BOOM)\b/i, image.src);
     }
   });
 
@@ -172,7 +171,6 @@ describe("stock photographs used as illustrations (Security)", () => {
     const forbidden = /(dahua|hikvision|zkteco|srne|luxsun|felicity|ikeja|lagos|akure|₦|price|\b20\d\d\b)/i;
     for (const image of images) {
       assert.doesNotMatch(image.alt, forbidden, image.src);
-      assert.doesNotMatch(image.caption, forbidden, image.src);
     }
   });
 

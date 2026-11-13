@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
+import { PhotoLightbox } from "@/components/ui/PhotoLightbox";
 import type { GalleryTile, TileSpan } from "./gallery-layout";
 
 /** Full class names, written out so Tailwind can see them (it cannot build class names from variables). */
@@ -34,6 +35,7 @@ export function ProjectTile({ tile, total }: { tile: GalleryTile; total: number 
     >
       <figure className="flex flex-1 flex-col">
         <div
+          data-pic
           style={frameStyle}
           className={`relative aspect-(--natural) overflow-hidden border-t-[3px] border-gold bg-tint sm:aspect-square ${
             anchor ? "lg:aspect-(--row)" : "lg:min-h-0 lg:flex-1 lg:aspect-auto"
@@ -47,6 +49,7 @@ export function ProjectTile({ tile, total }: { tile: GalleryTile; total: number 
             priority={index === 0}
             className="object-cover"
           />
+          <PhotoLightbox photo={photo} />
         </div>
         <figcaption className="mt-3 flex items-baseline gap-3 text-sm text-ink-muted sm:min-h-[2lh]">
           <span aria-hidden="true" className="font-heading text-xs font-bold tracking-[0.16em] text-navy tabular-nums">

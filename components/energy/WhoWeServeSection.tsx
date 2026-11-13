@@ -16,7 +16,7 @@ const scenes = {
 
 /** Residential, commercial and institutional: three hairline-divided columns, each with a drawing of that kind of property. */
 export function WhoWeServeSection() {
-  const { eyebrow, heading, lead, drawingsNote } = energyContent.audiences;
+  const { eyebrow, heading, lead } = energyContent.audiences;
 
   return (
     <Section tone="navy" space="lg" id="who-we-serve" aria-labelledby="energy-audiences-heading">
@@ -55,7 +55,6 @@ export function WhoWeServeSection() {
             </li>
           ))}
         </ul>
-        <p className="mt-10 text-sm text-on-dark-muted">{drawingsNote}</p>
       </Container>
     </Section>
   );

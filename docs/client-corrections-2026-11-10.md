@@ -49,4 +49,4 @@ Web copies in `public/assets/images/projects/` and `public/assets/images/product
 - **Solar-powered camera model:** no model name is shown. Sabi Programmers suggested inventing a "very common model"; declined because a model name on the site is a product claim, and an invented one could be false. The camera stays "Solar-powered CCTV camera" with the "Product image" note until the client names the model.
 - **"Garri and Garri Ekiti" in the Foods summary lines:** kept. These are two products (Garri and Garri Ekiti), and the client's correction #3 supplies the Garri Ekiti name.
 - **Legal name:** left in capitals as the client wrote it (decision 2 above stands).
-- **Photographs:** the client is supplying none; Sabi Programmers were asked to source the CCTV imagery. Stock and AI images stay, always labelled "Illustrative image".
+- **Photographs:** the client is supplying none; Sabi Programmers were asked to source the CCTV imagery. Stock and AI images stay; they carried an "Illustrative image" label until it was removed on 2026-11-13 at Sabi Programmers' request.

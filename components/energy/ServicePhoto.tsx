@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { SitePhoto } from "@/content/site-photo";
+import { PhotoLightbox } from "@/components/ui/PhotoLightbox";
 
 /**
  * One of the client's own installation photographs, filling the frame that `ServiceFeature` provides (the frame
@@ -7,7 +8,7 @@ import type { SitePhoto } from "@/content/site-photo";
  */
 export function ServicePhoto({ photo, position = "50% 50%" }: { photo: SitePhoto; position?: string }) {
   return (
-    <div className="relative size-full">
+    <div data-pic className="relative size-full">
       <Image
         src={photo.src}
         alt={photo.alt}
@@ -16,6 +17,7 @@ export function ServicePhoto({ photo, position = "50% 50%" }: { photo: SitePhoto
         className="object-cover"
         style={{ objectPosition: position }}
       />
+      <PhotoLightbox photo={photo} />
     </div>
   );
 }

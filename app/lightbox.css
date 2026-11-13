@@ -1,0 +1,71 @@
+/*
+ * The enlarged-photograph dialog (components/ui/PhotoLightbox.tsx): a native <dialog>, so it traps focus, closes on
+ * Escape and returns focus to the picture that opened it without any script of ours. Only the client's own
+ * photographs use it; the generated scene pictures never do (the shopfront one must not be shown larger).
+ */
+
+dialog.lightbox {
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-white);
+  max-width: min(94vw, 72rem);
+  max-height: 94dvh;
+  overflow: visible;
+}
+
+dialog.lightbox::backdrop {
+  background: rgb(6 31 64 / 0.88);
+}
+
+/* Stop the page scrolling behind an open lightbox. */
+body:has(dialog.lightbox[open]) {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  dialog.lightbox {
+    opacity: 0;
+    scale: 0.94;
+    transition:
+      opacity 250ms var(--ease-standard),
+      scale 350ms var(--ease-standard),
+      overlay 350ms allow-discrete,
+      display 350ms allow-discrete;
+  }
+
+  dialog.lightbox[open] {
+    opacity: 1;
+    scale: 1;
+  }
+
+  @starting-style {
+    dialog.lightbox[open] {
+      opacity: 0;
+      scale: 0.94;
+    }
+  }
+
+  dialog.lightbox::backdrop {
+    opacity: 0;
+    backdrop-filter: blur(0);
+    transition:
+      opacity 300ms var(--ease-standard),
+      backdrop-filter 300ms var(--ease-standard),
+      overlay 300ms allow-discrete,
+      display 300ms allow-discrete;
+  }
+
+  dialog.lightbox[open]::backdrop {
+    opacity: 1;
+    backdrop-filter: blur(4px);
+  }
+
+  @starting-style {
+    dialog.lightbox[open]::backdrop {
+      opacity: 0;
+      backdrop-filter: blur(0);
+    }
+  }
+}

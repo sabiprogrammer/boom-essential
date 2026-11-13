@@ -21,7 +21,7 @@ export function ProductMedia({ aspect, sizes, plinth = false, className = "" }: 
     <figure className={className}>
       <div className="relative">
         {plinth ? <span aria-hidden="true" className="absolute -right-3 -bottom-3 size-full bg-gold sm:-right-4 sm:-bottom-4" /> : null}
-        <div className="relative overflow-hidden border-t-[3px] border-gold bg-navy" style={{ aspectRatio: aspect }}>
+        <div data-pic className="relative overflow-hidden border-t-[3px] border-gold bg-navy" style={{ aspectRatio: aspect }}>
           <Image src={image.src} alt={image.alt} fill priority sizes={sizes} className="object-cover" />
         </div>
       </div>

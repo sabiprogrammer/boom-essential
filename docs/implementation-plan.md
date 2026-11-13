@@ -262,6 +262,13 @@ Triggered by the client's complaint that the site showed few of the photographs 
 - **Transparent header.** See "Site header rules" in CLAUDE.md. Verified at 1440 px and 390 px on every page type, including the open mobile menu and the scrolled state.
 - **Not changed:** no pricing, brand, place, date or capacity was added anywhere; no client photograph was edited (only the existing web crops are reused); labelled illustrative pictures stay labelled and are never used on `/projects`.
 
+### 6.14 Second feedback round (recorded 2026-11-13): no label, picture motion, shorter navigation
+
+- **"Illustrative image" label removed everywhere** at Sabi Programmers' request (it had been kept on the earlier advice that a visitor should not mistake generic scenes for BOOM installations). The `IllustrativeLabel` component, the `illustrative` flag, the visible "Illustrative image" captions and the Security equipment disclaimer were deleted; stock and generated pictures now show no visible disclosure. Remaining safeguards are listed under "Image policy" in CLAUDE.md. The wording about Energy's drawings ("Illustrative drawings of generic properties") is unchanged because those are drawings, not pictures.
+- **Picture motion (CSS only):** scroll wipe-and-settle, hover zoom with a gold rule, and a click-to-enlarge lightbox for the client's real photographs; reduced-motion and touch-aware. See "Picture motion rules" in CLAUDE.md.
+- **Navigation:** Industrial Equipment is linked only from the footer; the header and mobile menu list Home, About Us, Our Divisions, Products catalogue, Projects and Contact Us, with the consultation button.
+- **Also fixed:** the homepage hero bars requested too small an image (the Foods and Security bars looked blurry); each bar now declares the width its picture is really drawn at.
+
 ### 6.2 Stage 1 outcome (recorded 2026-11-03)
 
 - **Git:** baseline commit made before any Stage 1 edits (no remote; repository stays private).

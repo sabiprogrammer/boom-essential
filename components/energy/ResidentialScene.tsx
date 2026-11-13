@@ -1,6 +1,6 @@
 /**
  * Illustrative drawing of a house with solar panels on its roof and an inverter on the wall. A generic residential
- * property, not a BOOM project. Decorative: the section says the drawings are illustrative.
+ * property, not a BOOM project. Decorative.
  */
 export function ResidentialScene({ className }: { className?: string }) {
   return (

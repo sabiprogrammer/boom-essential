@@ -17,10 +17,10 @@ const pictures = {
 
 /**
  * CCTV equipment in view: the client's camera product image beside two illustrative pictures of equipment in use.
- * The photograph is a product image, not an installation, and says so; the other two carry the "Illustrative image" label.
+ * The photograph is a product image, not an installation, and says so; the other two are illustrative pictures.
  */
 export function SecurityEquipmentSection() {
-  const { eyebrow, heading, lead, photoNote, picturesLabel, picturesNote, pictures: items, cta } = securityContent.equipment;
+  const { eyebrow, heading, lead, photoNote, picturesLabel, pictures: items, cta } = securityContent.equipment;
 
   return (
     <Section tone="light" space="lg" aria-labelledby="security-equipment-heading">
@@ -55,7 +55,6 @@ export function SecurityEquipmentSection() {
                 </li>
               ))}
             </ul>
-            <p className="mt-6 text-sm text-ink-muted">{picturesNote}</p>
           </div>
         </div>
       </Container>

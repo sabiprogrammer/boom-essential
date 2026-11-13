@@ -60,6 +60,16 @@ export function CloseIcon(props: IconProps) {
   );
 }
 
+export function ZoomInIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <circle cx="11" cy="11" r="6.5" />
+      <path d="m20 20-4.2-4.2" />
+      <path d="M11 8.5v5M8.5 11h5" />
+    </Icon>
+  );
+}
+
 export function EyeIcon(props: IconProps) {
   return (
     <Icon {...props}>

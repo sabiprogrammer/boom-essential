@@ -8,7 +8,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 
 /**
  * "Our work": four of the client's own installation photographs in a staggered row, with a link to the Projects
- * page. Real photographs only, so no "illustrative" label; captions are the factual ones used on /projects.
+ * page. Real photographs only; captions are the factual ones used on /projects.
  */
 export function OurWorkSection() {
   const { eyebrow, heading, lead, cta, photos } = homeWork;

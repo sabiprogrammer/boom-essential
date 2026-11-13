@@ -14,12 +14,12 @@ import type { SitePhoto } from "./site-photo";
  * wording of the division pages; nothing is added. NO PRICES anywhere: not in data, not in wording, and the
  * flyer price panels are cropped out of the machine photographs. Never add brands, models, specifications,
  * sizes, capacities or availability. Pictures: authentic client photographs where they exist; otherwise an
- * illustrative picture (stock photograph or scene picture), always labelled illustrative.
+ * illustrative picture (a stock photograph or a scene picture).
  */
 
 export type CatalogueVisual =
   | { kind: "photo"; photo: SitePhoto; note?: string; fit?: "cover" | "contain" }
-  /** A stock photograph or scene picture used as an illustration: always labelled, never presented as BOOM work. */
+  /** A stock photograph or scene picture used as an illustration: never presented as BOOM work. */
   | { kind: "illustrative"; image: IllustrativeImageBase };
 
 export type CatalogueItem = {

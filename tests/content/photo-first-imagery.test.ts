@@ -67,16 +67,13 @@ describe("photo-first imagery (client feedback, 13 Nov 2026: fewer graphs, more 
     assert.doesNotMatch(code("components/home/OurWorkSection.tsx"), /Illustrative|IllustrativePhoto/);
   });
 
-  it("the hero bars: Energy is a real photograph (unlabelled); Security and Foods are illustrative and labelled", () => {
-    assert.equal(heroBarImages.energy.illustrative, false);
+  it("the hero bars: Energy is a real client photograph; Security and Foods are illustrative pictures", () => {
     assert.equal(heroBarImages.energy.src, projectPhotos.controlPanel.src);
-    assert.equal(heroBarImages.security.illustrative, true);
-    assert.equal(heroBarImages.foods.illustrative, true);
     for (const bar of Object.values(heroBarImages)) assert.ok(bar.src && existsSync(publicFile(bar.src)), bar.src);
-    assert.match(code("components/home/HeroBars.tsx"), /image\.illustrative \? <IllustrativeLabel/);
+    assert.doesNotMatch(code("components/home/HeroBars.tsx"), /Illustrative/);
   });
 
-  it("every Security picture that replaced a drawing is a labelled illustrative scene, never a client photograph", () => {
+  it("every Security picture that replaced a drawing is an illustrative scene, never presented as a client photograph", () => {
     const equipment = securityContent.equipment.pictures.map((item) => item.id);
     assert.deepEqual([...equipment].sort(), ["dome", "monitoring"]);
     const source = code("components/security/SecurityEquipmentSection.tsx");
@@ -88,9 +85,8 @@ describe("photo-first imagery (client feedback, 13 Nov 2026: fewer graphs, more 
     }
   });
 
-  it("the Foods page shows the staples picture, labelled, in a band", () => {
+  it("the Foods page shows the staples picture in a band", () => {
     assert.match(code("app/(site)/foods/page.tsx"), /<FoodsPictureBand \/>/);
-    assert.match(code("components/products/FoodsIllustration.tsx"), /IllustrativeLabel/);
   });
 
   it("the new pages and sections reach the Projects page (it is linked from the nav, the footer and the homepage)", () => {

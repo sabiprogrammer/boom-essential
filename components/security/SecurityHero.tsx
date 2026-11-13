@@ -17,7 +17,7 @@ const meshStyle: CSSProperties = {
 
 /**
  * BOOM Security hero on Charcoal Navy with a drafting mesh. Text on the left; on the right a picture of a dome
- * camera at a house entrance. It is an illustration, not a BOOM installation, and carries the "Illustrative image" label.
+ * camera at a house entrance. It is an illustration, so it is never captioned or described as BOOM's own work.
  */
 export function SecurityHero() {
   const { eyebrow, headline, copy, primaryCta, secondaryCta } = securityContent.hero;

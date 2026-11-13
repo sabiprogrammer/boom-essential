@@ -10,8 +10,7 @@ const dir = "/assets/images/security/illustrative";
 export const securityIllustrativeImages = {
   perimeterFence: {
     src: `${dir}/perimeter-fence-illustrative.jpg`,
-    alt: "Coils of razor wire on angled posts above a black welded-mesh fence panel, against a clear blue sky. A stock photograph, not a BOOM installation.",
-    caption: "Illustrative image. Stock photograph, not a BOOM installation.",
+    alt: "Coils of razor wire on angled posts above a black welded-mesh fence panel, against a clear blue sky.",
     width: 1600,
     height: 1067,
     position: "50% 62%",
@@ -24,8 +23,7 @@ export const securityIllustrativeImages = {
   },
   accessControl: {
     src: `${dir}/access-control-terminal-illustrative.jpg`,
-    alt: "A wall-mounted keypad and fingerprint terminal with a lit screen beside a glass door, with a blurred office behind it. A stock photograph, not a BOOM installation.",
-    caption: "Illustrative image. Stock photograph, not a BOOM installation.",
+    alt: "A wall-mounted keypad and fingerprint terminal with a lit screen beside a glass door, with a blurred office behind it.",
     width: 1600,
     height: 917,
     position: "32% 50%",

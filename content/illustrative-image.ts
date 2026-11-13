@@ -1,14 +1,12 @@
 /**
- * What every ILLUSTRATIVE picture carries, whether it is a licensed stock photograph or another illustration. It is
- * never a photograph of BOOM work, so it always shows the "Illustrative image" label (see `IllustrativePhoto`). Never
- * use one on the Projects page, as project evidence, or with alt text or a caption that claims it is BOOM's.
+ * What every ILLUSTRATIVE picture (a licensed stock photograph or a generated scene picture) carries. It is never a
+ * photograph of BOOM work: never use one on the Projects page or as project evidence, and never write alt text that
+ * claims it is BOOM's. It shows no visible label or disclaimer (removed at Sabi Programmers' request, 2026-11-13).
  */
 export type IllustrativeImageBase = {
   src: string;
-  /** Describes only what is visible. Stock photographs also say so and that they are not a BOOM installation. */
+  /** Describes only what is visible. */
   alt: string;
-  /** Short line shown under the picture where there is room for one. */
-  caption: string;
   width: number;
   height: number;
   /** CSS object-position, to keep the subject in view when the frame crops the picture. */

@@ -10,7 +10,6 @@ import {
   divisionLinks,
   divisionsLabel,
   homeLink,
-  industrialLink,
   productsLink,
   projectsLink,
   type NavLinkItem,
@@ -163,15 +162,11 @@ export function MobileDrawer({ id, open, onClose }: MobileDrawerProps) {
               />
             ))}
             <GroupLabel open={open} index={6}>
-              Products and projects
+              More
             </GroupLabel>
             <DrawerLink item={productsLink} index={7} open={open} pathname={pathname} onNavigate={onClose} />
             <DrawerLink item={projectsLink} index={8} open={open} pathname={pathname} onNavigate={onClose} />
-            <GroupLabel open={open} index={9}>
-              Additional offering
-            </GroupLabel>
-            <DrawerLink item={industrialLink} index={10} open={open} pathname={pathname} onNavigate={onClose} />
-            <DrawerLink item={contactLink} index={11} open={open} pathname={pathname} onNavigate={onClose} />
+            <DrawerLink item={contactLink} index={9} open={open} pathname={pathname} onNavigate={onClose} />
           </ul>
         </nav>
 

@@ -1,6 +1,6 @@
 /**
  * Illustrative drawing of a two-storey shop or office with solar panels on a flat roof. A generic commercial
- * property, not a BOOM project. Decorative: the section says the drawings are illustrative.
+ * property, not a BOOM project. Decorative.
  */
 export function CommercialScene({ className }: { className?: string }) {
   const roofPanels = [118, 158, 198, 238];

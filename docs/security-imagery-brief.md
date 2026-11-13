@@ -15,7 +15,7 @@ Owner: Sabi Programmers. Nothing in this file has been downloaded, generated or 
 
 ## Rules that apply to every route
 
-- Anything that is not a photograph of real BOOM work carries the **"Illustrative image"** label (`IllustrativeLabel`) and an alt text that describes only what is visible (Sabi Programmers' instruction, 2026-11-12: the site never states how an image was made; stock photographs also say "stock photograph" and "not a BOOM installation" in their alt text, as already live). See `docs/asset-inventory.md` §4a and `content/division-images.ts` for the existing pattern.
+- Anything that is not a photograph of real BOOM work carries an alt text that describes only what is visible (Sabi Programmers' instruction, 2026-11-12: the site never states how an image was made; the "not a BOOM installation" wording that stock photographs once carried in their alt text was removed on 2026-11-13). See `docs/asset-inventory.md` §4a and `content/division-images.ts` for the existing pattern.
 - Never use illustrative images as project evidence, never on the Projects page, never as "our work".
 - No readable brand names, logos, licence plates, street names or house numbers; no identifiable faces.
 - No camera counts, ranges, resolutions or other specifications in captions.
@@ -70,7 +70,7 @@ Gaps: no candidate for prompt 1 (a dome camera under the eave of a house) or pro
 
 The first attempt to download C5 through Unsplash's own download link returned a bot-check page (HTTP 401), saved as a fake `.jpg`; it was deleted and not worked around. The photo was fetched instead from the public image address the photo page itself links.
 
-**Done (second approval given 2026-11-10):** C5 and C7 are cropped, labelled "Illustrative image", given honest alt text and wired into `public/assets/images/security/illustrative/`, the Security page and the Products catalogue.
+**Done (second approval given 2026-11-10):** C5 and C7 are cropped, given honest alt text and wired into `public/assets/images/security/illustrative/`, the Security page and the Products catalogue.
 
 **Original approval request (for the record):** download C1, C5 and C7 (and C2 and C3 if you want two more camera shots), at the mid-size version each page offers (roughly 1,200 to 1,900 px wide, enough for the site), into a scratch folder outside the repository. I would then view them, report the real file sizes and anything visible that the page did not mention (text, faces, brands, places), and only after your second yes crop, label and add them to `public/assets/images/security/illustrative/`.
 

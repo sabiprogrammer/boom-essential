@@ -2,6 +2,8 @@
 @import "./tokens.css";
 @import "./motion.css";
 @import "./header.css";
+@import "./image-motion.css";
+@import "./lightbox.css";
 
 /* Global base styles only. Tokens live in tokens.css; components use utilities. */
 

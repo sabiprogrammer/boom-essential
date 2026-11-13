@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import { productPhotos } from "@/content/product-photos";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
+import { PhotoLightbox } from "@/components/ui/PhotoLightbox";
 import { Section } from "@/components/ui/Section";
 
 /**
@@ -39,7 +40,7 @@ export function IndustrialEquipmentSection() {
             <figure className="relative flex h-full flex-col border-l-[3px] border-navy bg-white">
               <span aria-hidden="true" className="absolute top-0 right-0 z-10 h-10 w-10 border-t-2 border-r-2 border-gold" />
               {/* The client's own photograph of the machines (flyer banner and price cropped out). */}
-              <div className="relative aspect-[5/4] overflow-hidden bg-tint lg:aspect-auto lg:min-h-64 lg:flex-1">
+              <div data-pic className="relative aspect-[5/4] overflow-hidden bg-tint lg:aspect-auto lg:min-h-64 lg:flex-1">
                 <Image
                   src={machines.src}
                   alt={machines.alt}
@@ -48,6 +49,7 @@ export function IndustrialEquipmentSection() {
                   className="object-cover"
                   style={{ objectPosition: "50% 55%" }}
                 />
+                <PhotoLightbox photo={machines} />
               </div>
               <figcaption className="p-6 sm:p-7">
                 <span className="block font-heading text-xs font-bold tracking-[0.16em] text-ink-muted uppercase">Supplied</span>

@@ -10,7 +10,7 @@ import { Viewfinder } from "./Viewfinder";
 
 /**
  * Residential, commercial and institutional as three ledger rows with oversized labels, each with an
- * illustrative (labelled) picture of that kind of property. On hover or focus the viewfinder
+ * illustrative picture of that kind of property. On hover or focus the viewfinder
  * around each icon tightens, as a camera locking on.
  */
 export function SecurityAudienceSection() {

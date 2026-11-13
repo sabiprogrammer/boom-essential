@@ -1,6 +1,6 @@
 /**
  * Illustrative drawing of a wide public building (a school, say) with solar panels on its wings. A generic
- * institutional property, not a BOOM project. Decorative: the section says the drawings are illustrative.
+ * institutional property, not a BOOM project. Decorative.
  */
 export function InstitutionalScene({ className }: { className?: string }) {
   const columns = [160, 180, 200, 220, 240];

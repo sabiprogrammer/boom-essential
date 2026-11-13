@@ -10,8 +10,6 @@ export type DivisionImage = {
   /** Intrinsic size of the file, needed to keep the aspect ratio for "band" images. */
   width: number;
   height: number;
-  /** True for illustrative (stock or generated) imagery that is not real company work: shows the "Illustrative image" label. Never omit for those. */
-  illustrative: boolean;
   /**
    * "cover" fills the panel and crops (use `position` to choose what stays in view).
    * "band" shows the whole picture at its own aspect ratio, for panoramic files that cannot be cropped
@@ -26,7 +24,7 @@ export type DivisionImage = {
 /**
  * TEMPORARY illustrative images for the homepage division visuals (see `docs/asset-inventory.md`, §6).
  * All three are illustrations (see `docs/asset-inventory.md` §4a). None shows a real BOOM installation, product, employee or project.
- * Replace each entry with an authentic client photograph (and `illustrative: false`) when supplied.
+ * Replace each entry with an authentic client photograph when supplied.
  * Never use these for leadership profiles, product specifications or project evidence.
  */
 export const divisionImages: Partial<Record<DivisionId, DivisionImage>> = {
@@ -35,7 +33,6 @@ export const divisionImages: Partial<Record<DivisionId, DivisionImage>> = {
     alt: "Solar panels on a house roof at sunset, with a wall-mounted inverter and a battery unit beside the porch.",
     width: 1672,
     height: 941,
-    illustrative: true,
     fit: "cover",
     position: "72% 50%",
   },
@@ -44,7 +41,6 @@ export const divisionImages: Partial<Record<DivisionId, DivisionImage>> = {
     alt: "A CCTV camera mounted on a house wall, with an electric perimeter fence and a metal gate behind it.",
     width: 844,
     height: 464,
-    illustrative: true,
     fit: "cover",
     position: "82% 50%",
     // The source file has a sliver of a neighbouring panel along its left edge.
@@ -55,7 +51,6 @@ export const divisionImages: Partial<Record<DivisionId, DivisionImage>> = {
     alt: "Nigerian staple foods on sacking: smoked fish, a basket of yellow garri, bowls of rice and fufu powder, and cassava roots.",
     width: 1672,
     height: 467,
-    illustrative: true,
     fit: "band",
     // The source file has a white strip along its top edge.
     trim: { top: 3 },

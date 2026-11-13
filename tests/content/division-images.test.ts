@@ -13,8 +13,9 @@ describe("homepage division pictures", () => {
     for (const image of images) assert.ok(existsSync(join(root, "public", image.src)), image.src);
   });
 
-  it("stay labelled illustrative, because none is a photograph of BOOM work", () => {
-    for (const image of images) assert.equal(image.illustrative, true, image.src);
+  it("show no visible label and carry no \"illustrative\" flag (removed at Sabi Programmers' request, 2026-11-13)", () => {
+    for (const image of images) assert.ok(!("illustrative" in image), image.src);
+    assert.ok(!existsSync(join(root, "components", "home", "IllustrativeLabel.tsx")));
   });
 
   it("have alt text that describes only what is visible: no provenance wording, no claim that it is BOOM's", () => {

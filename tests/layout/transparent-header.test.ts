@@ -34,7 +34,7 @@ describe("transparent header that turns white on scroll", () => {
   });
 
   it("text and controls switch colour only over a dark hero, through the header-clear-dark variant", () => {
-    for (const file of ["components/layout/BrandLogo.tsx", "components/layout/nav-styles.ts", "components/layout/SiteHeader.tsx", "components/layout/DesktopNav.tsx"]) {
+    for (const file of ["components/layout/BrandLogo.tsx", "components/layout/nav-styles.ts", "components/layout/SiteHeader.tsx"]) {
       assert.match(code(file), /header-clear-dark:/, file);
     }
     // Hover must stay readable on navy: never navy-on-navy.

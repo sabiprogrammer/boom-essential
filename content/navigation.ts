@@ -25,7 +25,7 @@ export const divisionLinks: readonly NavLinkItem[] = [
   { label: "BOOM Foods", href: "/foods", description: "Food and Agricultural Products" },
 ];
 
-/** Additional offering, not a fourth division. Always presented separately from the divisions. */
+/** Additional offering, not a fourth division. Linked from the FOOTER ONLY (the header and menu are kept short, 13 Nov 2026); it is also reached from the homepage section and the Contact page. */
 export const industrialLink: NavLinkItem = {
   label: "Industrial Equipment",
   href: "/industrial-equipment",

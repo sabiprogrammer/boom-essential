@@ -77,7 +77,6 @@ export const securityContent = {
     lead: "Supply of CCTV cameras, recording equipment, storage devices and related surveillance accessories.",
     photoNote: "Product image",
     picturesLabel: "CCTV equipment in use",
-    picturesNote: "Illustrative images of CCTV equipment in use. Not BOOM installations or products.",
     pictures: [
       { id: "dome", label: "Dome camera" },
       { id: "monitoring", label: "Watching the camera views" },

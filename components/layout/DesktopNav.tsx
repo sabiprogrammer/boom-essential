@@ -1,10 +1,10 @@
-import { aboutLink, contactLink, homeLink, industrialLink, productsLink, projectsLink } from "@/content/navigation";
+import { aboutLink, contactLink, homeLink, productsLink, projectsLink } from "@/content/navigation";
 import { DivisionsMenu } from "./DivisionsMenu";
 import { NavLink } from "./NavLink";
 
 /**
- * Desktop navigation (lg and up). Industrial Equipment sits after a divider, apart from the
- * three principal divisions in the dropdown, because it is an additional offering, not a division.
+ * Desktop navigation (lg and up), kept short on purpose. Industrial Equipment, an additional offering and not a
+ * division, is linked from the footer only (client and Sabi Programmers' request, 13 Nov 2026).
  */
 export function DesktopNav() {
   return (
@@ -22,10 +22,6 @@ export function DesktopNav() {
         </li>
         <li>
           <NavLink item={projectsLink} />
-        </li>
-        <li aria-hidden="true" className="mx-2 h-5 w-px bg-line-strong header-clear-dark:bg-white/35" />
-        <li>
-          <NavLink item={industrialLink} />
         </li>
         <li>
           <NavLink item={contactLink} />

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { SitePhoto } from "@/content/site-photo";
+import { PhotoLightbox } from "./PhotoLightbox";
 
 type PhotoFigureProps = {
   photo: SitePhoto;
@@ -15,12 +16,14 @@ type PhotoFigureProps = {
   note?: string;
   surface?: "light" | "dark";
   priority?: boolean;
+  /** Click to enlarge (on by default). The picture also wipes in on scroll and eases closer on hover: see app/image-motion.css. */
+  zoomable?: boolean;
   className?: string;
 };
 
 /**
  * One authentic client photograph with an honest alt text and a short factual caption. Used for installations,
- * products and machines. Illustrative imagery uses `IllustrativeLabel` instead; never mix the two.
+ * products and machines. Illustrative imagery uses `IllustrativePhoto` instead; keep the two apart.
  */
 export function PhotoFigure({
   photo,
@@ -32,6 +35,7 @@ export function PhotoFigure({
   note,
   surface = "light",
   priority = false,
+  zoomable = true,
   className = "",
 }: PhotoFigureProps) {
   const muted = surface === "dark" ? "text-on-dark-muted" : "text-ink-muted";
@@ -39,7 +43,7 @@ export function PhotoFigure({
   return (
     <figure className={className}>
       {aspect ? (
-        <div className={`relative overflow-hidden border-t-[3px] border-gold ${fit === "contain" ? "bg-white" : "bg-tint"}`} style={{ aspectRatio: aspect }}>
+        <div data-pic className={`relative overflow-hidden border-t-[3px] border-gold ${fit === "contain" ? "bg-white" : "bg-tint"}`} style={{ aspectRatio: aspect }}>
           <Image
             src={photo.src}
             alt={photo.alt}
@@ -49,9 +53,10 @@ export function PhotoFigure({
             className={fit === "contain" ? "object-contain" : "object-cover"}
             style={{ objectPosition: position }}
           />
+          {zoomable ? <PhotoLightbox photo={photo} /> : null}
         </div>
       ) : (
-        <div className="overflow-hidden border-t-[3px] border-gold bg-tint">
+        <div data-pic className="overflow-hidden border-t-[3px] border-gold bg-tint">
           <Image
             src={photo.src}
             alt={photo.alt}
@@ -61,6 +66,7 @@ export function PhotoFigure({
             priority={priority}
             className="block h-auto w-full"
           />
+          {zoomable ? <PhotoLightbox photo={photo} /> : null}
         </div>
       )}
       {showCaption ? (

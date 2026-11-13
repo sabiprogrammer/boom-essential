@@ -4,8 +4,7 @@ import { FoodsIllustration } from "@/components/products/FoodsIllustration";
 
 /**
  * A wide band of the staple foods between the introduction and the products. The picture is illustrative (no food
- * photographs have been supplied), so it carries the "Illustrative image" label; replace it with the client's own
- * photographs when they arrive.
+ * photographs have been supplied); replace it with the client's own photographs when they arrive.
  */
 export function FoodsPictureBand() {
   return (
