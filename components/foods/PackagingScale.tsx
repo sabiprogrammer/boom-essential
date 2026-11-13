@@ -8,13 +8,14 @@ const BAG_HEIGHTS = [26, 38, 54, 76, 104];
 export function PackagingScale({ from, to }: { from: string; to: string }) {
   return (
     <div aria-hidden="true">
-      <div className="flex items-end gap-3">
+      {/* On the very narrowest phones the five bags are allowed to shrink with the panel instead of overflowing it. */}
+      <div className="flex items-end gap-2 min-[400px]:gap-3">
         {BAG_HEIGHTS.map((height) => (
           <svg
             key={height}
             viewBox="0 0 40 52"
             style={{ height }}
-            className="w-auto"
+            className="w-auto min-w-0 shrink"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >

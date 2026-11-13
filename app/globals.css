@@ -16,6 +16,8 @@
     -webkit-text-size-adjust: 100%;
     scroll-padding-top: calc(var(--header-height) + 1rem);
     scroll-behavior: smooth;
+    /* Together with the same rule on body (below): the page never scrolls or widens sideways. */
+    overflow-x: clip;
   }
 
   body {
@@ -27,6 +29,13 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /*
+     * The site never scrolls sideways. Elements that wait off to one side before their entrance or scroll
+     * animation (and the off-screen mobile menu) can otherwise widen the page for a moment, which makes a phone
+     * load the page slightly zoomed out. `clip` (unlike `hidden`) does not turn the page into a scroll container,
+     * so the sticky header keeps working.
+     */
+    overflow-x: clip;
   }
 
   h1,

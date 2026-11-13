@@ -30,15 +30,15 @@ export function SecurityAudienceSection() {
               className="reveal group/row grid items-center gap-x-10 gap-y-5 border-b border-line-on-dark py-10 lg:grid-cols-12 lg:py-14"
               style={{ "--i": index } as CSSProperties}
             >
-              <div className="flex items-center gap-6 lg:col-span-7">
-                <span className="relative grid size-20 shrink-0 place-items-center text-gold sm:size-24">
+              <div className="flex min-w-0 items-center gap-4 min-[400px]:gap-6 lg:col-span-7">
+                <span className="relative grid size-16 shrink-0 place-items-center text-gold min-[400px]:size-20 sm:size-24">
                   <Viewfinder
                     cornerClassName="size-4 border-2"
                     className="inset-0 transition-[inset] duration-500 ease-(--ease-standard) group-hover/row:inset-2"
                   />
                   <SecurityIcon name={audience.icon} className="size-10 sm:size-12" strokeWidth={1.25} />
                 </span>
-                <h3 className="break-words text-[clamp(1.875rem,1.2rem+3.2vw,3.75rem)] leading-none font-extrabold tracking-tight text-white uppercase">
+                <h3 className="min-w-0 break-words text-[clamp(1.875rem,1.2rem+3.2vw,3.75rem)] leading-none font-extrabold tracking-tight text-white uppercase">
                   {audience.label}
                 </h3>
               </div>

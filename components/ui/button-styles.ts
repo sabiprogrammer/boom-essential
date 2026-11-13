@@ -5,7 +5,9 @@ export type ButtonSize = "sm" | "md" | "lg";
 
 const base =
   "group/button inline-flex shrink-0 items-center justify-center gap-2.5 rounded-sm border font-heading font-semibold " +
-  "tracking-tight whitespace-nowrap select-none " +
+  // A label may wrap only on the very narrowest phones (under 400px), and a button never grows wider than its container:
+  // a long label such as "Enquire About Pounding Machines" is wider than a 360px screen allows. At every normal width it stays on one line.
+  "tracking-tight max-w-full text-center whitespace-normal min-[400px]:whitespace-nowrap select-none " +
   "transition-[background-color,border-color,color,transform,box-shadow] duration-200 " +
   "active:translate-y-px disabled:pointer-events-none disabled:opacity-45 aria-disabled:pointer-events-none aria-disabled:opacity-45";
 
