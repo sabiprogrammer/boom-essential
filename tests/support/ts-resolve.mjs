@@ -22,5 +22,14 @@ export async function resolve(specifier, context, nextResolve) {
       if (isFile(candidate)) return nextResolve(candidate, context);
     }
   }
-  return nextResolve(specifier, context);
+  try {
+    return await nextResolve(specifier, context);
+  } catch (error) {
+    // Next.js ships subpaths such as "next/server" as CommonJS files without an "exports" map, which Node's ESM
+    // resolver will not find without the extension (bundlers do). Retry with ".js" for those only.
+    if (specifier.startsWith("next/") && !specifier.endsWith(".js") && error?.code === "ERR_MODULE_NOT_FOUND") {
+      return nextResolve(`${specifier}.js`, context);
+    }
+    throw error;
+  }
 }

@@ -8,7 +8,8 @@ import { getSupabasePublicConfig } from "./config";
  * allow the anonymous role. Never put customer data in browser storage through it. `@supabase/ssr`
  * returns the same instance on repeated calls in the browser, so calling this per use is fine.
  *
- * Nothing imports this yet: authentication and data access are later Stage 6 milestones.
+ * Nothing imports this yet: sign-in runs on the server (Server Actions), so no browser-side auth code exists.
+ * Data access (tables, RLS) is a later Stage 6 milestone.
  */
 export function createSupabaseBrowserClient() {
   const { url, publishableKey } = getSupabasePublicConfig();

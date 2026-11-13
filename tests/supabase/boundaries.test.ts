@@ -16,7 +16,7 @@ function sourceFiles(dir: string): string[] {
   });
 }
 
-describe("Supabase connection boundaries (connection milestone only)", () => {
+describe("Supabase connection boundaries", () => {
   it("the server client is server-only and builds a fresh client per call", () => {
     const source = read("lib/supabase/server.ts");
     assert.match(source, /^import "server-only";/m);
@@ -44,16 +44,23 @@ describe("Supabase connection boundaries (connection milestone only)", () => {
     }
   });
 
-  it("authentication is not built yet: no proxy or middleware file", () => {
-    for (const name of ["proxy.ts", "middleware.ts", "src/proxy.ts", "src/middleware.ts"]) {
-      assert.ok(!existsSync(join(root, name)), `${name} belongs to the authentication milestone`);
-    }
+  it("the Next.js 16 proxy.ts exists and the deprecated middleware.ts does not", () => {
+    assert.ok(existsSync(join(root, "proxy.ts")));
+    for (const name of ["middleware.ts", "src/middleware.ts", "src/proxy.ts"]) assert.ok(!existsSync(join(root, name)), name);
   });
 
-  it("nothing imports the Supabase clients yet (no queries, no data access)", () => {
+  it("pages, components, content and hooks never import the Supabase clients directly (they go through lib/auth)", () => {
     const folders = ["app", "components", "content", "hooks"];
     for (const file of folders.flatMap(sourceFiles)) {
       assert.doesNotMatch(read(file), /@\/lib\/supabase/, file);
     }
+  });
+
+  it("no database or storage query exists yet (authentication only; tables and RLS come later)", () => {
+    const folders = ["app", "components", "content", "hooks", "lib"];
+    for (const file of folders.flatMap(sourceFiles)) {
+      assert.doesNotMatch(code(file), /\.(from|rpc|storage)\(\s*["'`]/, file);
+    }
+    assert.doesNotMatch(code("proxy.ts"), /\.(from|rpc|storage)\(\s*["'`]/);
   });
 });

@@ -15,11 +15,12 @@ import { getSupabasePublicConfig } from "./config";
  * boundary, as the caching rules in CLAUDE.md require. Never wrap code that uses it in `use cache`.
  *
  * Cookie writes: Server Components cannot set cookies, so `setAll` ignores that error. Refreshing
- * the session cookie on each request is the job of the Next.js 16 `proxy.ts`, which belongs to the
- * authentication milestone and does not exist yet. Until then this client holds no session and
- * nothing is protected by it.
+ * the session cookie on each request is the job of the root `proxy.ts` (for `/admin` only, through
+ * `lib/supabase/proxy-client.ts`); Server Actions can write cookies, which is how sign-in and sign-out work.
  *
- * Nothing imports this yet: authentication and data access are later Stage 6 milestones.
+ * Do not call this from pages directly to decide access: use `requireAdmin()` / `getAdminAccess()` from
+ * `lib/auth/require-admin.ts`, which verify with `getClaims()` against the administrator allowlist.
+ * Data access (tables, RLS) is a later Stage 6 milestone.
  */
 export async function createSupabaseServerClient() {
   const cookieStore = await cookies();
