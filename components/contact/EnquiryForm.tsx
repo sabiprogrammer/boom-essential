@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import { useEnquiryForm } from "@/hooks/useEnquiryForm";
-import { enquirySubmissionEnabled } from "@/lib/enquiry/config";
 import type { EnquiryInitial } from "@/lib/enquiry/types";
 import { AppointmentFields } from "./AppointmentFields";
 import { CategoryPicker } from "./CategoryPicker";
@@ -12,13 +11,14 @@ import { ErrorSummary } from "./ErrorSummary";
 import { FormStep } from "./FormStep";
 import { InterestPicker } from "./InterestPicker";
 import { MessageField } from "./MessageField";
-import { PreviewNotice } from "./PreviewNotice";
 import { SubmitBar } from "./SubmitBar";
 
 /**
  * The one enquiry form for every part of Boom Multi Global: general, Energy, Security, Foods and Industrial
- * Equipment, with an optional appointment request. It validates in the browser and hands a typed payload to
- * `submitEnquiry`, which today sends nothing (see lib/enquiry/config.ts). Values stay in memory only.
+ * Equipment, with an optional appointment request. It validates in the browser and sends a typed payload to
+ * `submitEnquiry` (POST /api/enquiries). While a submission is in flight the fields and the button are locked;
+ * after a failure everything the visitor entered is kept; success replaces the form with a confirmation that
+ * shows the reference the database assigned. Values stay in memory only.
  * Pass `initial` (from the URL) to pre-select a category, a product or the appointment request, and
  * `appointmentRequests` (a counter) to tick the appointment request later without resetting the form, and
  * `appointmentResets` (a counter) to clear it again if only a link had ticked it.
@@ -51,15 +51,21 @@ export function EnquiryForm({
   }, [appointmentRequests]);
 
   useEffect(() => {
-    if (status.state === "preview" || status.state === "success" || status.state === "error") statusRef.current?.focus();
+    if (status.state === "success" || status.state === "error") statusRef.current?.focus();
   }, [status.state]);
 
-  return (
-    <form noValidate onSubmit={form.submit} aria-label="Enquiry form" className="space-y-12">
-      {enquirySubmissionEnabled ? null : <PreviewNotice />}
+  // Confirmed by the server: show the confirmation instead of a form that could be sent twice.
+  if (status.state === "success") {
+    return <EnquiryStatusPanel status={status} panelRef={statusRef} onSendAnother={form.reset} />;
+  }
 
+  const submitting = status.state === "submitting";
+
+  return (
+    <form noValidate onSubmit={form.submit} aria-label="Enquiry form" aria-busy={submitting} className="space-y-12">
       {form.errorList.length > 0 ? <ErrorSummary errors={form.errorList} summaryRef={summaryRef} /> : null}
 
+      <fieldset disabled={submitting} className="m-0 min-w-0 space-y-12 border-0 p-0">
       <FormStep number="01" title="About you" description="Only your name and a phone number are required.">
         <CustomerFields
           customer={form.values.customer}
@@ -114,10 +120,11 @@ export function EnquiryForm({
           />
         </label>
       </div>
+      </fieldset>
 
-      <EnquiryStatusPanel status={status} type={form.type} panelRef={statusRef} />
+      <EnquiryStatusPanel status={status} panelRef={statusRef} onSendAnother={form.reset} />
 
-      <SubmitBar type={form.type} submitting={status.state === "submitting"} />
+      <SubmitBar type={form.type} submitting={submitting} />
     </form>
   );
 }

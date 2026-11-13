@@ -30,11 +30,37 @@ describe("Supabase connection boundaries", () => {
     assert.doesNotMatch(source, /server-only|next\/headers|\.\/server|createServerClient/);
   });
 
-  it("no source file reads or names a service-role or secret key", () => {
+  // The ONE place the secret key is read (approved 2026-11-13 for the public enquiry submission).
+  const SECRET_CLIENT = "lib/supabase/secret-client.ts";
+
+  it("no source file except the secret-key client reads or names a service-role or secret key", () => {
     const folders = ["app", "components", "content", "hooks", "lib"];
     for (const file of folders.flatMap(sourceFiles)) {
+      if (file === SECRET_CLIENT) continue;
       assert.doesNotMatch(code(file), /service[_-]?role|SUPABASE_SECRET|sb_secret_/i, file);
     }
+  });
+
+  it("the secret-key client is server-only, reads only SUPABASE_SECRET_KEY, builds a fresh client per call and keeps no session", () => {
+    const source = read(SECRET_CLIENT);
+    assert.match(source, /^import "server-only";/m);
+    assert.match(code(SECRET_CLIENT), /process\.env\.SUPABASE_SECRET_KEY\?\.trim\(\)/);
+    assert.doesNotMatch(code(SECRET_CLIENT), /NEXT_PUBLIC_[A-Z_]*(SECRET|SERVICE)/);
+    assert.doesNotMatch(source, /^(const|let|var) \w+ = createClient/m, "no module-level client");
+    assert.match(source, /persistSession: false/);
+    assert.match(source, /export function createSupabaseSecretClient/);
+  });
+
+  it("only the enquiry server code imports the secret-key client", () => {
+    const folders = ["app", "components", "content", "hooks", "lib", "proxy.ts"];
+    const files = folders.flatMap((entry) => (entry.endsWith(".ts") ? [entry] : sourceFiles(entry)));
+    const importers = files.filter((file) => /secret-client/.test(code(file)) && file !== SECRET_CLIENT);
+    assert.deepEqual(importers, ["lib/enquiry/server/submit-to-database.ts"]);
+  });
+
+  it("no secret key variable has a NEXT_PUBLIC_ name anywhere, including the example environment file", () => {
+    assert.doesNotMatch(read(".env.example"), /NEXT_PUBLIC_\w*(SECRET|SERVICE)/i);
+    assert.match(read(".env.example"), /^SUPABASE_SECRET_KEY=\s*$/m, "documented by name only, with no value");
   });
 
   it("no source file hard-codes a Supabase project address or key", () => {
@@ -56,11 +82,44 @@ describe("Supabase connection boundaries", () => {
     }
   });
 
-  it("no database or storage query exists yet (authentication only; tables and RLS come later)", () => {
+  it("database calls exist only in the listed files: the public submit_enquiry function, the administrator's enquiry and appointment reads and writes, and the membership check; no storage call exists", () => {
     const folders = ["app", "components", "content", "hooks", "lib"];
+    const ALLOWED = "lib/enquiry/server/submit-to-database.ts";
+    // Administrator reads and writes (Stages 6.5 and 6.6): user-session queries (RLS applies), each guarded by requireAdmin().
+    const ADMIN_TABLE_ACCESS = [
+      "lib/admin/enquiries/queries.ts",
+      "lib/admin/enquiries/enquiry-actions.ts",
+      "lib/admin/appointments/queries.ts",
+      "lib/admin/appointments/appointment-actions.ts",
+    ];
+    // The only other functions the administrator's own session may call. Both run as the CALLER (reschedule_appointment is
+    // SECURITY INVOKER; am_i_active_admin answers only about the caller), so Row Level Security still decides everything.
+    const ADMIN_RPC: Record<string, string[]> = {
+      "lib/admin/appointments/appointment-actions.ts": ["reschedule_appointment"],
+      "lib/admin/membership/check-membership.ts": ["am_i_active_admin"],
+    };
     for (const file of folders.flatMap(sourceFiles)) {
-      assert.doesNotMatch(code(file), /\.(from|rpc|storage)\(\s*["'`]/, file);
+      const source = code(file);
+      assert.doesNotMatch(source, /\.storage\(\s*["'`]|\.storage\./, file);
+      if (!ADMIN_TABLE_ACCESS.includes(file)) assert.doesNotMatch(source, /\.from\(\s*["'`]/, file);
+      if (file === ALLOWED) continue;
+      if (ADMIN_RPC[file]) {
+        const calls = [...source.matchAll(/\.rpc\(\s*["'`]([^"'`]+)["'`]/g)].map((match) => match[1]);
+        assert.deepEqual(calls, ADMIN_RPC[file], file);
+        continue;
+      }
+      assert.doesNotMatch(source, /\.rpc\(\s*["'`]/, file);
     }
+    const rpcCalls = [...code(ALLOWED).matchAll(/\.rpc\(\s*["'`]([^"'`]+)["'`]/g)].map((match) => match[1]);
+    assert.deepEqual(rpcCalls, ["submit_enquiry"]);
     assert.doesNotMatch(code("proxy.ts"), /\.(from|rpc|storage)\(\s*["'`]/);
+  });
+
+  it("the enquiry database call passes no id, reference, status, source or timestamp", () => {
+    const source = code("lib/enquiry/server/submit-to-database.ts");
+    const args = /\.rpc\("submit_enquiry", \{([\s\S]*?)\}\)/.exec(source)?.[1] ?? "";
+    const names = [...args.matchAll(/^\s*(p_\w+):/gm)].map((match) => match[1]);
+    assert.ok(names.length >= 12);
+    for (const name of names) assert.doesNotMatch(name, /status|source|reference|created|updated|^p_id$/, name);
   });
 });

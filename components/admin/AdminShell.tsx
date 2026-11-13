@@ -3,6 +3,7 @@ import { adminAuthCopy } from "@/content/admin-auth";
 import { signOutAction } from "@/lib/auth/sign-out-action";
 import { LogoImage } from "@/components/layout/LogoImage";
 import { Button } from "@/components/ui/Button";
+import { AdminNav } from "./AdminNav";
 
 type AdminShellProps = {
   /** The verified administrator's email, shown only as a label. It is never used to decide access. */
@@ -45,6 +46,7 @@ export function AdminShell({ email, children }: AdminShellProps) {
             </form>
           </div>
         </div>
+        <AdminNav />
       </header>
       <div className="flex-1">{children}</div>
     </div>

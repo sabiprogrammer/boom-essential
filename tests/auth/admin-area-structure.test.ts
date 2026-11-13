@@ -98,12 +98,107 @@ describe("administrator area: structure that the security model depends on", () 
     }
   });
 
-  it("the dashboard preview stays separate: /admin never imports its demo data or components", () => {
-    for (const file of [...files("app/admin"), ...files("components/admin"), ...files("lib/auth")]) {
-      assert.doesNotMatch(code(file), /dashboard-preview\/|demo-enquiries|createDemoEnquiries|DemoReady/, file);
+  it("the dashboard preview stays separate: /admin never imports its demo data, demo state or demo shell", () => {
+    // /admin reuses ONLY the preview's purely visual building blocks and pure helpers (same look, one source), listed here.
+    // Anything that carries demo records or demo state (providers, hooks, demo-*, the shell) must never be imported.
+    const allowed = new Set([
+      "@/components/dashboard-preview/Avatar",
+      "@/components/dashboard-preview/DateTile",
+      "@/components/dashboard-preview/DetailDrawer",
+      "@/components/dashboard-preview/DetailSection",
+      "@/components/dashboard-preview/EmptyState",
+      "@/components/dashboard-preview/FilterChips",
+      "@/components/dashboard-preview/Panel",
+      "@/components/dashboard-preview/SearchField",
+      "@/components/dashboard-preview/SelectField",
+      "@/components/dashboard-preview/StatusBadge",
+      "@/components/dashboard-preview/icons",
+      "@/lib/dashboard-preview/types",
+      "@/lib/dashboard-preview/labels",
+      "@/lib/dashboard-preview/dates",
+      "@/lib/dashboard-preview/phone",
+      "@/lib/dashboard-preview/contact-actions",
+    ]);
+    for (const file of [...files("app/admin"), ...files("components/admin"), ...files("lib/auth"), ...files("lib/admin")]) {
+      const source = code(file);
+      for (const [, specifier] of source.matchAll(/from "([^"]*dashboard-preview[^"]*)"/g)) {
+        assert.ok(allowed.has(specifier), `${file} imports ${specifier}, which is not an approved purely-visual or pure-helper module`);
+      }
+      assert.doesNotMatch(source, /demo-enquiries|createDemoEnquiries|DemoReady|DemoDataProvider|useDemo|PreviewShell|demo-reducer|demo-activity/, file);
     }
-    // A plain link to the preview is allowed (and the placeholder shows no operational figures).
-    assert.doesNotMatch(code("content/admin-auth.ts"), /\d/, "the placeholder copy states no figures");
+    // The workspace copy states no figures.
+    assert.doesNotMatch(code("content/admin-auth.ts"), /\d/, "the workspace copy states no figures");
+  });
+
+  it("every enquiry read and Server Action re-verifies the administrator itself", () => {
+    const exportsOf = (source: string) => [...source.matchAll(/export (?:async )?function (\w+)\(([\s\S]*?)\n\}\n/g)];
+    const guarded: Record<string, number> = {
+      "lib/admin/enquiries/queries.ts": 2,
+      "lib/admin/enquiries/enquiry-actions.ts": 2,
+      "lib/admin/appointments/queries.ts": 2,
+      "lib/admin/appointments/appointment-actions.ts": 4,
+    };
+    for (const [file, expected] of Object.entries(guarded)) {
+      const functions = exportsOf(code(file));
+      assert.equal(functions.length, expected, `${file} should export exactly ${expected} functions`);
+      for (const [, name, body] of functions) assert.match(body, /await requireAdmin\(\)/, `${name} must call requireAdmin() first`);
+    }
+    for (const file of ["lib/admin/enquiries/enquiry-actions.ts", "lib/admin/appointments/appointment-actions.ts"]) {
+      assert.match(code(file), /^"use server";/m, file);
+    }
+    assert.match(code("lib/admin/membership/check-membership.ts"), /await requireAdmin\(\)/);
+    for (const page of ["app/admin/(protected)/page.tsx", "app/admin/(protected)/appointments/page.tsx"]) {
+      assert.match(code(page), /await requireAdmin\(\)/, page);
+    }
+  });
+
+  it("the admin data code uses the signed-in administrator's own session: never the secret key, never a delete", () => {
+    const rpcAllowed = new Set(["lib/admin/appointments/appointment-actions.ts", "lib/admin/membership/check-membership.ts"]);
+    for (const file of files("lib/admin")) {
+      const source = code(file);
+      assert.doesNotMatch(source, /secret-client|createSupabaseSecretClient|SUPABASE_SECRET|service[_-]?role/i, file);
+      assert.doesNotMatch(source, /\.delete\(|\.upsert\(|\.storage\b/, file);
+      if (!rpcAllowed.has(file)) assert.doesNotMatch(source, /\.rpc\(/, file);
+    }
+    for (const file of [
+      "lib/admin/enquiries/queries.ts",
+      "lib/admin/enquiries/enquiry-actions.ts",
+      "lib/admin/appointments/queries.ts",
+      "lib/admin/appointments/appointment-actions.ts",
+      "lib/admin/membership/check-membership.ts",
+    ]) {
+      assert.match(code(file), /createSupabaseServerClient\(\)/, file);
+    }
+  });
+
+  it("appointment writes touch only the columns administrators may write, never a preferred date or time, and rescheduling goes through the one database function", () => {
+    const actions = code("lib/admin/appointments/appointment-actions.ts");
+    // Columns used as keys when building an update (the grants allow: status, confirmed_date, confirmed_time, venue, scheduling_note).
+    const written = new Set([...actions.matchAll(/\b(?:patch\.(\w+) =|(\w+): (?:"|input\.))/g)].map((m) => m[1] ?? m[2]));
+    for (const column of ["confirmed_by", "confirmed_at", "preferred_date", "preferred_time", "timezone", "enquiry_id", "rescheduled_from_id", "created_at", "updated_at"]) {
+      assert.ok(!written.has(column), `${column} must never be written by the application`);
+    }
+    assert.doesNotMatch(actions, /\.insert\(/, "an appointment is never inserted from the application: the reschedule function does it");
+    assert.deepEqual([...actions.matchAll(/\.rpc\("(\w+)"/g)].map((m) => m[1]), ["reschedule_appointment"]);
+    assert.deepEqual([...new Set([...actions.matchAll(/\.from\("(\w+)"\)/g)].map((m) => m[1]))], ["appointments"]);
+    // Every status change is guarded by the status the administrator was looking at.
+    assert.match(actions, /\.update\(patch\)\.eq\("id", id\)\.eq\("status", expected\)/);
+    // The only statuses ever written.
+    assert.deepEqual([...actions.matchAll(/status: "(\w+)"/g)].map((m) => m[1]).filter((s) => !["error", "success"].includes(s)).sort(), ["cancelled", "completed", "confirmed"]);
+    assert.match(actions, /patch: Record<string, string> = \{ status: "cancelled" \}/);
+  });
+
+  it("the admin writes touch only the status of an enquiry and the enquiry and content of a note", () => {
+    const actions = code("lib/admin/enquiries/enquiry-actions.ts");
+    assert.deepEqual([...actions.matchAll(/\.update\(\{([^}]*)\}\)/g)].map((m) => m[1].trim()), ["status: input.next"]);
+    assert.deepEqual([...actions.matchAll(/\.insert\(\{([^}]*)\}\)/g)].map((m) => m[1].trim()), ["enquiry_id: input.enquiryId, content: input.content"]);
+    assert.deepEqual([...actions.matchAll(/\.from\("(\w+)"\)/g)].map((m) => m[1]).sort(), ["enquiries", "enquiries", "enquiry_notes"]);
+  });
+
+  it("only administrator code reads enquiries and notes with the user session; the queries are read-only", () => {
+    const queries = code("lib/admin/enquiries/queries.ts");
+    assert.doesNotMatch(queries, /\.(insert|update|delete|upsert)\(/);
+    assert.deepEqual([...new Set([...queries.matchAll(/\.from\("(\w+)"\)/g)].map((m) => m[1]))].sort(), ["activity_logs", "appointments", "enquiries", "enquiry_notes"]);
   });
 
   it("the sign-in page is not forced dynamic by anything outside Suspense (cookies are only read in the gated components)", () => {

@@ -26,9 +26,7 @@ export const adminAuthCopy = {
     title: "Administration",
     signedInAs: "Signed in as",
     signOut: "Sign out",
-    heading: "Your secure workspace is ready",
-    body: "Administrator sign-in is working and this area is protected. Live enquiry and appointment records will be connected in the next milestone, so there is nothing to manage here yet.",
-    previewLead: "Want to see how the finished dashboard will look?",
-    previewLink: "Open the dashboard preview (sample data only)",
+    heading: "Enquiries",
+    body: "Customer enquiries from the website, newest first. Search, filter, open an enquiry to contact the customer, change its status and keep internal notes.",
   },
 } as const;

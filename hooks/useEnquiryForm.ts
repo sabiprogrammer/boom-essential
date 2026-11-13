@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { findCategory } from "@/content/enquiry-options";
+import { newSubmissionId } from "@/lib/enquiry/submission-id";
 import { submitEnquiry } from "@/lib/enquiry/submit";
 import type {
   CustomerDetails,
@@ -27,8 +28,11 @@ function initialValues(initial: EnquiryInitial): EnquiryFormValues {
 /**
  * State, validation and submission flow for the enquiry form. Values live only in React state: nothing is
  * written to localStorage, sessionStorage or cookies. Fields are validated when they lose focus and, once a
- * field shows an error (or after a failed submit), as they change. Submission goes through `submitEnquiry`,
- * which today sends nothing and reports "preview".
+ * field shows an error (or after a failed submit), as they change. Submission goes through `submitEnquiry`
+ * (POST /api/enquiries). Success is shown only for a response the server confirmed; on any failure the visitor's
+ * entries stay exactly as they were. A submit while one is in flight is ignored (a ref, not state, because two
+ * clicks can land before React re-renders), and one random submission id is kept for the whole attempt so a
+ * retry after a lost response can never create a second enquiry.
  */
 export function useEnquiryForm(initial: EnquiryInitial, appointmentRequests = 0, appointmentResets = 0) {
   const [values, setValues] = useState<EnquiryFormValues>(() => initialValues(initial));
@@ -37,6 +41,9 @@ export function useEnquiryForm(initial: EnquiryInitial, appointmentRequests = 0,
   const [status, setStatus] = useState<FormStatus>({ state: "idle" });
   /** Bumps on every failed submit so the error summary can take focus each time. */
   const [summaryToken, setSummaryToken] = useState(0);
+  const inFlight = useRef(false);
+  /** Made at the first submit of an attempt (never during render) and kept across retries until success. */
+  const submissionId = useRef<string | null>(null);
 
   /**
    * An appointment request arrived from a link (see hooks/useAppointmentIntent.ts) while this form is already
@@ -81,7 +88,7 @@ export function useEnquiryForm(initial: EnquiryInitial, appointmentRequests = 0,
     setTouched(true);
     setValues(next);
     if (attempted || errors[key]) recheck(key, next);
-    if (status.state === "preview" || status.state === "error") setStatus({ state: "idle" });
+    if (status.state === "error") setStatus({ state: "idle" });
   }
 
   function setCustomer(field: keyof CustomerDetails, value: string) {
@@ -119,7 +126,7 @@ export function useEnquiryForm(initial: EnquiryInitial, appointmentRequests = 0,
         return rest;
       });
     }
-    if (status.state === "preview" || status.state === "error") setStatus({ state: "idle" });
+    if (status.state === "error") setStatus({ state: "idle" });
   }
 
   function setPreferred(field: "preferredDate" | "preferredTime", value: string) {
@@ -135,28 +142,56 @@ export function useEnquiryForm(initial: EnquiryInitial, appointmentRequests = 0,
     if (attempted || errors[key] || hasContent(key, values)) recheck(key, values);
   }
 
+  function showFieldErrors(found: FieldErrors) {
+    setErrors(found);
+    setAttempted(true);
+    setSummaryToken((token) => token + 1);
+    setStatus({ state: "idle" });
+  }
+
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (status.state === "submitting") return;
+    if (inFlight.current || status.state === "success") return;
 
     const found = validateEnquiry(values, todayInLagos());
     if (Object.keys(found).length > 0) {
-      setErrors(found);
-      setAttempted(true);
-      setSummaryToken((token) => token + 1);
-      setStatus({ state: "idle" });
+      showFieldErrors(found);
       return;
     }
 
     const submission = buildSubmission(values, initial.prefilled);
     if (!submission) return;
 
+    inFlight.current = true;
     setErrors({});
     setStatus({ state: "submitting" });
-    const result = await submitEnquiry(submission);
-    if (result.ok) setStatus({ state: "success" });
-    else if (result.reason === "not-connected") setStatus({ state: "preview" });
-    else setStatus({ state: "error", message: result.message });
+    try {
+      submissionId.current ??= newSubmissionId();
+      const result = await submitEnquiry(submission, submissionId.current);
+      if (result.ok) {
+        // Confirmed by the server: this attempt is finished, so the next enquiry gets a fresh id.
+        submissionId.current = null;
+        setStatus({ state: "success", reference: result.reference, appointmentRequested: result.appointmentRequested });
+      } else if (result.reason === "invalid" && Object.keys(result.fieldErrors).length > 0) {
+        // The server refused specific fields: show them against the fields. Nothing was saved, and what the
+        // visitor typed is untouched.
+        showFieldErrors(result.fieldErrors);
+      } else {
+        setStatus({ state: "error", message: result.message });
+      }
+    } finally {
+      inFlight.current = false;
+    }
+  }
+
+  /** Starts a new, empty enquiry after a successful one. */
+  function reset() {
+    submissionId.current = null;
+    setValues(initialValues(initial));
+    setErrors({});
+    setAttempted(false);
+    setTouched(false);
+    setStatus({ state: "idle" });
   }
 
   const type: EnquiryType = values.appointment.requested ? "appointment_request" : "enquiry";
@@ -178,6 +213,7 @@ export function useEnquiryForm(initial: EnquiryInitial, appointmentRequests = 0,
     setHoneypot,
     blur,
     submit,
+    reset,
   };
 }
 

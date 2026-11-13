@@ -1,10 +1,10 @@
 import type { EnquiryCategory } from "@/content/enquiry-options";
 
 /**
- * Typed shapes for the customer enquiry form. Concepts are kept distinct so they can later map one-to-one
- * onto the Supabase enquiry schema (see docs/implementation-plan.md, "Proposed enquiry payload"):
- * customer details, business category, specific interests, message, enquiry type, appointment
- * preference and submission status. No persistence exists yet.
+ * Typed shapes for the customer enquiry form. Concepts are kept distinct so they map one-to-one onto the
+ * Supabase enquiry schema (supabase/migrations/): customer details, business category, specific interests,
+ * message, enquiry type, appointment preference and submission status. The browser sends them to
+ * POST /api/enquiries (lib/enquiry/api-contract.ts), where they are validated again and saved.
  */
 
 export type { EnquiryCategory };
@@ -46,9 +46,10 @@ export type EnquiryFormValues = {
 };
 
 /**
- * The validated, cleaned payload the future secure server-side handler will receive. Empty optional
- * strings become null. The submission status (e.g. "new", or "requested" for appointments) is assigned by
- * the server and is deliberately not part of this client payload.
+ * The validated, cleaned payload sent to the server handler. Empty optional strings become null. The
+ * submission status ("new", or "requested" for appointments), the id, the reference and the timestamps are
+ * assigned by the server and database and are deliberately not part of this client payload. `type` and
+ * `source` are informational only: the server ignores them (an appointment exists only if `appointment` does).
  */
 export type EnquirySubmission = {
   customer: {
@@ -81,14 +82,14 @@ export type FieldKey =
 export type FieldErrors = Partial<Record<FieldKey, string>>;
 
 /**
- * The form's submission status as the interface sees it. "preview" means the backend is not connected, so
- * nothing was sent or stored. "success" is reserved for a confirmed server response and is not reachable yet.
+ * The form's submission status as the interface sees it. "success" is reserved for a response the server
+ * confirmed (the enquiry is saved and has a reference); it is never set optimistically. "error" means nothing
+ * is known to be saved, and the visitor's entries are kept so they can try again.
  */
 export type FormStatus =
   | { state: "idle" }
   | { state: "submitting" }
-  | { state: "preview" }
-  | { state: "success" }
+  | { state: "success"; reference: string; appointmentRequested: boolean }
   | { state: "error"; message: string };
 
 /** Initial form state, derived from the URL by lib/enquiry/prefill.ts. */
