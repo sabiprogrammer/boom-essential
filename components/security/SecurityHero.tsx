@@ -1,10 +1,10 @@
 import type { CSSProperties } from "react";
 import { company } from "@/content/company";
 import { securityAssessmentHref, securityContent } from "@/content/security";
+import { securitySceneImages } from "@/content/security-scene-images";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
-import { SecurityPlanGraphic } from "./SecurityPlanGraphic";
-import { Viewfinder } from "./Viewfinder";
+import { IllustrativePhoto } from "@/components/ui/IllustrativePhoto";
 
 const delay = (ms: number) => ({ "--delay": `${ms}ms` }) as CSSProperties;
 
@@ -16,11 +16,11 @@ const meshStyle: CSSProperties = {
 };
 
 /**
- * BOOM Security hero on Charcoal Navy with a drafting mesh. Text on the left; on the right a framed
- * plan-view schematic (fence line, gate, building, four cameras) inside a camera viewfinder.
+ * BOOM Security hero on Charcoal Navy with a drafting mesh. Text on the left; on the right a picture of a dome
+ * camera at a house entrance. It is an illustration, not a BOOM installation, and carries the "Illustrative image" label.
  */
 export function SecurityHero() {
-  const { eyebrow, headline, copy, primaryCta, secondaryCta, schematicNote } = securityContent.hero;
+  const { eyebrow, headline, copy, primaryCta, secondaryCta } = securityContent.hero;
 
   return (
     <section
@@ -59,13 +59,16 @@ export function SecurityHero() {
             </div>
           </div>
 
-          <figure className="rise lg:col-span-6" style={delay(300)}>
-            <div className="relative bg-navy p-5 sm:p-8">
-              <Viewfinder cornerClassName="size-7 border-2" className="inset-2 sm:inset-3" />
-              <SecurityPlanGraphic className="block h-auto w-full" />
-            </div>
-            <figcaption className="mt-3 text-sm text-on-dark-muted">{schematicNote}</figcaption>
-          </figure>
+          <div className="rise relative lg:col-span-6" style={delay(300)}>
+            <span aria-hidden="true" className="absolute -right-3 -bottom-3 size-full bg-gold sm:-right-4 sm:-bottom-4" />
+            <IllustrativePhoto
+              image={securitySceneImages.hero}
+              aspect="4 / 3"
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              priority
+              className="border-t-[3px] border-gold"
+            />
+          </div>
         </div>
       </Container>
     </section>

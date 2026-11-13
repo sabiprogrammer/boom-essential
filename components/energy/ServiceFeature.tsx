@@ -4,13 +4,13 @@ import { EnergyIcon } from "./EnergyIcon";
 
 type ServiceFeatureProps = {
   service: EnergyService;
-  /** Illustrative diagram shown beside the text. */
+  /** Picture shown beside the text. */
   visual: ReactNode;
   /** Puts the visual on the right on large screens. */
   flip?: boolean;
 };
 
-/** A leading service shown large: diagram on one side, number, icon, title and description on the other. */
+/** A leading service shown large: picture on one side, number, icon, title and description on the other. */
 export function ServiceFeature({ service, visual, flip = false }: ServiceFeatureProps) {
   const headingId = `service-${service.number}`;
 

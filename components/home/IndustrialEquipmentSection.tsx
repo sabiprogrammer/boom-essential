@@ -1,4 +1,6 @@
+import Image from "next/image";
 import type { CSSProperties } from "react";
+import { productPhotos } from "@/content/product-photos";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
@@ -8,6 +10,8 @@ import { Section } from "@/components/ui/Section";
  * and lighter in treatment than the divisions. No specifications or capacities (none supplied).
  */
 export function IndustrialEquipmentSection() {
+  const machines = productPhotos.poundingMachinesSmall;
+
   return (
     <Section tone="tint" space="sm" aria-labelledby="industrial-heading">
       <Container>
@@ -32,12 +36,25 @@ export function IndustrialEquipmentSection() {
           </div>
 
           <div className="reveal lg:col-span-5" style={{ "--i": 1 } as CSSProperties}>
-            <div className="relative flex h-full min-h-48 flex-col justify-end border-l-[3px] border-navy bg-white p-7 sm:p-9">
-              <span aria-hidden="true" className="absolute top-0 right-0 h-10 w-10 border-t-2 border-r-2 border-gold" />
-              <p className="font-heading text-xs font-bold tracking-[0.16em] text-ink-muted uppercase">Supplied</p>
-              <p className="mt-2 font-heading text-h2 leading-tight font-extrabold text-navy">Pounding machines</p>
-              <p className="mt-3 text-base text-ink-muted">For the restaurant business.</p>
-            </div>
+            <figure className="relative flex h-full flex-col border-l-[3px] border-navy bg-white">
+              <span aria-hidden="true" className="absolute top-0 right-0 z-10 h-10 w-10 border-t-2 border-r-2 border-gold" />
+              {/* The client's own photograph of the machines (flyer banner and price cropped out). */}
+              <div className="relative aspect-[5/4] overflow-hidden bg-tint lg:aspect-auto lg:min-h-64 lg:flex-1">
+                <Image
+                  src={machines.src}
+                  alt={machines.alt}
+                  fill
+                  sizes="(min-width: 1024px) 38vw, 92vw"
+                  className="object-cover"
+                  style={{ objectPosition: "50% 55%" }}
+                />
+              </div>
+              <figcaption className="p-6 sm:p-7">
+                <span className="block font-heading text-xs font-bold tracking-[0.16em] text-ink-muted uppercase">Supplied</span>
+                <span className="mt-1.5 block font-heading text-h3 leading-tight font-extrabold text-navy">Pounding machines</span>
+                <span className="mt-2 block text-base text-ink-muted">For the restaurant business.</span>
+              </figcaption>
+            </figure>
           </div>
         </div>
       </Container>

@@ -4,6 +4,7 @@ import { FoodsAudienceSection } from "@/components/foods/FoodsAudienceSection";
 import { FoodsClosingSection } from "@/components/foods/FoodsClosingSection";
 import { FoodsHero } from "@/components/foods/FoodsHero";
 import { FoodsIntroSection } from "@/components/foods/FoodsIntroSection";
+import { FoodsPictureBand } from "@/components/foods/FoodsPictureBand";
 import { HouseholdStaplesSection } from "@/components/foods/HouseholdStaplesSection";
 import { ProteinProductsSection } from "@/components/foods/ProteinProductsSection";
 import { SupplyEnquirySection } from "@/components/foods/SupplyEnquirySection";
@@ -34,12 +35,13 @@ export const metadata: Metadata = {
   },
 };
 
-/** BOOM Foods (Stage 6). Warm White hero, then leaf, white, light, light, leaf and a green close. */
+/** BOOM Foods (Stage 6). Warm White hero, then leaf (with a picture band), white, light, light, leaf and a green close. */
 export default function FoodsPage() {
   return (
     <>
       <FoodsHero />
       <FoodsIntroSection />
+      <FoodsPictureBand />
       <HouseholdStaplesSection />
       <ProteinProductsSection />
       <FoodsAudienceSection />

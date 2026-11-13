@@ -34,10 +34,9 @@ export type ProductImage = { src: string; alt: string; width: number; height: nu
 export const industrialContent = {
   /**
    * The client's own photograph of the smaller pounding machines (supplied 10 Nov 2026; the flyer banner and price
-   * are cropped out). The hero shows it in place of the illustrative drawing, and the "illustrative" caption goes.
-   * Set to undefined to fall back to the drawing.
+   * are cropped out). The hero shows it. There is no drawing fallback: the client asked for photographs, not drawings.
    */
-  productImage: productPhotos.poundingMachinesSmall as ProductImage | undefined,
+  productImage: productPhotos.poundingMachinesSmall as ProductImage,
 
   hero: {
     eyebrow: "Additional offering · Industrial Equipment",
@@ -45,7 +44,6 @@ export const industrialContent = {
     copy: "We supply pounding machines in different sizes for people in the restaurant business.",
     primaryCta: "Enquire About Pounding Machines",
     secondaryCta: "WhatsApp Our Team",
-    drawingNote: "Illustrative drawing. Not a BOOM machine.",
   },
 
   position: {

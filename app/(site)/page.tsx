@@ -7,6 +7,7 @@ import { FeaturedSolutionsSection } from "@/components/home/FeaturedSolutionsSec
 import { HeroSection } from "@/components/home/HeroSection";
 import { HowWeWorkSection } from "@/components/home/HowWeWorkSection";
 import { IndustrialEquipmentSection } from "@/components/home/IndustrialEquipmentSection";
+import { OurWorkSection } from "@/components/home/OurWorkSection";
 import { IntroSection } from "@/components/home/IntroSection";
 import { LeadershipPreviewSection } from "@/components/home/LeadershipPreviewSection";
 import { OrganizationJsonLd } from "@/components/seo/OrganizationJsonLd";
@@ -47,6 +48,7 @@ export default function HomePage() {
       <DivisionsSection />
       <FeaturedSolutionsSection />
       <IndustrialEquipmentSection />
+      <OurWorkSection />
       <CoreValuesSection />
       <HowWeWorkSection />
       <LeadershipPreviewSection />

@@ -46,6 +46,51 @@ export const securitySceneImages = {
     height: 788,
     position: "50% 40%",
   },
+  /** Security hero. */
+  hero: {
+    src: `${dir}/dome-camera-entrance-wide.jpg`,
+    alt: "A white dome CCTV camera fixed under the roof overhang at the entrance of a house at sunset, with a paved driveway, a dark metal gate and a boundary wall behind it.",
+    caption,
+    width: 1400,
+    height: 788,
+    position: "70% 40%",
+  },
+  /** "Cameras and recording equipment": a dome camera in use. */
+  equipmentDome: {
+    src: `${dir}/dome-camera-eave-gate.jpg`,
+    alt: "A white dome CCTV camera on the underside of a roof overhang, with a house, a paved yard and a black metal gate in the background at dusk.",
+    caption,
+    width: 1400,
+    height: 788,
+    position: "68% 40%",
+  },
+  /** "Cameras and recording equipment": monitoring the camera views. */
+  equipmentMonitoring: {
+    src: `${dir}/monitoring-wall-operator.jpg`,
+    alt: "A person seen from behind at a desk in a dim control room, facing a large wall of monitors that show many camera views.",
+    caption,
+    width: 1400,
+    height: 788,
+    position: "50% 35%",
+  },
+  /** Products catalogue: remote monitoring. */
+  remoteMonitoring: {
+    src: `${dir}/monitoring-room-night.jpg`,
+    alt: "A person seen from behind at a desk in a dark room, watching six monitors that show camera views of a gated property at night.",
+    caption,
+    width: 1400,
+    height: 788,
+    position: "50% 40%",
+  },
+  /** Security assessment (service 07): a gated property and its perimeter. */
+  assessment: {
+    src: `${dir}/gated-home-perimeter.jpg`,
+    alt: "A modern house at dusk behind a boundary wall with wall lights and a line of fence wires along the top, with a dark sliding metal gate and a concrete driveway.",
+    caption,
+    width: 1400,
+    height: 788,
+    position: "50% 50%",
+  },
 } satisfies Record<string, IllustrativeImageBase>;
 
 /** The picture shown with each audience row on the Security page. */

@@ -1,28 +1,26 @@
 import { categoryEnquiryHref } from "./enquiry-options";
-import type { IllustrativeImage } from "./illustrative-image";
+import type { IllustrativeImageBase } from "./illustrative-image";
 import { divisionEnquiryHref } from "./enquiry-links";
 import { foodProducts, foodsEnquiryHref } from "./foods";
 import { industrialEnquiryHref } from "./industrial-equipment";
 import { productPhotos } from "./product-photos";
 import { projectPhotos } from "./project-photos";
 import { securityIllustrativeImages } from "./security-illustrative-images";
+import { securitySceneImages } from "./security-scene-images";
 import type { SitePhoto } from "./site-photo";
 
 /**
  * The Products catalogue (client request, 10 Nov 2026). Product names and descriptions repeat the confirmed
  * wording of the division pages; nothing is added. NO PRICES anywhere: not in data, not in wording, and the
  * flyer price panels are cropped out of the machine photographs. Never add brands, models, specifications,
- * sizes, capacities or availability. Pictures: authentic client photographs where they exist; otherwise a
- * drawing or a stock photograph, both labelled illustrative.
+ * sizes, capacities or availability. Pictures: authentic client photographs where they exist; otherwise an
+ * illustrative picture (stock photograph or scene picture), always labelled illustrative.
  */
-
-export type CatalogueDrawing = "recorder" | "signal";
 
 export type CatalogueVisual =
   | { kind: "photo"; photo: SitePhoto; note?: string; fit?: "cover" | "contain" }
-  | { kind: "drawing"; drawing: CatalogueDrawing }
-  /** A stock photograph used as an illustration: always labelled, never presented as BOOM work. */
-  | { kind: "illustrative"; image: IllustrativeImage };
+  /** A stock photograph or scene picture used as an illustration: always labelled, never presented as BOOM work. */
+  | { kind: "illustrative"; image: IllustrativeImageBase };
 
 export type CatalogueItem = {
   slug: string;
@@ -50,7 +48,6 @@ export const catalogueHeader = {
 } as const;
 
 export const catalogueEnquiryLabel = "Enquire";
-export const catalogueIllustrativeNote = "Illustrative drawing. Not a BOOM product.";
 
 export const catalogueSections: readonly CatalogueSectionData[] = [
   {
@@ -103,7 +100,7 @@ export const catalogueSections: readonly CatalogueSectionData[] = [
         slug: "recording-equipment",
         name: "Recording equipment and storage",
         description: "Recording equipment and storage devices for CCTV systems.",
-        visual: { kind: "drawing", drawing: "recorder" },
+        visual: { kind: "illustrative", image: securitySceneImages.equipmentMonitoring },
         enquiryHref: divisionEnquiryHref("security", "cctv-sales-supply"),
       },
       {
@@ -126,7 +123,7 @@ export const catalogueSections: readonly CatalogueSectionData[] = [
         name: "Remote monitoring",
         description:
           "Setup and support for remote surveillance and monitoring systems, subject to available technology and connectivity.",
-        visual: { kind: "drawing", drawing: "signal" },
+        visual: { kind: "illustrative", image: securitySceneImages.remoteMonitoring },
         enquiryHref: divisionEnquiryHref("security", "remote-monitoring"),
       },
     ],

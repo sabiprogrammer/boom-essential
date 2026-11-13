@@ -1,19 +1,21 @@
 import type { CSSProperties } from "react";
 import { energyContent, solarAssessmentHref } from "@/content/energy";
+import Image from "next/image";
 import { company } from "@/content/company";
+import { projectPhotos } from "@/content/project-photos";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
-import { SolarGraphic } from "./SolarGraphic";
 
 const delay = (ms: number) => ({ "--delay": `${ms}ms` }) as CSSProperties;
 
 /**
- * BOOM Energy hero on Deep Navy. Text on the left. The artwork is anchored to the section's bottom
- * and right edges (full bleed): a sun rises on the hero's own bottom edge behind a tilted solar array,
- * so the horizon of the artwork is the edge of the hero.
+ * BOOM Energy hero on Deep Navy. Text on the left. On the right, full bleed to the top, right and bottom edges
+ * (so it also sits behind the transparent header), one of the client's own photographs of an installed system:
+ * a room of wall-mounted inverters. It fades into the navy so the text stays clear of it.
  */
 export function EnergyHero() {
   const { eyebrow, headline, copy, primaryCta, secondaryCta } = energyContent.hero;
+  const photo = projectPhotos.inverterRoom;
 
   return (
     <section
@@ -51,8 +53,20 @@ export function EnergyHero() {
         </div>
       </Container>
 
-      <div className="pointer-events-none mt-12 lg:absolute lg:right-0 lg:bottom-0 lg:z-[-1] lg:mt-0 lg:w-[46%] xl:w-[56%]">
-        <SolarGraphic className="block h-auto w-full" />
+      <div className="relative mt-12 aspect-[4/3] lg:absolute lg:inset-y-0 lg:right-0 lg:z-[-1] lg:mt-0 lg:aspect-auto lg:w-[42%]">
+        <Image
+          src={photo.src}
+          alt={photo.alt}
+          fill
+          priority
+          sizes="(min-width: 1024px) 42vw, 100vw"
+          className="object-cover"
+          style={{ objectPosition: "50% 38%" }}
+        />
+        {/* Fades the picture into the navy on its text side, and darkens its top edge for the transparent header. */}
+        <span aria-hidden="true" className="absolute inset-0 bg-linear-to-t from-navy/60 to-transparent lg:bg-linear-to-r lg:from-navy lg:via-navy/15 lg:to-transparent" />
+        <span aria-hidden="true" className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-navy/70 to-transparent" />
+        <span aria-hidden="true" className="absolute top-0 right-0 h-1.5 w-24 bg-gold" />
       </div>
     </section>
   );

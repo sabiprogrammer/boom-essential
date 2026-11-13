@@ -4,7 +4,6 @@ import { securitySceneImages } from "@/content/security-scene-images";
 import { Container } from "@/components/ui/Container";
 import { IllustrativePhoto } from "@/components/ui/IllustrativePhoto";
 import { Section } from "@/components/ui/Section";
-import { PlanDiagram } from "./PlanDiagram";
 import { SecurityIcon } from "./SecurityIcon";
 import { ServiceIndex } from "./ServiceIndex";
 
@@ -34,8 +33,8 @@ function Row({ service, visual, index }: { service: SecurityService; visual: Rea
 }
 
 /**
- * Remote monitoring and security assessment as ledger rows: marker, text and a picture. Monitoring shows an
- * illustrative (labelled) monitoring desk; the assessment keeps its plan diagram.
+ * Remote monitoring and security assessment as ledger rows: marker, text and a picture. Both pictures are
+ * illustrative (labelled): a monitoring desk, and a gated property with its boundary wall.
  */
 export function MonitoringRows() {
   const [monitoring, assessment] = securityServices.slice(5);
@@ -62,7 +61,18 @@ export function MonitoringRows() {
             }
             index={0}
           />
-          <Row service={assessment} visual={<PlanDiagram className="size-full" />} index={1} />
+          <Row
+            service={assessment}
+            visual={
+              <IllustrativePhoto
+                image={securitySceneImages.assessment}
+                aspect="20 / 11"
+                sizes="(min-width: 1024px) 40vw, 92vw"
+                className="size-full"
+              />
+            }
+            index={1}
+          />
         </div>
       </Container>
     </Section>

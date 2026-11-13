@@ -2,15 +2,15 @@ import { energyContent, energyServices } from "@/content/energy";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { BlueprintDiagram } from "./BlueprintDiagram";
-import { LoadProfileDiagram } from "./LoadProfileDiagram";
+import { projectPhotos } from "@/content/project-photos";
 import { ServiceFeature } from "./ServiceFeature";
+import { ServicePhoto } from "./ServicePhoto";
 import { SustainBand } from "./SustainBand";
 import { SystemBand } from "./SystemBand";
 
 /**
  * All nine confirmed services in four different compositions, in the order a customer meets them:
- * the first two as large features with diagrams, then the installed system, then upkeep and growth,
+ * the first two as large features with the client's own photographs, then the installed system, then upkeep and growth,
  * then the two services defined by property type.
  */
 export function EnergyServicesSection() {
@@ -30,8 +30,8 @@ export function EnergyServicesSection() {
           </h3>
 
           <div className="mt-10 space-y-20 lg:space-y-28">
-            <ServiceFeature service={audit} visual={<LoadProfileDiagram className="size-full" />} />
-            <ServiceFeature service={design} visual={<BlueprintDiagram className="size-full" />} flip />
+            <ServiceFeature service={audit} visual={<ServicePhoto photo={projectPhotos.team} position="50% 55%" />} />
+            <ServiceFeature service={design} visual={<ServicePhoto photo={projectPhotos.inverterUnits} position="50% 22%" />} flip />
           </div>
         </Container>
       </Section>

@@ -2,18 +2,16 @@ import type { CSSProperties } from "react";
 import { industrialContent, industrialEnquiryHref } from "@/content/industrial-equipment";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
-import { MachineStage } from "./MachineStage";
 import { ProductMedia } from "./ProductMedia";
 
 const delay = (ms: number) => ({ "--delay": `${ms}ms` }) as CSSProperties;
 
 /**
  * Industrial Equipment hero on Charcoal Navy with a thin gold tab at its top edge. Text on the left; on the right a
- * product plinth (a gold block offset behind a navy frame) that holds the illustrative drawing today and an
- * authentic photograph when one is supplied.
+ * product plinth (a gold block offset behind a navy frame) that holds the client's own photograph of the machines.
  */
 export function IndustrialHero() {
-  const { eyebrow, headline, copy, primaryCta, secondaryCta, drawingNote } = industrialContent.hero;
+  const { eyebrow, headline, copy, primaryCta, secondaryCta } = industrialContent.hero;
   const { whatsapp } = industrialContent.contact;
 
   return (
@@ -57,8 +55,6 @@ export function IndustrialHero() {
           <div className="rise relative lg:col-span-5" style={delay(300)}>
             <ProductMedia
               aspect="520 / 440"
-              drawing={<MachineStage className="absolute inset-0 size-full" />}
-              drawingNote={drawingNote}
               sizes="(min-width: 1024px) 40vw, 100vw"
               plinth
               className="relative pr-3 pb-0 sm:pr-4"

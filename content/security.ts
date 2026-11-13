@@ -41,7 +41,6 @@ export const securityContent = {
     copy: "Security solutions designed to help homes, businesses and institutions improve property protection, surveillance and access management.",
     primaryCta: "Request a Security Assessment",
     secondaryCta: "Talk to Our Security Team",
-    schematicNote: "Illustrative schematic. Not a BOOM installation.",
   },
 
   intro: {
@@ -77,12 +76,11 @@ export const securityContent = {
     heading: "Cameras and Recording Equipment.",
     lead: "Supply of CCTV cameras, recording equipment, storage devices and related surveillance accessories.",
     photoNote: "Product image",
-    drawingsLabel: "Common CCTV equipment types",
-    drawingsNote: "Illustrative drawings of common equipment types. Not BOOM products.",
-    drawings: [
+    picturesLabel: "CCTV equipment in use",
+    picturesNote: "Illustrative images of CCTV equipment in use. Not BOOM installations or products.",
+    pictures: [
       { id: "dome", label: "Dome camera" },
-      { id: "bullet", label: "Bullet camera" },
-      { id: "recorder", label: "Recording unit and monitor" },
+      { id: "monitoring", label: "Watching the camera views" },
     ],
     cta: "See the products catalogue",
   },

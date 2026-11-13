@@ -98,7 +98,7 @@ describe("new client photographs", () => {
   });
 
   it("set the Industrial hero to the client's own machine photograph", () => {
-    assert.equal(industrialContent.productImage?.src, productPhotos.poundingMachinesSmall.src);
+    assert.equal(industrialContent.productImage.src, productPhotos.poundingMachinesSmall.src);
   });
 });
 
@@ -137,9 +137,9 @@ describe("Products catalogue", () => {
     }
   });
 
-  it("labels every drawing as illustrative by giving each non-photograph a drawing id", () => {
+  it("uses no drawings: every picture is an authentic photograph or a labelled illustrative picture", () => {
     for (const item of items) {
-      if (item.visual?.kind === "drawing") assert.ok(["recorder", "signal"].includes(item.visual.drawing));
+      if (item.visual) assert.ok(["photo", "illustrative"].includes(item.visual.kind), item.slug);
     }
   });
 
