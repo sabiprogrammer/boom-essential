@@ -9,13 +9,18 @@ const delay = (ms: number) => ({ "--delay": `${ms}ms` }) as CSSProperties;
 
 /**
  * BOOM Foods hero on Warm White: oversized headline, the supplied statement and a ruled index of the
- * seven products on the left; a full-bleed Agricultural Green field panel with stalks of grain on the right.
+ * seven products on the left; an Agricultural Green field panel with stalks of grain on the right, which starts
+ * below the (transparent) header so the navigation stays readable on Warm White.
  */
 export function FoodsHero() {
   const { eyebrow, headline, copy, statement, primaryCta, secondaryCta, indexLabel } = foodsContent.hero;
 
   return (
-    <section aria-labelledby="foods-heading" className="relative isolate overflow-hidden bg-warm-white pt-14 sm:pt-20 lg:pt-24">
+    <section
+      aria-labelledby="foods-heading"
+      data-header-top="light"
+      className="relative isolate overflow-hidden bg-warm-white pt-14 sm:pt-20 lg:pt-24"
+    >
       <Container>
         <div className="lg:w-[56%] lg:pb-24">
           <p
@@ -68,7 +73,7 @@ export function FoodsHero() {
 
       <div
         aria-hidden="true"
-        className="relative mt-14 h-[26rem] overflow-hidden bg-green sm:h-[30rem] lg:absolute lg:inset-y-0 lg:right-0 lg:z-[-1] lg:mt-0 lg:h-auto lg:w-[40%]"
+        className="relative mt-14 h-[26rem] overflow-hidden bg-green sm:h-[30rem] lg:absolute lg:top-(--header-height) lg:right-0 lg:bottom-0 lg:z-[-1] lg:mt-0 lg:h-auto lg:w-[40%]"
         style={fieldStripes(0.12)}
       >
         <span className="absolute top-0 left-0 h-1.5 w-24 bg-gold" />

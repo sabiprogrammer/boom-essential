@@ -23,7 +23,7 @@ export function DesktopNav() {
         <li>
           <NavLink item={projectsLink} />
         </li>
-        <li aria-hidden="true" className="mx-2 h-5 w-px bg-line-strong" />
+        <li aria-hidden="true" className="mx-2 h-5 w-px bg-line-strong header-clear-dark:bg-white/35" />
         <li>
           <NavLink item={industrialLink} />
         </li>

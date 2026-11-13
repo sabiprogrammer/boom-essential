@@ -1,0 +1,48 @@
+/*
+ * Transparent site header (components/layout/SiteHeader.tsx).
+ *
+ * At the top of a page whose FIRST section is a dark hero (data-surface="dark") or is marked
+ * data-header-top="light" (the Foods hero), the header is transparent and lies over that hero; after the page
+ * scrolls a few pixels (data-scrolled="true") it turns white with its shadow. Every other page (the 404, anything
+ * new whose first section is not marked) keeps the solid white header, which is also the fallback for browsers
+ * without :has(). Pure CSS, so there is no flash of a white header before hydration.
+ *
+ * To make a new page's header transparent, start it with a dark section, or add data-header-top="light" to a
+ * light first section and keep anything dark and full-bleed below the header (var(--header-height)).
+ */
+
+.site-header {
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-line);
+}
+
+/* Variants for the pieces inside the header. "clear" = transparent over a hero at the top of the page;
+   "clear-dark" = the same over a DARK hero, where text turns white. A browser without :has() drops them, so the
+   header simply stays white. */
+@custom-variant header-clear (&:where(.site-header:has(~ main > section:is([data-surface="dark"], [data-header-top="light"]):first-of-type):not([data-scrolled="true"]) *));
+@custom-variant header-clear-dark (&:where(.site-header:has(~ main > section[data-surface="dark"]:first-of-type):not([data-scrolled="true"]) *));
+
+@supports selector(:has(*)) {
+  /* The header lies over the hero (its height is taken out of the flow), whatever the scroll position, so
+     scrolling past 8px never shifts the page. */
+  .site-header:has(~ main > section:is([data-surface="dark"], [data-header-top="light"]):first-of-type) {
+    margin-bottom: calc(-1 * (var(--header-height) + 1px));
+  }
+
+  /* ...and the hero keeps that height free at its top, so its content sits where it always did. */
+  main > section:is([data-surface="dark"], [data-header-top="light"]):first-of-type::before {
+    content: "";
+    display: block;
+    height: var(--header-height);
+  }
+
+  .site-header:has(~ main > section:is([data-surface="dark"], [data-header-top="light"]):first-of-type):not([data-scrolled="true"]) {
+    background-color: transparent;
+    border-bottom-color: transparent;
+  }
+
+  /* Keyboard focus must stay visible: gold on the dark hero, as everywhere else on dark surfaces. */
+  .site-header:has(~ main > section[data-surface="dark"]:first-of-type):not([data-scrolled="true"]) :focus-visible {
+    outline-color: var(--color-gold);
+  }
+}

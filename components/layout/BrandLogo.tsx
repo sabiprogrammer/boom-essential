@@ -19,9 +19,9 @@ export function BrandLogo() {
         sizes="64px"
         className="size-14 transition-[width,height] duration-300 group-data-[scrolled=true]/header:size-11"
       />
-      <span className="hidden font-heading text-sm leading-tight font-extrabold tracking-[0.14em] text-navy min-[420px]:block lg:hidden xl:block">
+      <span className="hidden font-heading text-sm leading-tight font-extrabold tracking-[0.14em] text-navy transition-colors duration-300 min-[420px]:block lg:hidden xl:block header-clear-dark:text-white">
         BOOM
-        <span className="block font-bold tracking-[0.2em] text-ink-muted">MULTI GLOBAL</span>
+        <span className="block font-bold tracking-[0.2em] text-ink-muted transition-colors duration-300 header-clear-dark:text-on-dark-muted">MULTI GLOBAL</span>
       </span>
     </SmartLink>
   );
