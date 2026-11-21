@@ -24,10 +24,6 @@ export function WhoWeAreSection() {
                 <dt className="font-heading text-xs font-bold tracking-[0.14em] text-ink-muted uppercase">Company</dt>
                 <dd className="mt-1 font-semibold text-navy">{company.legalName}</dd>
               </div>
-              <div className="border-b border-line py-4">
-                <dt className="font-heading text-xs font-bold tracking-[0.14em] text-ink-muted uppercase">Based in</dt>
-                <dd className="mt-1 font-semibold text-navy">Akure, Ondo State, Nigeria</dd>
-              </div>
             </dl>
           </div>
 
