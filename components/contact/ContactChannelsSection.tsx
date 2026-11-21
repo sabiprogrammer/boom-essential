@@ -29,7 +29,7 @@ function Channel({ icon, label, note, index, wide = false, children }: { icon: R
  * has no map, link or opening hours, and no social account is shown: none has been supplied.
  */
 export function ContactChannelsSection() {
-  const { eyebrow, heading, visit, call, whatsapp, email } = contactContent.channels;
+  const { eyebrow, heading, visit, call, whatsapp, email, agents } = contactContent.channels;
 
   return (
     <Section tone="white" space="lg" aria-labelledby="contact-channels-heading">
@@ -67,6 +67,8 @@ export function ContactChannelsSection() {
             </SmartLink>
           </Channel>
         </ul>
+
+        <p className="reveal mt-10 text-lead text-charcoal">{agents}</p>
 
         <p className="reveal mt-12 border-t border-line-strong pt-6 font-heading text-sm font-bold text-ink-muted">
           {contactContent.company.legalName} <span aria-hidden="true">&middot;</span> {contactContent.company.website}

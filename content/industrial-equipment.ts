@@ -8,7 +8,7 @@ import { productPhotos } from "./product-photos";
  * sizes, for the restaurant business.
  *
  * Hard rules: never add machine specifications, sizes, capacities, power ratings, dimensions, materials,
- * brands, prices, warranties, certifications or customer segments beyond the restaurant business
+ * brands, prices (the client's own "very affordable" in `hero.copy` is the only price wording allowed), warranties, certifications or customer segments beyond the restaurant business
  * (no factories or general food-processing companies) without client confirmation. No cart or checkout.
  * Never describe pounding machines as being for "food-processing businesses".
  */
@@ -41,7 +41,7 @@ export const industrialContent = {
   hero: {
     eyebrow: "Additional offering · Industrial Equipment",
     headline: ["Equipment for the", "Restaurant Business."],
-    copy: "We supply pounding machines in different sizes for people in the restaurant business.",
+    copy: "We supply pounding machines in different sizes for people in the restaurant business: very affordable and very efficient.",
     primaryCta: "Enquire About Pounding Machines",
     secondaryCta: "WhatsApp Our Team",
   },

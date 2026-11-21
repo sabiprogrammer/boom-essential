@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { TextLink } from "@/components/ui/TextLink";
+import { companyProfile } from "@/content/company-profile";
 import { divisions } from "@/content/divisions";
 
 /** Company introduction: a wide, quiet editorial spread. Headline left, copy right. */
@@ -33,6 +34,7 @@ export function IntroSection() {
               Boom Multi Global Company Limited is an indigenous Nigerian company with its head office in
               Akure, Ondo State, operating across energy, security and food supply.
             </p>
+            <p>{companyProfile.solutionPartners.statement}</p>
             <p className="text-ink-muted">
               We begin by understanding what our customers need, then recommend the solutions that suit
               them, whether that is dependable power, protection for a property, or quality food and

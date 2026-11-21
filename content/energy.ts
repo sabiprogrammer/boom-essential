@@ -4,8 +4,10 @@ import { divisionAppointmentHref, energyAssessmentSlug } from "./enquiry-links";
 /**
  * BOOM Energy page copy. Every statement comes from the confirmed service list in
  * docs/project-overview.md §3 and the wording supplied by Sabi Programmers for Stage 4.
- * Never add system performance, capacity or size figures, warranties, manufacturer partnerships,
- * certifications, completed-project claims, statistics, testimonials, response times or durations.
+ * Never add system performance figures, warranties, manufacturer names, certifications, completed-project
+ * claims, statistics, testimonials, response times or durations. The ONE capacity statement allowed is the
+ * client's own in `capacity` below (company profile of 2026-11-21); the strategic partnership statement lives in
+ * content/company-profile.ts.
  * The public name is BOOM ENERGY; "BOOM SOLAR" is never used.
  */
 
@@ -48,6 +50,22 @@ export const energyContent = {
       "BOOM ENERGY provides assessment, design, installation and maintenance services based on each customer’s energy needs.",
     ],
     path: ["Assessment", "Design", "Installation", "Maintenance"],
+  },
+
+  /** The client's own capacity statement (company profile, 2026-11-21). No other figure may be added. */
+  capacity: {
+    eyebrow: "Our solar capacity",
+    heading: "A Solar Capacity With No Fixed Limit.",
+    range: "From 1.2KVA up to systems of any kilowatt capacity, we can supply, design and install for any need.",
+    reach:
+      "We supply communities and villages, and we can electrify and upgrade communities. Our service knows no boundary: if you need power, we have the solution.",
+    audiencesLabel: "We provide energy solutions for",
+    audiences: [
+      "Residential homes",
+      "Institutions (schools, churches, hospitals)",
+      "Industries and factories",
+      "Businesses (shops, hotels, cold rooms, supermarkets)",
+    ],
   },
 
   services: {
@@ -171,7 +189,7 @@ export const energyAudiences: readonly EnergyAudience[] = [
   {
     id: "commercial",
     label: "Commercial",
-    includes: "Offices, shops, hotels, supermarkets and other business facilities.",
+    includes: "Offices, shops, hotels, supermarkets, cold rooms and other business facilities.",
     needs:
       "Businesses often depend on power throughout their working hours. Lighting, cooling, refrigeration and equipment may all need to keep running.",
     icon: "commercial",
@@ -179,7 +197,7 @@ export const energyAudiences: readonly EnergyAudience[] = [
   {
     id: "institutional",
     label: "Institutional",
-    includes: "Schools, hospitals, factories, farms and other institutional properties.",
+    includes: "Schools, churches, hospitals, industries, factories, farms and other institutional properties.",
     needs:
       "These properties may rely on power for essential equipment and larger or more varied loads, so careful assessment matters even more.",
     icon: "institutional",

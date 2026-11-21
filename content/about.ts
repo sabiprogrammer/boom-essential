@@ -3,7 +3,8 @@ import type { DivisionId } from "./divisions";
 /**
  * About Us copy. Every statement comes from the client-confirmed company information supplied by
  * Sabi Programmers or from docs/project-overview.md. Do not add a founding year, history, headcount,
- * statistics, partnerships, certifications or coverage claims: none have been supplied.
+ * statistics, certifications or other coverage claims beyond those in content/company-profile.ts (the client's
+ * company profile of 2026-11-21, which holds the partnership and nationwide-presence statements).
  */
 export const aboutContent = {
   hero: {
@@ -18,6 +19,9 @@ export const aboutContent = {
     heading: "More Than Products. A Commitment to Solutions.",
     statement:
       "Boom Multi Global Company Limited is an indigenous Nigerian company with its head office in Akure, Ondo State, committed to powering lives, protecting assets and providing essential products for households and businesses.",
+    /** The client's own wording: see content/company-profile.ts. */
+    solutionPartners:
+      "We are not just vendors. We are solution partners. Our customers share their thoughts, needs and expectations with us, and we deliver, and over-deliver, on those expectations.",
     divisionsIntro: "The company operates through three principal business divisions:",
     belief:
       "The company believes that good service begins with listening to customers, understanding their needs and working towards solutions that meet their expectations.",
@@ -41,7 +45,7 @@ export const aboutContent = {
     } satisfies Record<DivisionId, string>,
     industrial: {
       label: "Also supplied",
-      text: "Industrial food-processing equipment, particularly pounding machines. An additional offering, separate from the three divisions.",
+      text: "Pounding machines in different sizes for the restaurant business. An additional offering, separate from the three divisions.",
       cta: "Industrial Equipment",
       href: "/industrial-equipment",
     },

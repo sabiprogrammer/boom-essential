@@ -1,4 +1,5 @@
 import { company } from "@/content/company";
+import { closingTagline } from "@/content/company-profile";
 import { consultation } from "@/content/navigation";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
@@ -36,6 +37,7 @@ export function ClosingContactSection() {
               WhatsApp Us
             </ButtonLink>
           </div>
+          <p className="mt-10 font-heading text-sm font-bold tracking-[0.14em] text-gold uppercase">{closingTagline}</p>
           <p className="mt-6">
             <TextLink href="/contact" surface="dark" arrow>
               Contact Us

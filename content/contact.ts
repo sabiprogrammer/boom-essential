@@ -36,6 +36,8 @@ export const contactContent = {
       label: "Email",
       note: "General enquiries",
     },
+    /** From the client's company profile (2026-11-21). */
+    agents: "Our sales agents are available 24/7, nationwide.",
   },
 
   enquiry: {

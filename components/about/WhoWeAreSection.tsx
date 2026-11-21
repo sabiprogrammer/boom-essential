@@ -11,7 +11,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
  * divisions and the listening belief, set in decreasing weight, on the right.
  */
 export function WhoWeAreSection() {
-  const { eyebrow, heading, statement, divisionsIntro, belief } = aboutContent.whoWeAre;
+  const { eyebrow, heading, statement, solutionPartners, divisionsIntro, belief } = aboutContent.whoWeAre;
 
   return (
     <Section tone="white" space="lg" aria-labelledby="who-heading">
@@ -33,6 +33,9 @@ export function WhoWeAreSection() {
 
           <div className="lg:col-span-7">
             <p className="reveal font-heading text-h3 leading-snug font-semibold text-navy lg:text-[1.75rem]">{statement}</p>
+            <p className="reveal mt-8 text-lead text-charcoal" style={{ "--i": 1 } as CSSProperties}>
+              {solutionPartners}
+            </p>
 
             <div className="reveal mt-14 lg:mt-20" style={{ "--i": 1 } as CSSProperties}>
               <p className="text-lead text-ink-muted">{divisionsIntro}</p>

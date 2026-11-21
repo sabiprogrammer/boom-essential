@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { company } from "@/content/company";
+import { PresenceSection } from "@/components/company/PresenceSection";
+import { WhyBoomSection } from "@/components/company/WhyBoomSection";
 import { AboutClosingSection } from "@/components/about/AboutClosingSection";
 import { AboutDivisionsSection } from "@/components/about/AboutDivisionsSection";
 import { AboutHero } from "@/components/about/AboutHero";
@@ -33,7 +35,7 @@ export const metadata: Metadata = {
   },
 };
 
-/** About Us (Stage 3). Navy hero, then light, tint, white, tint and a navy close. */
+/** About Us (Stage 3). Navy hero, then white, tint, white, tint (Why Boom), navy (presence), tint and a navy close. */
 export default function AboutPage() {
   return (
     <>
@@ -41,6 +43,8 @@ export default function AboutPage() {
       <WhoWeAreSection />
       <AboutValuesSection />
       <AboutDivisionsSection />
+      <WhyBoomSection tone="tint" />
+      <PresenceSection />
       <LeadershipSection />
       <AboutClosingSection />
     </>

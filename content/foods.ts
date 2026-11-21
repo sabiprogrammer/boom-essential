@@ -5,7 +5,8 @@ import { company } from "./company";
  * and the wording supplied by Sabi Programmers for Stage 6 (including the original client information
  * that household staples are supplied in bag sizes from 1kg to 100kg).
  *
- * Hard rules: NO PRICES anywhere (no fields, no wording that implies them), no checkout, payments,
+ * Hard rules: NO PRICES anywhere (no price fields or figures; the only price wording allowed is the client's own
+ * "very reasonable prices" in `proteins.lead`, company profile 2026-11-21), no checkout, payments,
  * inventory or accounts. Never add weights, grades, species, cuts, brands, storage specifications,
  * certifications, origins, contracts, supply volumes or testimonials: none are confirmed.
  */
@@ -79,6 +80,7 @@ export const foodsContent = {
     paragraphs: [
       "BOOM FOODS is the food and agricultural products division of Boom Multi Global Company Limited.",
       "Its offerings include household staples and protein products, supplied to households, businesses, organisations and institutions.",
+      "BOOM FOODS is also into raw food and agribusiness, with a supply chain that works 24/7.",
     ],
     groups: [
       { count: "05", label: "Household staples", href: "#household-staples" },
@@ -101,7 +103,7 @@ export const foodsContent = {
   proteins: {
     eyebrow: "Protein products",
     heading: "Protein Products.",
-    lead: "Smoked fish and frozen chicken for households and food businesses.",
+    lead: "Smoked fish and frozen chicken at very reasonable prices, for seafood and food businesses and households.",
     enquiryCta: "Enquire About This Product",
   },
 

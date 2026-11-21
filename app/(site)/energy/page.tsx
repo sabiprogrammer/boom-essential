@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { company } from "@/content/company";
 import { ApproachSection } from "@/components/energy/ApproachSection";
+import { CapacitySection } from "@/components/energy/CapacitySection";
 import { EnergyClosingSection } from "@/components/energy/EnergyClosingSection";
 import { EnergyHero } from "@/components/energy/EnergyHero";
 import { EnergyIntroSection } from "@/components/energy/EnergyIntroSection";
@@ -41,6 +42,7 @@ export default function EnergyPage() {
       <EnergyIntroSection />
       <EnergyServicesSection />
       <WhoWeServeSection />
+      <CapacitySection />
       <ApproachSection />
       <EnergyClosingSection />
     </>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { company } from "@/content/company";
+import { WhyBoomSection } from "@/components/company/WhyBoomSection";
 import { ClosingContactSection } from "@/components/home/ClosingContactSection";
 import { CoreValuesSection } from "@/components/home/CoreValuesSection";
 import { DivisionsSection } from "@/components/home/DivisionsSection";
@@ -51,6 +52,7 @@ export default function HomePage() {
       <OurWorkSection />
       <CoreValuesSection />
       <HowWeWorkSection />
+      <WhyBoomSection tone="tint" />
       <LeadershipPreviewSection />
       <ClosingContactSection />
     </>
